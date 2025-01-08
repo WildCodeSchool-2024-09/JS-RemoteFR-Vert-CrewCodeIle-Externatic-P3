@@ -1,7 +1,14 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
+import "./index.css";
 import OffersResearchPage from "./pages/OffersResearchPage";
 
 function App() {
-  return <OffersResearchPage />;
+  return (
+    <main>
+      <Outlet />
+      <OffersResearchPage />
+    </main>
+  );
 }
 export default App;
