@@ -4,4 +4,5 @@ export type SearchDataType = {
   partTime?: string;
   internship?: string;
   location: string;
+  teleworking?: string;
 };
