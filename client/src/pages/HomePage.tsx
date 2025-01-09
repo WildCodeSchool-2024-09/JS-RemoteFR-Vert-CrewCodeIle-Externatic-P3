@@ -1,4 +1,4 @@
-import About from "../components/About";
+import About from "../components/About/About";
 import SignUp from "../components/SignUp";
 
 const HomePage = () => {
