@@ -123,7 +123,7 @@ function UserFormRegister() {
                 id="town"
                 className="rounded ml-1"
               />
-              {errors.town?.message === "string" && (
+              {typeof errors.town?.message === "string" && (
                 <span className="text-red-500">{errors.town.message}</span>
               )}
             </label>
