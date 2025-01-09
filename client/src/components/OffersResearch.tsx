@@ -1,9 +1,11 @@
+import { SquareMenu } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import type { SearchDataType } from "../lib/definition";
 
 export default function OffersResearch() {
   const [search, setSearch] = useState<string>("");
+  const [isOpenMenu, setIsOpenedMenu] = useState(false);
 
   const {
     register,
@@ -18,21 +20,50 @@ export default function OffersResearch() {
     setSearch(e.target.value);
   };
 
+  const handleIsOpenedMenu = () => {
+    setIsOpenedMenu(!isOpenMenu);
+  };
+
   return (
     <>
       <section className="flex place-content-between">
-        <img
-          className="w-32"
-          src="../src/assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png"
-          alt="Externatic logo"
-        />
+        <a href="/">
+          <img
+            className="h-[6em] w-[8em]"
+            src="../src/assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png"
+            alt="Externatic logo"
+          />
+        </a>
 
-        <button
-          type="button"
-          className="h-10 mr-4 mt-12 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black"
-        >
-          Mon compte
-        </button>
+        <div className="flex flex-col gap-4">
+          <div className="flex justify-end">
+            <button className="mr-6" type="button" onClick={handleIsOpenedMenu}>
+              <SquareMenu />
+            </button>
+          </div>
+
+          {isOpenMenu && (
+            <section className="flex flex-col gap-2 mr-2">
+              <li className="list-none">
+                <a href="/">Nos partenaires</a>
+              </li>
+              <li className="list-none">
+                <a href="/">Nos offres d'emploi</a>
+              </li>
+              <li className="list-none">
+                <a href="/">A propos</a>
+              </li>
+            </section>
+          )}
+
+          <p>Nom Prénom </p>
+          <button
+            type="button"
+            className="h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black"
+          >
+            Mon compte
+          </button>
+        </div>
       </section>
       <section className="flex w-fit mx-auto mt-16">
         <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
