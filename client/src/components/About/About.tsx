@@ -1,4 +1,4 @@
-import { whoWeAre, services } from "./dataAbout";
+import { services, whoWeAre } from "./dataAbout";
 
 const About = () => {
   const whoWeAreContent = whoWeAre.map((feature) => (
