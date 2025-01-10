@@ -97,6 +97,11 @@ function UserFormRegister() {
               <input
                 {...register("adress", {
                   required: "Le champ est requis",
+                  maxLength: {
+                    value: 100,
+                    message:
+                      "Le champ ne peut pas contenir plus de 100 caractères",
+                  },
                 })}
                 type="text"
                 id="adress"
@@ -114,9 +119,9 @@ function UserFormRegister() {
                 {...register("town", {
                   required: "Le champ est requis",
                   maxLength: {
-                    value: 80,
+                    value: 100,
                     message:
-                      "Le champ ne peut pas contenir plus de 80 caractères",
+                      "Le champ ne peut pas contenir plus de 100 caractères",
                   },
                 })}
                 type="text"
