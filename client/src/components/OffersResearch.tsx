@@ -69,7 +69,9 @@ export default function OffersResearch() {
         <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col ">
             {errors.job_name && (
-              <p className="text-lg font-bold">{errors.job_name.message}</p>
+              <span className="text-lg font-bold">
+                {errors.job_name.message}
+              </span>
             )}
             <label htmlFor="job_name">Intitulé du poste:</label>
             <input
