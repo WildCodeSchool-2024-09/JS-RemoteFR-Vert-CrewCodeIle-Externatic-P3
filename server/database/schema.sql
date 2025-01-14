@@ -23,9 +23,10 @@ CREATE TABLE user (
 CREATE TABLE company (
  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   company_name VARCHAR(100) NOT NULL,
+  sector VARCHAR(100) NOT NULL,
   employee_number INT,
   user_id INT NOT NULL,
-  website_link VARCHAR(100) NOT NULL,
+  website_link VARCHAR(100),
   description TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
@@ -45,7 +46,6 @@ CREATE TABLE offer(
   wage INT,
   description TEXT NOT NULL,
   location VARCHAR(100) NOT NULL,
-  contract VARCHAR(100) NOT NULL,
   is_teleworking BOOLEAN,
   contract_type VARCHAR(100) NOT NULL,
   company_id INT NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE candidature (
 
 CREATE TABLE tag(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(255) 
+name VARCHAR(100) 
 );
 
 CREATE TABLE offer_tag(
