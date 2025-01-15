@@ -1,4 +1,5 @@
 import { SquareMenu } from "lucide-react";
+import { SmileIcon } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import type { SearchDataType } from "../lib/definition";
@@ -37,7 +38,11 @@ export default function OffersResearch() {
 
         <div className="flex flex-col gap-4">
           <div className="flex justify-end">
-            <button className="mr-6" type="button" onClick={handleIsOpenedMenu}>
+            <button
+              className="mr-6 lg:invisible"
+              type="button"
+              onClick={handleIsOpenedMenu}
+            >
               <SquareMenu />
             </button>
           </div>
@@ -56,13 +61,26 @@ export default function OffersResearch() {
             </section>
           )}
 
-          <p>Nom Prénom </p>
-          <button
-            type="button"
-            className="h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black"
-          >
-            Mon compte
-          </button>
+          {/* Don't forget to replace smileIcon with candidate picture profile from DB */}
+          <div className="flex flex-col gap-2 lg:flex lg:gap-16">
+            <SmileIcon />
+
+            <div className="lg:flex lg:flex-col gap-2">
+              <p>Nom Prénom </p>
+              <button
+                type="button"
+                className="h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white"
+              >
+                Mon compte
+              </button>
+            </div>
+            <div className="lg:self-center">
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" value="" className="sr-only peer" />
+                <div className="mr-12 w-9 h-5 lg:w-11 lg:h-6 bg-gray-200 hover:bg-gray-300 peer-focus:outline-0 peer-focus:ring-transparent rounded-full peer transition-all ease-in-out duration-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 lg:after:h-5 lg:after:w-5 after:transition-all peer-checked:bg-indigo-600 hover:peer-checked:bg-indigo-700" />
+              </label>
+            </div>
+          </div>
         </div>
       </section>
       <section className="flex w-fit mx-auto mt-16">
@@ -88,7 +106,7 @@ export default function OffersResearch() {
             />
           </div>
 
-          <section className="flex flex-col gap-2">
+          <section className="flex flex-col">
             <label htmlFor="contractType">Type de contrat:</label>
 
             <div className="flex gap-2">
