@@ -13,7 +13,7 @@ CREATE TABLE user (
   address VARCHAR(100) NOT NULL,
   postal_code INT NOT NULL,
   city VARCHAR(100) NOT NULL,
-  tel INT NOT NULL,
+  tel VARCHAR(15) NOT NULL,
   role_id INT NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id),
   is_active BOOLEAN DEFAULT FALSE,
