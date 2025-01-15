@@ -50,6 +50,12 @@ class UserRepository {
     return rows[0] as UserType;
   }
 
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>("select * from user");
+
+    return rows as UserType[];
+  }
+
   async update(user: UserType) {
     const [result] = await databaseClient.query<Result>(
       `UPDATE user 
