@@ -15,7 +15,8 @@ CREATE TABLE user (
   tel VARCHAR(15) NOT NULL,
   role_id INT NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id),
-  is_active BOOLEAN DEFAULT FALSE
+  is_active BOOLEAN DEFAULT FALSE,
+  is_role BOOLEAN NOT NULL
 );
 
 CREATE TABLE company (
@@ -87,20 +88,20 @@ VALUES
 ('Administrateur');
 
 
-INSERT INTO user (firstname, lastname, email, password, address, postal_code, city, tel, role_id, is_active)
+INSERT INTO user (firstname, lastname, email, password, address, postal_code, city, tel, role_id, is_active, is_role)
 VALUES
-('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', '123 Elm St', '12345', 'New York', '1234567890', 1, TRUE),
-('Bob', 'Smith', 'bob.smith@example.com', 'password123', '456 Oak St', '23456', 'Los Angeles', '2345678901', 2, TRUE),
-('Charlie', 'Brown', 'charlie.brown@example.com', 'password123', '789 Pine St', '34567', 'Chicago', '3456789012', 1, FALSE),
-('Diana', 'Davis', 'diana.davis@example.com', 'password123', '321 Maple St', '45678', 'Houston', '4567890123', 2, TRUE),
-('Edward', 'Wilson', 'edward.wilson@example.com', 'password123', '654 Cedar St', '56789', 'Phoenix', '5678901234', 3, TRUE),
-('Fiona', 'Martinez', 'fiona.martinez@example.com', 'password123', '987 Elm St', '67890', 'Philadelphia', '6789012345', 1, FALSE),
-('George', 'Anderson', 'george.anderson@example.com', 'password123', '147 Spruce St', '78901', 'San Antonio', '7890123456', 2, TRUE),
-('Hannah', 'Taylor', 'hannah.taylor@example.com', 'password123', '258 Birch St', '89012', 'San Diego', '8901234567', 3, TRUE),
-('Ian', 'Thomas', 'ian.thomas@example.com', 'password123', '369 Walnut St', '90123', 'Dallas', '9012345678', 1, FALSE),
-('Julia', 'Moore', 'julia.moore@example.com', 'password123', '741 Chestnut St', '12345', 'San Jose', '1234567890', 2, TRUE);
+('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', '123 Elm St', '12345', 'New York', '1234567890', 1, TRUE, TRUE),
+('Bob', 'Smith', 'bob.smith@example.com', 'password123', '456 Oak St', '23456', 'Los Angeles', '2345678901', 2, TRUE, TRUE),
+('Charlie', 'Brown', 'charlie.brown@example.com', 'password123', '789 Pine St', '34567', 'Chicago', '3456789012', 1, FALSE, TRUE),
+('Diana', 'Davis', 'diana.davis@example.com', 'password123', '321 Maple St', '45678', 'Houston', '4567890123', 2, TRUE, FALSE),
+('Edward', 'Wilson', 'edward.wilson@example.com', 'password123', '654 Cedar St', '56789', 'Phoenix', '5678901234', 3, TRUE, FALSE),
+('Fiona', 'Martinez', 'fiona.martinez@example.com', 'password123', '987 Elm St', '67890', 'Philadelphia', '6789012345', 1, FALSE, TRUE),
+('George', 'Anderson', 'george.anderson@example.com', 'password123', '147 Spruce St', '78901', 'San Antonio', '7890123456', 2, TRUE, FALSE),
+('Hannah', 'Taylor', 'hannah.taylor@example.com', 'password123', '258 Birch St', '89012', 'San Diego', '8901234567', 3, TRUE, FALSE),
+('Ian', 'Thomas', 'ian.thomas@example.com', 'password123', '369 Walnut St', '90123', 'Dallas', '9012345678', 1, FALSE, TRUE),
+('Julia', 'Moore', 'julia.moore@example.com', 'password123', '741 Chestnut St', '12345', 'San Jose', '1234567890', 2, TRUE, FALSE);
 
-INSERT INTO company (company_name, employee_number, user_id, website_link, description)
+INSERT INTO company (company_name, employee_number, user_id, website_link, description) 
 VALUES
 ('Tech Innovators Inc.', 250, 1, 'https://techinnovators.com', 'A leading company in tech innovations, providing cutting-edge solutions.'),
 ('Green Energy Solutions', 120, 2, 'https://greenenergy.com', 'Focused on renewable energy solutions to combat climate change.'),
