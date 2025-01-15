@@ -5,8 +5,8 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import type { SearchDataType } from "../lib/definition";
 
 export default function OffersResearch() {
-  const [search, setSearch] = useState<string>("");
   const [isOpenMenu, setIsOpenedMenu] = useState(false);
+  const [search, setSearch] = useState<string>("");
 
   const {
     register,

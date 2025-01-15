@@ -13,6 +13,7 @@ router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
-/* ************************************************************************* */
+import candidateActions from "./routes/candidate.routes";
+router.use("/api/candidates", candidateActions);
 
 export default router;
