@@ -151,7 +151,7 @@ function UserFormRegister() {
               )}
             </label>
           </section>
-          <section className="flex justify-around">
+          <section className="flex justify-around items-center">
             <label htmlFor="phoneNumber">
               Téléphone :
               <input
