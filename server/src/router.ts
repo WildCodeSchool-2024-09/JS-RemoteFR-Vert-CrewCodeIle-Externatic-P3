@@ -13,6 +13,11 @@ router.get("/api/items", itemActions.browse);
 router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
+import userActions from "./modules/item/form/userActions";
+
+router.get("api/userformregister", userActions.browse);
+router.post("api/userformregister", userActions.add);
+
 /* ************************************************************************* */
 
 export default router;
