@@ -62,19 +62,19 @@ export default function OffersResearch() {
           )}
 
           {/* Don't forget to replace smileIcon with candidate picture profile from DB */}
-          <div className="flex flex-col gap-2 lg:flex lg:gap-16">
+          <div className="lg:flex lg:gap-16">
             <SmileIcon />
 
             <div className="lg:flex lg:flex-col gap-2">
-              <p>Nom Prénom </p>
+              <p className="mt-2">Nom Prénom </p>
               <button
                 type="button"
-                className="h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white"
+                className="mt-2 h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white lg:hover:bg-black"
               >
                 Mon compte
               </button>
             </div>
-            <div className="lg:self-center">
+            <div className="mt-2 lg:self-center">
               <label className="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" value="" className="sr-only peer" />
                 <div className="mr-12 w-9 h-5 lg:w-11 lg:h-6 bg-gray-200 hover:bg-gray-300 peer-focus:outline-0 peer-focus:ring-transparent rounded-full peer transition-all ease-in-out duration-500 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 lg:after:h-5 lg:after:w-5 after:transition-all peer-checked:bg-indigo-600 hover:peer-checked:bg-indigo-700" />
@@ -83,8 +83,11 @@ export default function OffersResearch() {
           </div>
         </div>
       </section>
-      <section className="flex w-fit mx-auto mt-16">
-        <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+      <section className="flex w-fit mx-auto mt-16 lg:mt-32">
+        <form
+          className="flex flex-col gap-8 lg:flex-row lg:gap-12"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="flex flex-col ">
             {errors.job_name && (
               <span className="text-lg font-bold">
@@ -135,11 +138,12 @@ export default function OffersResearch() {
               {...register("teleworking")}
               type="checkbox"
               value="teleworking"
+              className="lg:self-start lg:mt-1.5"
             />
           </div>
 
           <button
-            className="w-fit mx-auto p-2 rounded-md bg-[#CA2060] hover:text-white hover:bg-black"
+            className="w-fit mx-auto p-2 rounded-md bg-[#CA2060] hover:text-white hover:bg-black lg:w-[10em]"
             type="submit"
           >
             Rechercher
