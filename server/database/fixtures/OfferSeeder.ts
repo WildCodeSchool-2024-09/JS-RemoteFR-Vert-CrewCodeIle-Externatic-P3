@@ -15,7 +15,7 @@ class OfferSeeder extends AbstractSeeder {
         location: this.faker.address.city(),
         is_teleworking: this.faker.datatype.boolean(),
         contract_type: this.faker.helpers.arrayElement(["CDI", "CDD"]),
-        company_id: this.faker.number.int({ min: 1, max: 1000 }),
+        company_id: this.faker.number.int({ min: 1, max: 10 }),
         is_opened_to_disabled: this.faker.datatype.boolean(),
       };
 

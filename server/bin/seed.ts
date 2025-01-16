@@ -56,7 +56,32 @@ const seed = async () => {
 
     // Truncate tables (starting from the depending ones)
 
-    for (const seeder of sortedSeeders.toReversed()) {
+    const [
+      CandidateSeeder,
+      CandidatureSeeder,
+      CompanySeeder,
+      FavoriteSeeder,
+      OfferSeeder,
+      OfferTagSeeder,
+      RoleSeeder,
+      TagSeeder,
+      UserSeeder,
+    ] = sortedSeeders;
+
+    // Custom Seeder order
+    const customSeederOrder = [
+      RoleSeeder,
+      UserSeeder,
+      CompanySeeder,
+      CandidateSeeder,
+      OfferSeeder,
+      FavoriteSeeder,
+      CandidatureSeeder,
+      TagSeeder,
+      OfferTagSeeder,
+    ]; // Alimenter ce tableau pour avoir les seeders dans l'ordre
+
+    for (const seeder of customSeederOrder) {
       // Use delete instead of truncate to bypass foreign key constraint
       // Wait for the delete promise to complete
       await database.query(`delete from ${seeder.table}`);
@@ -64,7 +89,7 @@ const seed = async () => {
 
     // Run each seeder
 
-    for (const seeder of sortedSeeders) {
+    for (const seeder of customSeederOrder) {
       await seeder.run();
 
       // Wait for all the insertion promises to complete

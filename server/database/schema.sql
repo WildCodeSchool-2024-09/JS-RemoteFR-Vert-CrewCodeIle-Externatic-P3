@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE role (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   label VARCHAR(100) NOT NULL
@@ -10,7 +11,7 @@ CREATE TABLE user (
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL,
   address VARCHAR(100) NOT NULL,
-  postal_code INT NOT NULL,
+  postal_code VARCHAR(5) NOT NULL,
   city VARCHAR(100) NOT NULL,
   tel VARCHAR(15) NOT NULL,
   role_id INT NOT NULL,
@@ -42,6 +43,7 @@ CREATE TABLE candidat (
 CREATE TABLE offer(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   titre VARCHAR(100) NOT NULL,
+  logo VARCHAR(100),
   wage INT,
   description TEXT NOT NULL,
   location VARCHAR(100) NOT NULL,

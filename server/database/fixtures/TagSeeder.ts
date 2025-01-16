@@ -8,7 +8,7 @@ class TagSeeder extends AbstractSeeder {
   run() {
     for (let i = 0; i < 10; i += 1) {
       const fakeTag = {
-        name: this.faker.lorem.words(80),
+        name: this.faker.lorem.words(5),
       };
 
       this.insert(fakeTag);

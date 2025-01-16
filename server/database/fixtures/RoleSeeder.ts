@@ -6,9 +6,10 @@ class RoleSeeder extends AbstractSeeder {
   }
 
   async run() {
-    for (let i = 0; i < 10; i++) {
+    const roles = ["Company", "Candidat", "Admin"];
+    for (let i = 0; i < 3; i++) {
       const fakeRole = {
-        label: this.faker.helpers.arrayElement(["Company", "Candidat", "Admi"]),
+        label: [roles[i]],
       };
 
       this.insert(fakeRole);
