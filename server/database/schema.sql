@@ -11,7 +11,7 @@ CREATE TABLE user (
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL,
   address VARCHAR(100) NOT NULL,
-  postal_code INT NOT NULL,
+  postal_code VARCHAR(5) NOT NULL,
   city VARCHAR(100) NOT NULL,
   tel VARCHAR(15) NOT NULL,
   role_id INT NOT NULL,
