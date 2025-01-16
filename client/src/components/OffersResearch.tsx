@@ -7,6 +7,11 @@ import type { SearchDataType } from "../lib/definition";
 export default function OffersResearch() {
   const [isOpenMenu, setIsOpenedMenu] = useState(false);
   const [search, setSearch] = useState<string>("");
+  //const [candidates, setCandidates] = useState();
+
+  // useEffect(()=>{
+  //   fetch(`${import.meta.env.SERVER_URL}/api/candidates`).then((res) => res.json).then((data)=> setCandidates(data));
+  // })
 
   const {
     register,
