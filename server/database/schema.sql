@@ -31,11 +31,58 @@ CREATE TABLE company (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
+CREATE TABLE candidate (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  cv VARCHAR(100),
+  photo VARCHAR(100),
+  user_id INT NOT NULL,
+  FOREIGN KEY(user_id) REFERENCES user(id),
+  is_disabled BOOLEAN  NOT NULL
+);
 
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
+CREATE TABLE offer(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  titre VARCHAR(100) NOT NULL,
+  logo VARCHAR(100),
+  wage INT,
+  description TEXT NOT NULL,
+  location VARCHAR(100) NOT NULL,
+  is_teleworking BOOLEAN,
+  contract_type VARCHAR(100) NOT NULL,
+  company_id INT NOT NULL,
+  FOREIGN KEY (company_id) REFERENCES company(id),
+  is_opened_to_disabled BOOLEAN NOT NULL
+);
+
+CREATE TABLE favorite(
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  offer_id INT NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id),
+  candidate_id INT NOT NULL,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id)
+);
+
+CREATE TABLE candidature (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  statut VARCHAR(100),
+  is_refused BOOLEAN,
+  candidate_id  INT NOT NULL,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id),
+  offer_id  INT NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id)
+);
+
+CREATE TABLE tag(
+id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) 
+);
+
+CREATE TABLE offer_tag(
+  offer_id INT NOT NULL,
+  FOREIGN KEY (offer_id) REFERENCES offer(id),
+  tag_id INT NOT NULL,
+  FOREIGN KEY(tag_id) REFERENCES tag(id)
+);
+
+
+

@@ -2,7 +2,7 @@ import AbstractSeeder from "./AbstractSeeder";
 
 class CandidateSeeder extends AbstractSeeder {
   constructor() {
-    super({ table: "candidat", truncate: true });
+    super({ table: "candidate", truncate: true });
   }
 
   run() {

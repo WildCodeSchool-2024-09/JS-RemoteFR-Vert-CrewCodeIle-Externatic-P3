@@ -10,7 +10,7 @@ class CandidatureSeeder extends AbstractSeeder {
       const fakeCandidature = {
         statut: this.faker.helpers.arrayElement(["Accepté", "Rejeté"]),
         is_refused: this.faker.datatype.boolean(),
-        candidat_id: this.faker.number.int({ min: 1, max: 10 }),
+        candidate_id: this.faker.number.int({ min: 1, max: 10 }),
         offer_id: this.faker.number.int({ min: 1, max: 10 }),
       };
 
