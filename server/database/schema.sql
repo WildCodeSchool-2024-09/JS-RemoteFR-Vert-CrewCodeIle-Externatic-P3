@@ -23,7 +23,6 @@ CREATE TABLE user (
 CREATE TABLE company (
  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   company_name VARCHAR(100) NOT NULL,
-  logo VARCHAR(100),
   sector VARCHAR(100) NOT NULL,
   employee_number INT,
   user_id INT NOT NULL,
@@ -44,6 +43,7 @@ CREATE TABLE candidate (
 CREATE TABLE offer(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   titre VARCHAR(100) NOT NULL,
+  logo VARCHAR(100),
   wage INT,
   description TEXT NOT NULL,
   location VARCHAR(100) NOT NULL,
