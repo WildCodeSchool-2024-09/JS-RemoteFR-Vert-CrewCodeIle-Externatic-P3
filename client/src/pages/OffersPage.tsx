@@ -3,9 +3,9 @@ import OffersList from "../components/OffersList";
 export default function OffersPage() {
   return (
     <>
-      <h1 className="text-center font-medim"> Nos Offres</h1>
-
-      <OffersList />
+      <div className="flex flex-col min-h-screen">
+        <OffersList />
+      </div>
     </>
   );
 }

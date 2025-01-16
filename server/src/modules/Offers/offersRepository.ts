@@ -5,14 +5,16 @@ import type { Result, Rows } from "../../../database/client";
 type Offers = {
   id: number;
   name: string;
+  ville: string;
+  salaire: string;
 };
 
 class OffersRepository {
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all categories from the "category" table
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM tag");
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM tag ORDER BY id DESC LIMIT 6 ;",
+    );
 
-    // Return the array of categories
     return rows as Offers[];
   }
 }
