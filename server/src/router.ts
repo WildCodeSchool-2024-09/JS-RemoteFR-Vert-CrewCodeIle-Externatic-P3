@@ -6,9 +6,9 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
-import offersActions from "./modules/Offers/offersActions";
+import offersListActions from "./modules/offersList/offersListActions";
 
 /* ************************************************************************* */
-router.get("/api/offersPage", offersActions.browse);
+router.get("/api/offersPage", offersListActions.browse);
 
 export default router;

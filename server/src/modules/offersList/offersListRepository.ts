@@ -9,7 +9,7 @@ type Offers = {
   wage: number;
 };
 
-class OffersRepository {
+class OffersListRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM offer;");
 
@@ -17,4 +17,4 @@ class OffersRepository {
   }
 }
 
-export default new OffersRepository();
+export default new OffersListRepository();
