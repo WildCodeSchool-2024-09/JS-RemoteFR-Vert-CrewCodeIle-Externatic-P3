@@ -1,17 +1,27 @@
-import { SquareMenu } from "lucide-react";
-import { SmileIcon } from "lucide-react";
-import { useState } from "react";
+import { SmileIcon, SquareMenu } from "lucide-react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import type { SearchDataType } from "../lib/definition";
+import type { OffersDataType, SearchDataType } from "../lib/definition";
 
 export default function OffersResearch() {
   const [isOpenMenu, setIsOpenedMenu] = useState(false);
   const [search, setSearch] = useState<string>("");
-  //const [candidates, setCandidates] = useState();
+  // const [candidates, setCandidates] = useState<CandidateDataType[]>([]);
+  const [offers, setOffers] = useState<OffersDataType[]>([]);
 
-  // useEffect(()=>{
-  //   fetch(`${import.meta.env.SERVER_URL}/api/candidates`).then((res) => res.json).then((data)=> setCandidates(data));
-  // })
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const response = await fetch("http://localhost:3310/api/offers");
+        const data: OffersDataType[] = await response.json();
+        setOffers(data);
+      } catch (error) {
+        console.error("Error fetching offers", error);
+      }
+    };
+
+    fetchOffers();
+  }, []); //
 
   const {
     register,
@@ -31,7 +41,7 @@ export default function OffersResearch() {
   };
 
   return (
-    <>
+    <section>
       <section className="flex place-content-between">
         <a href="/">
           <img
@@ -155,6 +165,19 @@ export default function OffersResearch() {
           </button>
         </form>
       </section>
-    </>
+
+      <section className="flex w-10/12 mt-[8em] mx-auto">
+        <ul className="flex flex-row flex-wrap gap-8 justify-center ">
+          {offers.map((offer) => (
+            <li key={offer.id} className="flex flex-col gap-2 w-1/6">
+              <h1 className="text-lg font-bold">{offer.titre}</h1>
+              <span>{offer.contract_type}</span>
+              <span>{offer.description}</span>
+              <span>salaire: {offer.wage}€</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </section>
   );
 }

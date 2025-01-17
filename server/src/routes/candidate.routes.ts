@@ -1,5 +1,7 @@
+import express from "express";
 import candidateActions from "../modules/item/candidate/candidateActions";
-import router from "../router";
+
+const router = express.Router();
 
 router.get("/", candidateActions.browse);
 router.get("/:id", candidateActions.read);

@@ -1,7 +1,7 @@
 import databaseClient from "../../../../database/client";
 import type { Result, Rows } from "../../../../database/client";
 
-type Candidate = {
+type CandidateDataType = {
   cv: string;
   photo: string;
   user_id: number;
@@ -9,7 +9,7 @@ type Candidate = {
 };
 
 class CandidateRepository {
-  async create(candidate: Candidate) {
+  async create(candidate: CandidateDataType) {
     const [result] = await databaseClient.query<Result>(
       "INSERT INTO candidate(cv, photo, user_id, is_disabled) VALUES(?,?,?,?)",
       [candidate.cv, candidate.photo, candidate.user_id, candidate.is_disabled],
@@ -18,7 +18,7 @@ class CandidateRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM candidate");
 
-    return rows as Candidate[];
+    return rows as CandidateDataType[];
   }
 
   async read(id: number) {
@@ -26,10 +26,10 @@ class CandidateRepository {
       "SELECT * FROM candidate WHERE id=?",
       [id],
     );
-    return rows[0] as Candidate;
+    return rows[0] as CandidateDataType;
   }
 
-  async update(candidate: Omit<Candidate, "user_id">) {
+  async update(candidate: Omit<CandidateDataType, "user_id">) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE TABLE candidate SET cv= ?, photo= ?, is_disabled= ? WHERE id=?",
       [candidate.cv, candidate.photo, candidate.is_disabled],
