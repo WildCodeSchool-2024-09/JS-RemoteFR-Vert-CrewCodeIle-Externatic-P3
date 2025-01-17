@@ -1,6 +1,6 @@
 export type offersType = {
   id: number;
-  name: string;
-  ville: string;
-  salaire: string;
+  description: string;
+  wage: number;
+  title: string;
 };
