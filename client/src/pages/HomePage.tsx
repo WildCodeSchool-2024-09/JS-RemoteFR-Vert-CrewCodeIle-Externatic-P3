@@ -1,9 +1,12 @@
+import About from "../components/About/About";
+import SignUp from "../components/SignUp";
+
 const HomePage = () => {
   return (
-    <>
-      <HomePage />
-      <h1>Welcome to homepage</h1>;
-    </>
+    <div className="flex flex-col min-h-screen">
+      <SignUp />
+      <About />
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE role (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   label VARCHAR(100) NOT NULL
@@ -10,7 +11,7 @@ CREATE TABLE user (
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(100) NOT NULL,
   address VARCHAR(100) NOT NULL,
-  postal_code INT NOT NULL,
+  postal_code VARCHAR(5) NOT NULL,
   city VARCHAR(100) NOT NULL,
   tel VARCHAR(15) NOT NULL,
   role_id INT NOT NULL,
@@ -22,14 +23,15 @@ CREATE TABLE user (
 CREATE TABLE company (
  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   company_name VARCHAR(100) NOT NULL,
+  sector VARCHAR(100) NOT NULL,
   employee_number INT,
   user_id INT NOT NULL,
-  website_link VARCHAR(100) NOT NULL,
+  website_link VARCHAR(100),
   description TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-CREATE TABLE candidat (
+CREATE TABLE candidate (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   cv VARCHAR(100),
   photo VARCHAR(100),
@@ -41,6 +43,7 @@ CREATE TABLE candidat (
 CREATE TABLE offer(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   titre VARCHAR(100) NOT NULL,
+  logo VARCHAR(100),
   wage INT,
   description TEXT NOT NULL,
   location VARCHAR(100) NOT NULL,
@@ -55,23 +58,23 @@ CREATE TABLE favorite(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   offer_id INT NOT NULL,
   FOREIGN KEY (offer_id) REFERENCES offer(id),
-  candidat_id INT NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id)
+  candidate_id INT NOT NULL,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id)
 );
 
 CREATE TABLE candidature (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   statut VARCHAR(100),
   is_refused BOOLEAN,
-  candidat_id  INT NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id),
+  candidate_id  INT NOT NULL,
+  FOREIGN KEY (candidate_id) REFERENCES candidate(id),
   offer_id  INT NOT NULL,
   FOREIGN KEY (offer_id) REFERENCES offer(id)
 );
 
 CREATE TABLE tag(
 id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-name VARCHAR(255) 
+name VARCHAR(100) 
 );
 
 CREATE TABLE offer_tag(
@@ -80,4 +83,6 @@ CREATE TABLE offer_tag(
   tag_id INT NOT NULL,
   FOREIGN KEY(tag_id) REFERENCES tag(id)
 );
+
+
 
