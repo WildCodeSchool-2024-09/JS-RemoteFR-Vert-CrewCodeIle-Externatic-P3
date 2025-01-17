@@ -12,6 +12,17 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        loader: async () => {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/offers`,
+          );
+          if (!response.ok) {
+            throw new Response("Erreur lors de la récupération des offres", {
+              status: response.status,
+            });
+          }
+          return response.json();
+        },
       },
       {
         path: "/OffersPage",

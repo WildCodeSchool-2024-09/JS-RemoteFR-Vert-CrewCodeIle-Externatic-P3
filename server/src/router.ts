@@ -8,6 +8,10 @@ const router = express.Router();
 
 import offersListActions from "./modules/offersList/offersListActions";
 
+import offersActions from "./modules/offers/offersActions";
+
+router.get("/api/offers", offersActions.browseOffers);
+
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);
 
