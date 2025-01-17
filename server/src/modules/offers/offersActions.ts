@@ -3,7 +3,7 @@ import offersRepository from "./offersRepository";
 
 const browseOffers: RequestHandler = async (req, res, next) => {
   try {
-    const offers = await offersRepository.readAll();
+    const offers = await offersRepository.readAllOffers();
     res.json(offers);
   } catch (err) {
     next(err);
