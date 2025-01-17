@@ -158,7 +158,7 @@ export default function OffersResearch() {
           </div>
 
           <button
-            className="w-fit mx-auto p-2 rounded-md bg-[#CA2060] hover:text-white hover:bg-black lg:w-[10em]"
+            className="w-fit mx-auto p-2 rounded-md bg-[#CA2060] text-white hover:bg-black lg:w-[10em]"
             type="submit"
           >
             Rechercher
@@ -169,7 +169,10 @@ export default function OffersResearch() {
       <section className="flex w-10/12 mt-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
           {offers.map((offer) => (
-            <li key={offer.id} className="flex flex-col gap-2 w-1/6">
+            <li
+              key={offer.id}
+              className="flex flex-col gap-2 w-1/6 border-solid border-2 border-[#CA2060] p-1 hover:bg-slate-100"
+            >
               <h1 className="text-lg font-bold">{offer.titre}</h1>
               <span>{offer.contract_type}</span>
               <span>{offer.description}</span>
