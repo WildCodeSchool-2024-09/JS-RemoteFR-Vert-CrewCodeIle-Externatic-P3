@@ -14,16 +14,15 @@ function OffersList() {
 
   return (
     <>
-      <h1 className="max-w-4xl mx-auto px-4 py-6  flex justify-around text-4xl">
+      <h1 className="font-bold max-w-4xl mx-auto px-4 py-6  flex justify-around text-4xl ">
         Nos offres en cours
       </h1>
       <section className="grid grid-rows-[minmax(100px,_auto)] grid-cols-3 gap-4">
         {dataOffers?.map((o) => (
-          <ul key={o.id} className="border border-red-500 ml-4 md:ml-8">
-            <h2>intitulé de l'offre</h2>
-            <li className="text-xl mb-2  font-medium  p-6">TITRE{o.title} </li>
-            <li className=" text-xl mb-2 font-medium p-6">{o.description}</li>
-            <li className=" text-xl mb-2 font-medium p-6"> {o.wage}</li>
+          <ul key={o.id} className=" border-2 border-primary ml-4 md:ml-8">
+            <li className="font-bold text-xl mb-2  p-2">{o.titre} </li>
+            <li className=" text-xl mb-2 font-medium p-2">{o.location}</li>
+            <li className=" text-xl mb-2 font-medium p-2"> {o.wage} €</li>
           </ul>
         ))}
       </section>

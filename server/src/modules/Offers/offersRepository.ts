@@ -4,9 +4,9 @@ import type { Result, Rows } from "../../../database/client";
 
 type Offers = {
   id: number;
-  description: string;
+  titre: string;
+  location: string;
   wage: number;
-  salaire: string;
 };
 
 class OffersRepository {
