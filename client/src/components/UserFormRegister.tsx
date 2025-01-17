@@ -2,15 +2,17 @@ import { useForm } from "react-hook-form";
 import userIcone from "../assets/images/UserIcone.png";
 import type { FormData } from "../lib/types";
 
-function UserFormRegister() {
+type UserFormRegisterType = {
+  onSubmit: (data: FormData) => void;
+};
+
+function UserFormRegister({ onSubmit }: UserFormRegisterType) {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<FormData>();
-
-  const onFormSubmit = handleSubmit((data) => console.log(data));
 
   return (
     <>
@@ -21,12 +23,12 @@ function UserFormRegister() {
           src={userIcone}
           alt="Icone de création de compte"
         />
-        <form onSubmit={onFormSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <section className="flex justify-center gap-6">
             <label htmlFor="lastName">
               Nom :
               <input
-                {...register("lastName", {
+                {...register("lastname", {
                   required: "Le champ est requis",
                   minLength: {
                     value: 2,
@@ -42,14 +44,14 @@ function UserFormRegister() {
                 id="lastName"
                 className="rounded ml-1"
               />
-              {typeof errors.lastName?.message === "string" && (
-                <span className="text-red-500">{errors.lastName.message}</span>
+              {typeof errors.lastname?.message === "string" && (
+                <span className="text-red-500">{errors.lastname.message}</span>
               )}
             </label>
             <label htmlFor="firstName">
               Prénom :
               <input
-                {...register("firstName", {
+                {...register("firstname", {
                   required: "Le champ est requis",
                   minLength: {
                     value: 2,
@@ -65,8 +67,8 @@ function UserFormRegister() {
                 id="firstName"
                 className="rounded ml-1"
               />
-              {typeof errors.firstName?.message === "string" && (
-                <span className="text-red-500">{errors.firstName.message}</span>
+              {typeof errors.firstname?.message === "string" && (
+                <span className="text-red-500">{errors.firstname.message}</span>
               )}
             </label>
           </section>
@@ -92,10 +94,10 @@ function UserFormRegister() {
             </label>
           </section>
           <section>
-            <label htmlFor="adress">
+            <label htmlFor="address">
               Adresse (N°, rue) :
               <input
-                {...register("adress", {
+                {...register("address", {
                   required: "Le champ est requis",
                   maxLength: {
                     value: 100,
@@ -104,11 +106,11 @@ function UserFormRegister() {
                   },
                 })}
                 type="text"
-                id="adress"
+                id="address"
                 className="rounded w-80 h-20 ml-1"
               />
-              {typeof errors.adress?.message === "string" && (
-                <span className="text-red-500">{errors.adress.message}</span>
+              {typeof errors.address?.message === "string" && (
+                <span className="text-red-500">{errors.address.message}</span>
               )}
             </label>
           </section>
@@ -116,7 +118,7 @@ function UserFormRegister() {
             <label htmlFor="town">
               Ville :
               <input
-                {...register("town", {
+                {...register("city", {
                   required: "Le champ est requis",
                   maxLength: {
                     value: 100,
@@ -128,14 +130,14 @@ function UserFormRegister() {
                 id="town"
                 className="rounded ml-1"
               />
-              {typeof errors.town?.message === "string" && (
-                <span className="text-red-500">{errors.town.message}</span>
+              {typeof errors.city?.message === "string" && (
+                <span className="text-red-500">{errors.city.message}</span>
               )}
             </label>
             <label htmlFor="postCode">
               Code Postal :
               <input
-                {...register("postCode", {
+                {...register("postal_code", {
                   required: "Le champ est requis",
                   pattern: {
                     value: /^[0-9]{5}$/,
@@ -146,8 +148,10 @@ function UserFormRegister() {
                 id="postCode"
                 className="rounded ml-1"
               />
-              {typeof errors.postCode?.message === "string" && (
-                <span className="text-red-500">{errors.postCode.message}</span>
+              {typeof errors.postal_code?.message === "string" && (
+                <span className="text-red-500">
+                  {errors.postal_code.message}
+                </span>
               )}
             </label>
           </section>
@@ -155,7 +159,7 @@ function UserFormRegister() {
             <label htmlFor="phoneNumber">
               Téléphone :
               <input
-                {...register("phoneNumber", {
+                {...register("tel", {
                   required: "Le champ est requis",
                   pattern: {
                     value: /^[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}$/,
@@ -166,10 +170,8 @@ function UserFormRegister() {
                 id="phoneNumber"
                 className="rounded w-50 mr-9"
               />
-              {typeof errors.phoneNumber?.message === "string" && (
-                <span className="text-red-500">
-                  {errors.phoneNumber.message}
-                </span>
+              {typeof errors.tel?.message === "string" && (
+                <span className="text-red-500">{errors.tel.message}</span>
               )}
             </label>
             <button

@@ -1,11 +1,11 @@
 export type FormData = {
-  lastName: string;
-  firstName: string;
+  lastname: string;
+  firstname: string;
   email: string;
-  adress: string;
-  town: string;
-  postCode: number;
-  phoneNumber: number;
+  address: string;
+  city: string;
+  postal_code: number;
+  tel: number;
   password: string;
   confirmPassword: string;
 };
