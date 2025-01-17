@@ -3,6 +3,7 @@ import About from "../components/About/About";
 import Offers from "../components/Offers";
 import SignUp from "../components/SignUp";
 import type { Offer } from "../lib/offers.definitions";
+import Carousel from "../components/Carousel/Carousel";
 
 const HomePage = () => {
   const offersArray = useLoaderData() as Offer[];
@@ -11,6 +12,7 @@ const HomePage = () => {
       <SignUp />
       <About />
       <Offers offers={offersArray} />
+      <Carousel />
     </div>
   );
 };
