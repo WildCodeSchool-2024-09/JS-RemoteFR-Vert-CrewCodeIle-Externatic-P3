@@ -15,7 +15,7 @@ router.get("/api/userformregister", userActions.browse);
 router.post("/api/userformregister", userActions.add);
 
 router.get("/api/roleformregister", roleActions.browse);
-router.get("/api/roleformregister", roleActions.add);
+router.post("/api/roleformregister", roleActions.add);
 /* ************************************************************************* */
 
 export default router;

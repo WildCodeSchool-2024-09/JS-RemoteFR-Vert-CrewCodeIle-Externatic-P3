@@ -1,8 +1,8 @@
 // Load environment variables from .env file
 import "dotenv/config";
-
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 // Import database client
 import database from "../database/client";
@@ -22,7 +22,7 @@ const seed = async () => {
 
     for (const filePath of filePaths) {
       const { default: SeederClass } = await import(
-        path.join(fixturesPath, filePath)
+        pathToFileURL(path.join(fixturesPath, filePath)).href
       );
 
       const seeder = new SeederClass() as AbstractSeeder;

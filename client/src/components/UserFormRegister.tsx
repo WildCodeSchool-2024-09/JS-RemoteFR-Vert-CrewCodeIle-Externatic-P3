@@ -171,6 +171,53 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
             Ajouter un CV
           </button>
         </section>
+        {/*
+         */}
+        <section>
+          <label htmlFor="is_active">
+            Je souhaite être actif sur le site externatic ?
+            <input
+              {...register("is_active")}
+              type="radio"
+              name="is_active"
+              id="is_active_true"
+              value="1"
+            />
+            Oui
+            <input
+              {...register("is_active")}
+              type="radio"
+              name="is_active"
+              id="is_active_false"
+              value="0"
+              defaultChecked
+            />
+            Non
+          </label>
+        </section>
+        <section>
+          <label htmlFor="is_role">
+            Je souhaite rester connecté ?
+            <input
+              className="ml-4 gap-4"
+              {...register("is_role")}
+              type="radio"
+              name="is_role"
+              id="is_role_true"
+              value="1"
+            />
+            Oui
+            <input
+              {...register("is_role")}
+              type="radio"
+              name="is_role"
+              id="is_role_false"
+              value="0"
+              defaultChecked
+            />
+            Non
+          </label>
+        </section>
         <section>
           <label htmlFor="password">
             Mot de passe :
@@ -220,6 +267,12 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
             )}
           </label>
         </section>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          Envoyer le formulaire
+        </button>
       </form>
     </>
   );

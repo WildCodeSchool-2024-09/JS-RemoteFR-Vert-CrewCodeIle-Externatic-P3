@@ -23,9 +23,9 @@ const add: RequestHandler = async (req, res, next) => {
       postal_code: req.body.postal_code,
       city: req.body.city,
       tel: req.body.tel,
-      role_id: req.body.role_id,
       is_active: req.body.is_active,
       is_role: req.body.is_role,
+      role_id: req.body.role_id,
     };
     const insertId = await userRepository.create(newUser);
 

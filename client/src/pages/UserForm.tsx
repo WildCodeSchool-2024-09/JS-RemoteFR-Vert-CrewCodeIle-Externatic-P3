@@ -23,23 +23,22 @@ function UserForm() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(roleData),
-          }).then((response) => response.json());
+          })
+            .then((response) => response.json())
 
-          fetch(`${import.meta.env.VITE_API_URL}/api/userformregister`, {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userData),
-          }).then((response) => response.json());
+            .then((creationUser) => {
+              const newUser = { ...userData, role_id: creationUser.insertId };
+
+              fetch(`${import.meta.env.VITE_API_URL}/api/userformregister`, {
+                method: "post",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newUser),
+              }).then((response) => response.json());
+            });
         }}
       />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Envoyer le formulaire
-      </button>
     </article>
   );
 }

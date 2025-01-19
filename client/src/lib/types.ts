@@ -8,4 +8,6 @@ export type FormData = {
   tel: number;
   password: string;
   confirmPassword: string;
+  is_active: boolean;
+  is_role: boolean;
 };
