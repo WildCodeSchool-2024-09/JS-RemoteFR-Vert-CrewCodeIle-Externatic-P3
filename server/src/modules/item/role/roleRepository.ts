@@ -17,7 +17,6 @@ class RoleRepository {
   }
 
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific category by its ID
     const [rows] = await databaseClient.query<Rows>(
       `
       select * from role where id = ?

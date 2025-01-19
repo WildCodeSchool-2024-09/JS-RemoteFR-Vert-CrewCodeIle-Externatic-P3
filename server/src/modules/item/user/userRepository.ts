@@ -12,12 +12,15 @@ type UserType = {
   postal_code: string;
   city: string;
   tel: string;
+  role_id: number;
+  is_active: boolean;
+  is_role: boolean;
 };
 
 class UserRepository {
   async create(user: Omit<UserType, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO user (firstname, lastname, email, password, address, postal_code, city, tel) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO user (firstname, lastname, email, password, address, postal_code, city, tel, role_id, is_active, is_role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         user.firstname,
         user.lastname,
@@ -27,56 +30,18 @@ class UserRepository {
         user.postal_code,
         user.city,
         user.tel,
+        user.role_id,
+        user.is_active,
+        user.is_role,
       ],
     );
     return result.insertId;
-  }
-
-  async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific category by its ID
-    const [rows] = await databaseClient.query<Rows>(
-      `
-      select * from user where id = ?
-      `,
-      [id],
-    );
-
-    return rows[0] as UserType;
   }
 
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("select * from user");
 
     return rows as UserType[];
-  }
-
-  async update(user: UserType) {
-    const [result] = await databaseClient.query<Result>(
-      `UPDATE user 
-       SET firstname = ?, lastname = ?, email = ?, password = ?, adress = ?, postal_code = ?, city = ?, tel = ?, is_active = ?, is_role = ?, role_id = ? 
-       WHERE id = ?`,
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.password,
-        user.address,
-        user.postal_code,
-        user.city,
-        user.tel,
-      ],
-    );
-
-    return result.affectedRows;
-  }
-
-  async delete(id: number) {
-    const [result] = await databaseClient.query<Result>(
-      "delete from user where id = ?",
-      [id],
-    );
-
-    return result.affectedRows;
   }
 }
 

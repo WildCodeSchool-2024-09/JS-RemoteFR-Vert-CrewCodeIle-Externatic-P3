@@ -4,13 +4,10 @@ import userRepository from "./userRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    // Fetch all categories
     const users = await userRepository.readAll();
 
-    // Respond with the categories in JSON format
     res.json(users);
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };
@@ -26,6 +23,9 @@ const add: RequestHandler = async (req, res, next) => {
       postal_code: req.body.postal_code,
       city: req.body.city,
       tel: req.body.tel,
+      role_id: req.body.role_id,
+      is_active: req.body.is_active,
+      is_role: req.body.is_role,
     };
     const insertId = await userRepository.create(newUser);
 
