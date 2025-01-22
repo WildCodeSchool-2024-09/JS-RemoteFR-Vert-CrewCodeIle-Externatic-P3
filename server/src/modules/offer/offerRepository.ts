@@ -20,6 +20,19 @@ class OfferRepository {
 
     return rows as OffersDataType[];
   }
+
+  async readByFilter(research: Partial<OffersDataType>) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * from offer WHERE titre=?, contract_type=?, location=?, is_teleworking=?",
+      [
+        research.titre,
+        research.contract_type,
+        research.location,
+        research.is_teleworking,
+      ],
+    );
+    return rows as OffersDataType[];
+  }
 }
 
 export default new OfferRepository();
