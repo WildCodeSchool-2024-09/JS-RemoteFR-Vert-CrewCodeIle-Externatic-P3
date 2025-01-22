@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { Offer } from "../lib/offers.definitions";
+import type { Offer } from "../../lib/offers.definitions";
 
 type OffersProps = {
   offers: Offer[];
