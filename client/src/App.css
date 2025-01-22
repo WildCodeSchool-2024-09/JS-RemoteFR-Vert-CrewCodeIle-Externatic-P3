@@ -3,6 +3,7 @@
 :root {
   --primary-color: #851342;
   --secondary-color: #ca2060;
+  --dark-color: #1e1e1e;
 }
 
 body {
@@ -16,4 +17,8 @@ body {
 
 .section-primary {
   background-color: var(--primary-color);
+}
+
+.section-dark {
+  background-color: var(--dark-color);
 }
