@@ -1,11 +1,32 @@
 import userIcone from "../assets/images/UserIcone.png";
-
-import CandidateFormRegister from "../components/CandidateFormRegister";
 import UserFormRegister from "../components/UserFormRegister";
+import type { UserFormData } from "../lib/types";
 
 function UserForm() {
   const roleData = {
     label: "Candidat",
+  };
+
+  const handleUserFormSubmit = (userData: UserFormData) => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/roleformregister`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(roleData),
+    })
+      .then((response) => response.json())
+      .then((role) => {
+        const newUser = { ...userData, role_id: role.insertId };
+        return fetch(`${import.meta.env.VITE_API_URL}/api/userformregister`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        });
+      })
+      .then((response) => response.json());
   };
 
   return (
@@ -17,43 +38,8 @@ function UserForm() {
           src={userIcone}
           alt="Icone de création de compte"
         />
-        <UserFormRegister
-          onSubmit={(userData) => {
-            fetch(`${import.meta.env.VITE_API_URL}/api/roleformregister`, {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(roleData),
-            })
-              .then((response) => response.json())
 
-              .then((user) => {
-                const newUser = { ...userData, role_id: user.insertId };
-
-                fetch(`${import.meta.env.VITE_API_URL}/api/userformregister`, {
-                  method: "post",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(newUser),
-                }).then((response) => response.json());
-              });
-          }}
-        />
-      </section>
-      <section>
-        <CandidateFormRegister
-          onSubmit={(candidateData) =>
-            fetch(`${import.meta.env.VITE_API_URL}/api/candidateformregister`, {
-              method: "post",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(candidateData),
-            })
-          }
-        />
+        <UserFormRegister onSubmit={handleUserFormSubmit} />
       </section>
     </>
   );

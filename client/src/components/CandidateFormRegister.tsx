@@ -41,14 +41,6 @@ function CandidateFormRegister({ onSubmit }: CandidateFormRegisterType) {
           Ajouter un CV
         </button>
       </article>
-      <article>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Envoyer le formulaire
-        </button>
-      </article>
     </form>
   );
 }
