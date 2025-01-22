@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import type { offersType } from "../../lib/offersType";
+import type { Offer } from "../../lib/offers.definitions";
 
 function OffersList() {
-  const [dataOffers, setDataOffers] = useState<offersType[]>([]);
+  const [dataOffers, setDataOffers] = useState<Offer[]>([]);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/OffersPage`)
       .then((response) => response.json())
-      .then((data: offersType[]) => {
+      .then((data: Offer[]) => {
         setDataOffers(data);
       });
   }, []);
