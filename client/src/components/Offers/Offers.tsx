@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Offer } from "../lib/offers.definitions";
+import { NavLink } from "react-router-dom";
+import type { Offer } from "../../lib/offers.definitions";
 
 type OffersProps = {
   offers: Offer[];
@@ -14,14 +15,16 @@ const Offers = ({ offers }: OffersProps) => {
 
   const renderOffers = () => {
     return offers.slice(0, imageCount).map((offre) => (
-      <figure key={offre.id}>
-        <img
-          src={offre.logo}
-          alt="Logo offre d'emploi"
-          className="relative h-32 object-cover object-center w-full"
-        />
-        <figcaption className="mt-2 text-white">{offre.titre}</figcaption>
-      </figure>
+      <NavLink key={offre.id} to={"/offersPage"}>
+        <figure key={offre.id}>
+          <img
+            src={offre.logo}
+            alt="Logo offre d'emploi"
+            className="relative h-32 object-cover object-center w-full"
+          />
+          <figcaption className="mt-2 text-white">{offre.titre}</figcaption>
+        </figure>
+      </NavLink>
     ));
   };
 
