@@ -16,6 +16,17 @@ class RoleRepository {
     return result.insertId;
   }
 
+  async readByRole(label: string) {
+    // Execute the SQL SELECT query to retrieve a specific user by its email
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from role where label = ?",
+      [label],
+    );
+
+    // Return the first row of the result, which represents the user
+    return rows[0] as RoleType;
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `

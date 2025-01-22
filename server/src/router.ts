@@ -9,15 +9,17 @@ const router = express.Router();
 // Define item-related routes
 
 import hashPassword from "./middlewares/auth.helpers";
-import login from "./middlewares/login.helpers";
+import candidateActions from "./modules/item/Candidate/candidateActions";
 import roleActions from "./modules/item/role/roleActions";
 import userActions from "./modules/item/user/userActions";
 
 router.get("/api/userformregister", userActions.browse);
-router.post("/api/userformregister", hashPassword, login, userActions.add);
+router.post("/api/userformregister", hashPassword, userActions.add);
 
 router.get("/api/roleformregister", roleActions.browse);
 router.post("/api/roleformregister", roleActions.add);
+
+router.post("/api/candidateformregister", candidateActions.add);
 
 /* ************************************************************************* */
 

@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import type { FormData } from "../lib/types";
+import type { UserFormData } from "../lib/types";
 
 type UserFormRegisterType = {
-  onSubmit: (data: FormData) => void;
+  onSubmit: (data: UserFormData) => void;
 };
 
 function UserFormRegister({ onSubmit }: UserFormRegisterType) {
@@ -11,7 +11,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<UserFormData>();
 
   return (
     <>
@@ -164,12 +164,6 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               <span className="text-red-500">{errors.tel.message}</span>
             )}
           </label>
-          <button
-            className="w-40 bg-red-500 text-white py-2 rounded-lg"
-            type="button"
-          >
-            Ajouter un CV
-          </button>
         </section>
         {/*
          */}

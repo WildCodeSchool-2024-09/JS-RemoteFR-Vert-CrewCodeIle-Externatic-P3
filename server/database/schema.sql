@@ -18,3 +18,10 @@ CREATE TABLE user (
   role_id INT NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id)
 );
+
+CREATE TABLE candidate (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  cv VARCHAR(100),
+  photo VARCHAR(100),
+  is_disabled BOOLEAN  NOT NULL
+);

@@ -1,4 +1,4 @@
-export type FormData = {
+export type UserFormData = {
   lastname: string;
   firstname: string;
   email: string;
@@ -10,4 +10,10 @@ export type FormData = {
   confirmPassword: string;
   is_active: boolean;
   is_role: boolean;
+};
+
+export type CandidateFormData = {
+  cv: string;
+  photo: string;
+  is_disabled: boolean;
 };
