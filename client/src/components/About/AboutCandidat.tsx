@@ -1,6 +1,6 @@
 import { whoWeAre } from "./dataAbout";
 
-const AboutUs = () => {
+const AboutCandidat = () => {
   const whoWeAreContent = whoWeAre.map((feature) => (
     <article key={feature.title} className="text-center">
       <div className="flex justify-center">
@@ -35,4 +35,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutCandidat;

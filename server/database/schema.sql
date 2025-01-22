@@ -44,7 +44,7 @@ CREATE TABLE offer(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   titre VARCHAR(100) NOT NULL,
   logo VARCHAR(100),
-  wage INT NOT NULL,
+  wage INT,
   description TEXT NOT NULL,
   location VARCHAR(100) NOT NULL,
   is_teleworking BOOLEAN,

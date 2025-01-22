@@ -25,7 +25,9 @@ function OffersList() {
           >
             <li className="font-bold text-xl mb-2 p-2">{o.titre}</li>
             <li className="text-xl mb-2 font-medium p-2">{o.location}</li>
-            <li className="text-xl mb-2 font-medium p-2">{o.wage}€</li>
+            <li className="text-xl mb-2 font-medium p-2">
+              {o.wage.toFixed(2)} €
+            </li>
           </ul>
         ))}
       </section>
