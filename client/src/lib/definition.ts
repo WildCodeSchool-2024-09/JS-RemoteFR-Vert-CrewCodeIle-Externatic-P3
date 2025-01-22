@@ -1,10 +1,8 @@
 export type SearchDataType = {
-  job_name: string;
-  permanent?: string;
-  partTime?: string;
-  internship?: string;
-  location: string;
-  teleworking?: string;
+  titre?: string;
+  contract_type?: string;
+  location?: string;
+  is_teleworking?: string;
 };
 
 export type CandidateDataType = {

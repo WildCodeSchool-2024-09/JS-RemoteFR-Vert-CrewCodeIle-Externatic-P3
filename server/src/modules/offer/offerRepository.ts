@@ -9,7 +9,7 @@ type OffersDataType = {
   description: string;
   location: string;
   is_teleworking: boolean;
-  contract_type: string;
+  contract_type: string[];
   company_id: number;
   is_opened_to_disabled: boolean;
 };
@@ -23,7 +23,7 @@ class OfferRepository {
 
   async readByFilter(research: Partial<OffersDataType>) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * from offer WHERE titre=?, contract_type=?, location=?, is_teleworking=?",
+      "SELECT * from offer WHERE titre=? AND contract_type IN (?,?,?) AND location=? AND is_teleworking=?",
       [
         research.titre,
         research.contract_type,
@@ -31,6 +31,7 @@ class OfferRepository {
         research.is_teleworking,
       ],
     );
+
     return rows as OffersDataType[];
   }
 }

@@ -16,21 +16,20 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const readFilteredOffers: RequestHandler = async (req, res, next) => {
   try {
-    const { titre, contract_type, location, is_teleworking } = req.body;
-    const research = { titre, contract_type, location, is_teleworking };
+    const research = req.body;
 
-    if (titre === undefined) {
-      research.titre === titre;
-    }
-    if (contract_type === undefined) {
-      research.contract_type === contract_type;
-    }
-    if (location === undefined) {
-      research.location === location;
-    }
-    if (is_teleworking === undefined) {
-      research.is_teleworking === is_teleworking;
-    }
+    // if (research.titre === undefined) {
+    //   research.titre === titre;
+    // }
+    // if (research.contract_type === undefined) {
+    //   research.contract_type === contract_type;
+    // }
+    // if (research.location === undefined) {
+    //   research.location === location;
+    // }
+    // if (research.is_teleworking === undefined) {
+    //   research.is_teleworking === is_teleworking;
+    // }
 
     const filteredOffers = await offerRepository.readByFilter(research);
     res.send(filteredOffers);
