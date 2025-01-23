@@ -32,14 +32,14 @@ const NavBarBurger = ({
   );
 
   return (
-    <section>
+    <nav>
       {isOpenMenu && (
         <section>
           <ul className="flex flex-col gap-2 mr-2">{renderedLinks}</ul>
           {renderedConnexionLinks}
         </section>
       )}
-    </section>
+    </nav>
   );
 };
 
