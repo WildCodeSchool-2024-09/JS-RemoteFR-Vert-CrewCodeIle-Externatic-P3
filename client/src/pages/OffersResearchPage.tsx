@@ -1,4 +1,4 @@
-import OffersResearch from "../components/OffersResearch";
+import OffersResearch from "../components/Offers/OffersResearch";
 
 export default function OffersResearchPage() {
   return (

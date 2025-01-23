@@ -1,28 +1,14 @@
 import { SmileIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import type { OffersDataType, SearchDataType } from "../lib/definition";
+import type { OffersDataType, SearchDataType } from "../../lib/definition";
+import OffersList from "./OffersList";
 
 export default function OffersResearch() {
   const VITE_API_URL = import.meta.env.VITE_API_URL;
   const [search, setSearch] = useState<string>("");
   // const [candidates, setCandidates] = useState<CandidateDataType[]>([]);
-  const [offers, setOffers] = useState<OffersDataType[]>([]);
   const [filteredOffers, setFilteredOffers] = useState<OffersDataType[]>([]);
-
-  useEffect(() => {
-    const fetchOffers = async () => {
-      try {
-        const response = await fetch(`${VITE_API_URL}/api/offers`);
-        const data: OffersDataType[] = await response.json();
-        setOffers(data);
-      } catch (error) {
-        console.error("Error fetching offers");
-      }
-    };
-
-    fetchOffers();
-  }, []);
 
   const handleFilteredOffers = async (searchData: SearchDataType) => {
     try {
@@ -86,13 +72,13 @@ export default function OffersResearch() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col ">
-            {errors.titre && (
-              <span className="text-lg font-bold">{errors.titre.message}</span>
+            {errors.title && (
+              <span className="text-lg font-bold">{errors.title.message}</span>
             )}
-            <label htmlFor="titre">Intitulé du poste:</label>
+            <label htmlFor="title">Intitulé du poste:</label>
             <input
-              id="titre"
-              {...register("titre", {
+              id="title"
+              {...register("title", {
                 required: "Aucune offre correspondante à votre recherche",
                 pattern:
                   /\b(S[EÉÈÊ]O Sp[eéèêë]cialiste|Sp[eéèêë]cialiste en marketing digital|Analyste de donn[éeèêë]s|Scientifique des donn[éeèêë]s|D[eéèêë]veloppeur Web|D[eéèêë]veloppeur Frontend|D[eéèêë]veloppeur Backend|D[eéèêë]veloppeur Fullstack|Designer UI\/UX|Chef de produit|Chef de projet|Ing[eéèêë]nieur DevOps|Analyste en cybers[éeèêë]curit[éeèêë]|Responsable de contenu|Responsable des m[éeèêë]dias sociaux|Sp[eéèêë]cialiste en e-commerce|D[eéèêë]veloppeur mobile|Ing[eéèêë]nieur en IA|Ing[eéèêë]nieur en apprentissage automatique|Architecte cloud|D[eéèêë]veloppeur blockchain)\b/i,
@@ -159,26 +145,11 @@ export default function OffersResearch() {
         </form>
       </section>
 
-      <section className="flex w-10/12 mt-[8em] mx-auto">
-        <ul className="flex flex-row flex-wrap gap-8 justify-center ">
-          {offers.map((offer) => (
-            <li
-              key={offer.id}
-              className="lg:flex lg:flex-col lg:gap-2 lg:w-1/6 border-solid border-2 border-[#CA2060] lg:p-1 hover:bg-slate-100"
-            >
-              {" "}
-              <a href="/" className="flex flex-col gap-2">
-                <h1 className="text-lg font-bold">{offer.titre}</h1>
-                <span>{offer.contract_type}</span>
-                <span>{offer.description}</span>
-                <span>Salaire: {offer.wage.toFixed(1)}€</span>
-              </a>
-            </li>
-          ))}
-        </ul>
+      <section>
+        {/* <OffersList filteredOffers={filteredOffers || []} /> */}
       </section>
 
-      <section className="flex w-10/12 mt-[8em] mx-auto">
+      {/* <section className="flex w-10/12 mt-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
           {filteredOffers.map((offer) => (
             <li
@@ -187,7 +158,7 @@ export default function OffersResearch() {
             >
               {" "}
               <a href="/" className="flex flex-col gap-2">
-                <h1 className="text-lg font-bold">{offer.titre}</h1>
+                <h1 className="text-lg font-bold">{offer.title}</h1>
                 <span>{offer.contract_type}</span>
                 <span>{offer.description}</span>
                 <span>Salaire: {offer.wage.toFixed(1)}€</span>
@@ -195,7 +166,7 @@ export default function OffersResearch() {
             </li>
           ))}
         </ul>
-      </section>
+      </section> */}
     </section>
   );
 }

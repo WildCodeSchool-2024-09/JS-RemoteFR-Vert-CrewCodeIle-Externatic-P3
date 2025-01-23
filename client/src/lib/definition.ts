@@ -1,5 +1,5 @@
 export type SearchDataType = {
-  titre?: string;
+  title?: string;
   contract_type?: string;
   location?: string;
   is_teleworking?: string;
@@ -14,7 +14,7 @@ export type CandidateDataType = {
 
 export type OffersDataType = {
   id: number;
-  titre: string;
+  title: string;
   logo: string;
   wage: number;
   description: string;
