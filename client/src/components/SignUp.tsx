@@ -3,7 +3,7 @@ import mainImage from "../assets/images/Accueil.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const handleClick = () => navigate("/userformregister");
+  const handleClick = () => navigate("/signup/candidate");
   return (
     <section id="connexion">
       <div className="ml-5 mt-5 mb-0">

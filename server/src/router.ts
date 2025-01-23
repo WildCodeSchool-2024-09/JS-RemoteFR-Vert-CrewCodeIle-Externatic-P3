@@ -14,12 +14,10 @@ import roleActions from "./modules/item/role/roleActions";
 import userActions from "./modules/item/user/userActions";
 
 router.get("/api/userformregister", userActions.browse);
-router.post("/api/userformregister", hashPassword, userActions.add);
+router.post("/api/usercandidateformregister", hashPassword, userActions.add);
 
 router.get("/api/roleformregister", roleActions.browse);
 router.post("/api/roleformregister", roleActions.add);
-
-router.post("/api/candidateformregister", candidateActions.add);
 
 /* ************************************************************************* */
 

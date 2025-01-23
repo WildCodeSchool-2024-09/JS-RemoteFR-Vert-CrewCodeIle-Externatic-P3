@@ -1,5 +1,6 @@
 // Load environment variables from .env file
 import "dotenv/config";
+
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -55,7 +56,12 @@ const seed = async () => {
 
     // Truncate tables (starting from the depending ones)
 
-    for (const seeder of sortedSeeders.toReversed()) {
+    const [RoleSeeder] = sortedSeeders;
+
+    // Custom Seeder order
+    const customSeederOrder = [RoleSeeder]; // Alimenter ce tableau pour avoir les seeders dans l'ordre
+
+    for (const seeder of customSeederOrder) {
       // Use delete instead of truncate to bypass foreign key constraint
       // Wait for the delete promise to complete
       await database.query(`delete from ${seeder.table}`);
@@ -63,7 +69,7 @@ const seed = async () => {
 
     // Run each seeder
 
-    for (const seeder of sortedSeeders) {
+    for (const seeder of customSeederOrder) {
       await seeder.run();
 
       // Wait for all the insertion promises to complete

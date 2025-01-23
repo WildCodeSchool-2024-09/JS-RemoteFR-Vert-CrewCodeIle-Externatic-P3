@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import HomePage from "./pages/HomePage";
-import UserForm from "./pages/UserForm";
+import UserCandidateForm from "./pages/UserCandidateFormPage";
 
 const router = createBrowserRouter([
   {
@@ -14,8 +14,8 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "/userformregister",
-        element: <UserForm />,
+        path: "/signup/candidate",
+        element: <UserCandidateForm />,
       },
     ],
   },
