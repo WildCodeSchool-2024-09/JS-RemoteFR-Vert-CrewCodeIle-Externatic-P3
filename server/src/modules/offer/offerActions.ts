@@ -6,7 +6,6 @@ const browse: RequestHandler = async (req, res, next) => {
     const offers = await offerRepository.readAll();
     res.json(offers);
   } catch (err) {
-  
     next(err);
   }
 };

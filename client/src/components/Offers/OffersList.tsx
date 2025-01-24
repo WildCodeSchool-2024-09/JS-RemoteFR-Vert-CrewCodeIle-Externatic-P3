@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Offer } from "../../lib/offers.definitions";
 import type { OffersDataType } from "../../lib/definition";
+import type { Offer } from "../../lib/offers.definitions";
 
 // type Offers = {
 //   filteredOffers: OffersDataType[];

@@ -2,7 +2,7 @@ import { SmileIcon } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import type { OffersDataType, SearchDataType } from "../../lib/definition";
-import OffersList from "./OffersList";
+// import OffersList from "./OffersList";
 
 export default function OffersResearch() {
   const VITE_API_URL = import.meta.env.VITE_API_URL;
@@ -149,7 +149,7 @@ export default function OffersResearch() {
         {/* <OffersList filteredOffers={filteredOffers || []} /> */}
       </section>
 
-      {/* <section className="flex w-10/12 mt-[8em] mx-auto">
+      <section className="flex w-10/12 mt-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
           {filteredOffers.map((offer) => (
             <li
@@ -166,7 +166,7 @@ export default function OffersResearch() {
             </li>
           ))}
         </ul>
-      </section> */}
+      </section>
     </section>
   );
 }
