@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import type { UserFormData } from "../../lib/userFormTypes";
+import type { UserFormData } from "../../lib/userForm.definitions";
 
 type UserFormRegisterType = {
   onSubmit: (data: UserFormData) => void;
@@ -93,7 +93,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="address">
             Adresse (N°, rue) :
             <input
-              placeholder="3 rue de la fleur"
+              placeholder="3 rue de la Fleur"
               {...register("address", {
                 required: "Le champ est requis",
                 maxLength: {
@@ -177,7 +177,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
          */}
         <section>
           <label htmlFor="is_active">
-            Je souhaite être actif sur le site externatic ?
+            Je souhaite être actif sur le site Externatic ?
             <input
               {...register("is_active")}
               type="radio"
@@ -281,7 +281,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded"
         >
-          Envoyer le formulaire
+          S'inscrire
         </button>
       </form>
     </>

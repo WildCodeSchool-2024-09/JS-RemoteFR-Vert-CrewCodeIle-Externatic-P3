@@ -56,10 +56,30 @@ const seed = async () => {
 
     // Truncate tables (starting from the depending ones)
 
-    const [RoleSeeder] = sortedSeeders;
+    const [
+      CandidateSeeder,
+      CandidatureSeeder,
+      CompanySeeder,
+      FavoriteSeeder,
+      OfferSeeder,
+      OfferTagSeeder,
+      RoleSeeder,
+      TagSeeder,
+      UserSeeder,
+    ] = sortedSeeders;
 
     // Custom Seeder order
-    const customSeederOrder = [RoleSeeder]; // Alimenter ce tableau pour avoir les seeders dans l'ordre
+    const customSeederOrder = [
+      RoleSeeder,
+      UserSeeder,
+      CompanySeeder,
+      CandidateSeeder,
+      OfferSeeder,
+      FavoriteSeeder,
+      CandidatureSeeder,
+      TagSeeder,
+      OfferTagSeeder,
+    ]; // Alimenter ce tableau pour avoir les seeders dans l'ordre
 
     for (const seeder of customSeederOrder) {
       // Use delete instead of truncate to bypass foreign key constraint

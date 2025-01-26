@@ -6,6 +6,11 @@ const router = express.Router();
 // Define Your API Routes Here
 /* ************************************************************************* */
 
+import offersListActions from "./modules/offersList/offersListActions";
+
+import offersActions from "./modules/offers/offersActions";
+
+router.get("/api/offers", offersActions.browseOffers);
 // Define item-related routes
 
 import hashPassword from "./middlewares/argon.middleware";
@@ -32,5 +37,6 @@ router.post(
 );
 
 /* ************************************************************************* */
+router.get("/api/offersPage", offersListActions.browse);
 
 export default router;
