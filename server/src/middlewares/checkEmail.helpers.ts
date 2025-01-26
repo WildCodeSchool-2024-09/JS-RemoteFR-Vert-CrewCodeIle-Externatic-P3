@@ -8,7 +8,7 @@ export const checkEmail: RequestHandler = async (req, res, next) => {
     const verified = await userRepository.readByEmail(email);
 
     if (verified != null) {
-      console.error("L'adresse mail est déjà enregistrée");
+      console.error({ message: "L'adresse mail est déjà enregistrée" });
       res.sendStatus(422);
       return;
     }

@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import type { UserFormData } from "../lib/types";
 
 type UserFormRegisterType = {
@@ -6,6 +7,8 @@ type UserFormRegisterType = {
 };
 
 function UserFormRegister({ onSubmit }: UserFormRegisterType) {
+  const navigate = useNavigate();
+  const handleClick = navigate("/");
   const {
     register,
     handleSubmit,
@@ -264,6 +267,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={() => handleClick}
         >
           Envoyer le formulaire
         </button>

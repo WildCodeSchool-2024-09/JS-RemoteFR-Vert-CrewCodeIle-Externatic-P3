@@ -10,7 +10,9 @@ function UserCandidateForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .catch((err) => console.error(err.message));
   };
 
   return (
