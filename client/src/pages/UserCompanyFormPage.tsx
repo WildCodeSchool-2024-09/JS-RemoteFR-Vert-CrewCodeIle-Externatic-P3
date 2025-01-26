@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import userIcone from "../assets/images/UserIcone.png";
-import UserFormRegister from "../components/UserFormRegister";
-import type { UserFormData } from "../lib/types";
+import UserFormRegister from "../components/userForm/UserFormRegister";
+import type { UserFormData } from "../lib/userFormTypes";
 
 function UserCompanyForm() {
   const navigate = useNavigate();

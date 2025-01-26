@@ -38,12 +38,6 @@ class UserRepository {
     return result.insertId;
   }
 
-  async readAll() {
-    const [rows] = await databaseClient.query<Rows>("select * from user");
-
-    return rows as UserType[];
-  }
-
   async readByEmail(email: string) {
     const [rows] = await databaseClient.query<Rows>(
       "select * from user where email = ?",

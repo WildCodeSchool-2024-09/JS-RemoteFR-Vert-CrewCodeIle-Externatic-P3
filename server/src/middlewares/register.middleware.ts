@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 
-export const candidateLogin: RequestHandler = async (req, res, next) => {
+export const candidateRegister: RequestHandler = async (req, res, next) => {
   try {
     req.body.role_id = 3;
     next();
@@ -9,7 +9,7 @@ export const candidateLogin: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const companyLogin: RequestHandler = async (req, res, next) => {
+export const companyRegister: RequestHandler = async (req, res, next) => {
   try {
     req.body.role_id = 1;
     next();

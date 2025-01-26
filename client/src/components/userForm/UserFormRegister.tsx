@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import type { UserFormData } from "../lib/types";
+import type { UserFormData } from "../../lib/userFormTypes";
 
 type UserFormRegisterType = {
   onSubmit: (data: UserFormData) => void;

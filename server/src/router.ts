@@ -8,23 +8,26 @@ const router = express.Router();
 
 // Define item-related routes
 
-import hashPassword from "./middlewares/auth.helpers";
-import { checkEmail } from "./middlewares/checkEmail.helpers";
-import { candidateLogin, companyLogin } from "./middlewares/login.helpers";
+import hashPassword from "./middlewares/argon.middleware";
+import { checkEmail } from "./middlewares/checkEmail.middleware";
+import {
+  candidateRegister,
+  companyRegister,
+} from "./middlewares/register.middleware";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
   "/api/usercandidateformregister",
   hashPassword,
   checkEmail,
-  candidateLogin,
+  candidateRegister,
   userActions.add,
 );
 router.post(
   "/api/usercompanyformregister",
   hashPassword,
   checkEmail,
-  companyLogin,
+  companyRegister,
   userActions.add,
 );
 

@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import userRepository from "../modules/item/user/userRepository";
+import userRepository from "../modules/item/user/UserRepository";
 
 export const checkEmail: RequestHandler = async (req, res, next) => {
   try {
@@ -8,7 +8,6 @@ export const checkEmail: RequestHandler = async (req, res, next) => {
     const verified = await userRepository.readByEmail(email);
 
     if (verified != null) {
-      console.error({ message: "L'adresse mail est déjà enregistrée" });
       res.sendStatus(422);
       return;
     }

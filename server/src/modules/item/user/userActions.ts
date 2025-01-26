@@ -1,16 +1,6 @@
 import type { RequestHandler } from "express";
 
-import userRepository from "./userRepository";
-
-const browse: RequestHandler = async (req, res, next) => {
-  try {
-    const users = await userRepository.readAll();
-
-    res.json(users);
-  } catch (err) {
-    next(err);
-  }
-};
+import userRepository from "./UserRepository";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
@@ -35,4 +25,4 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, add };
+export default { add };

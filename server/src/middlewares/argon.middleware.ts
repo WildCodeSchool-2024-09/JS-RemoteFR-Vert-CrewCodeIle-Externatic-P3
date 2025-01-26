@@ -14,7 +14,6 @@ const hashPassword: RequestHandler = async (req, res, next) => {
     const hashed_password = await argon2.hash(password, hashingOptions);
     req.body.hashed_password = hashed_password;
     req.body.password = hashed_password;
-
     next();
   } catch (err) {
     next(err);
