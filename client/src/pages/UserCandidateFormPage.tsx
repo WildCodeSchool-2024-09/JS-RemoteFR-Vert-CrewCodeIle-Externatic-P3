@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import userIcone from "../assets/images/UserIcone.png";
 import UserFormRegister from "../components/UserFormRegister";
 import type { UserFormData } from "../lib/types";
 
 function UserCandidateForm() {
+  const navigate = useNavigate();
+
   const handleCandidateFormSubmit = async (userData: UserFormData) => {
     try {
       const newCandidateUser = await fetch(
@@ -20,6 +23,7 @@ function UserCandidateForm() {
         toast.success(
           "Votre compte a bien été créé. Bienvenue sur Externatic !",
         );
+        navigate("/");
       } else {
         toast.error(
           "Une erreur est survenue lors de votre inscription ! Veuillez réessayer",

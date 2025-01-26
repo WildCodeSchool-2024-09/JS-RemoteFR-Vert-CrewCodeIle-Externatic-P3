@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
 import type { UserFormData } from "../lib/types";
 
 type UserFormRegisterType = {
@@ -7,8 +7,6 @@ type UserFormRegisterType = {
 };
 
 function UserFormRegister({ onSubmit }: UserFormRegisterType) {
-  const navigate = useNavigate();
-  const handleClick = navigate("/");
   const {
     register,
     handleSubmit,
@@ -23,6 +21,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="lastName">
             Nom :
             <input
+              placeholder="Martin"
               {...register("lastname", {
                 required: "Le champ est requis",
                 minLength: {
@@ -46,6 +45,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="firstName">
             Prénom :
             <input
+              placeholder="Pierre"
               {...register("firstname", {
                 required: "Le champ est requis",
                 minLength: {
@@ -71,6 +71,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="email">
             Adresse Mail :
             <input
+              placeholder="pierre.martin@gmail.com"
               {...register("email", {
                 required: "Le champ est requis",
                 pattern: {
@@ -92,6 +93,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="address">
             Adresse (N°, rue) :
             <input
+              placeholder="3 rue de la fleur"
               {...register("address", {
                 required: "Le champ est requis",
                 maxLength: {
@@ -113,6 +115,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="town">
             Ville :
             <input
+              placeholder="Paris"
               {...register("city", {
                 required: "Le champ est requis",
                 maxLength: {
@@ -132,6 +135,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="postCode">
             Code Postal :
             <input
+              placeholder="75000"
               {...register("postal_code", {
                 required: "Le champ est requis",
                 pattern: {
@@ -152,6 +156,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="phoneNumber">
             Téléphone :
             <input
+              placeholder="0600000000"
               {...register("tel", {
                 required: "Le champ est requis",
                 pattern: {
@@ -219,12 +224,19 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="password">
             Mot de passe :
             <input
+              placeholder="••••••••••••"
               {...register("password", {
                 required: "Le champ est requis",
-                minLength: {
-                  value: 6,
+                pattern: {
+                  value:
+                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s:])[^\s]{12,30}$/,
                   message:
-                    "Le mot de passe doit contenir au moins 6 caractères",
+                    "Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.",
+                },
+                minLength: {
+                  value: 12,
+                  message:
+                    "Le mot de passe doit contenir au moins 12 caractères",
                 },
                 maxLength: {
                   value: 30,
@@ -245,6 +257,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
           <label htmlFor="confirmPassword">
             Confirmez votre mot de passe :
             <input
+              placeholder="••••••••••••"
               {...register("confirmPassword", {
                 required: "Le champ est requis",
                 validate: (value) => {
@@ -267,7 +280,6 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded"
-          onClick={() => handleClick}
         >
           Envoyer le formulaire
         </button>
