@@ -36,14 +36,16 @@ function UserCandidateForm() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center bg-red-100 w-full h-screen my-56">
-        <h1 className="text-4xl font-bold text-black mb-6">Candidat</h1>
+      <section>
         <img
-          className="w-24 mb-8"
+          className="w-24"
           src={userIcone}
           alt="Icone de création de compte"
         />
 
+        <h1 className=" text-4xl font-bold text-black mt-5 mb-5 flex justify-center ">
+          Candidat
+        </h1>
         <UserFormRegister onSubmit={handleCandidateFormSubmit} />
       </section>
     </>
