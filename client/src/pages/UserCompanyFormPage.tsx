@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import userIcone from "../assets/images/UserIcone.png";
+import companyIcone from "../assets/images/CompanyLogo.jpg";
 import UserFormRegister from "../components/userForm/UserFormRegister";
 import type { UserFormData } from "../lib/userForm.definitions";
 
@@ -34,15 +34,19 @@ function UserCompanyForm() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center bg-red-100 w-full h-screen my-56">
-        <h1 className="text-4xl font-bold text-black mb-6">Entreprise</h1>
-        <img
-          className="w-24 mb-8"
-          src={userIcone}
-          alt="Icone de création de compte"
-        />
+      <section className=" mt-10">
+        <article className="flex flex-col justify-center items-center">
+          <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center">
+            Entreprise
+          </h1>
+          <img
+            className="w-60  mt-10"
+            src={companyIcone}
+            alt="Icone de création de compte"
+          />
 
-        <UserFormRegister onSubmit={handleCandidateFormSubmit} />
+          <UserFormRegister onSubmit={handleCandidateFormSubmit} />
+        </article>
       </section>
     </>
   );

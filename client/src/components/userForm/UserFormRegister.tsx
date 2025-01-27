@@ -18,12 +18,12 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mx-auto w-full max-w-lg p-8 rounded-lg shadow-lg"
+        className="my-8 w-full max-w-lg p-8 rounded-lg shadow-lg bg-primary mx-12"
       >
         <section className="mb-6">
           <label
             htmlFor="lastName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Nom :
             <input
@@ -42,17 +42,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="text"
               id="lastName"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md text-black border-gray-300 h-7"
             />
             {typeof errors.lastname?.message === "string" && (
-              <span className="text-red-500">{errors.lastname.message}</span>
+              <span className="text-red-300">{errors.lastname.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="firstName"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Prénom :
             <input
@@ -71,17 +71,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="text"
               id="firstName"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.firstname?.message === "string" && (
-              <span className="text-red-500">{errors.firstname.message}</span>
+              <span className="text-red-300">{errors.firstname.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Adresse Mail :
             <input
@@ -94,19 +94,19 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
                   message: "Adresse email invalide",
                 },
               })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2  p-2 block w-full rounded-md  text-black border-gray-300 h-7"
               type="email"
               id="email"
             />
             {typeof errors.email?.message === "string" && (
-              <span className="text-red-500">{errors.email.message}</span>
+              <span className="text-red-300">{errors.email.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Adresse (N°, rue) :
             <input
@@ -121,17 +121,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="text"
               id="address"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.address?.message === "string" && (
-              <span className="text-red-500">{errors.address.message}</span>
+              <span className="text-red-300">{errors.address.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="town"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Ville :
             <input
@@ -146,10 +146,10 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="text"
               id="town"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.city?.message === "string" && (
-              <span className="text-red-500">{errors.city.message}</span>
+              <span className="text-red-300">{errors.city.message}</span>
             )}
           </label>
         </section>
@@ -157,7 +157,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <section className="mb-6">
           <label
             htmlFor="postCode"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Code Postal :
             <input
@@ -171,17 +171,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="text"
               id="postCode"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.postal_code?.message === "string" && (
-              <span className="text-red-500">{errors.postal_code.message}</span>
+              <span className="text-red-300">{errors.postal_code.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="phoneNumber"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Téléphone :
             <input
@@ -195,17 +195,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="tel"
               id="phoneNumber"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.tel?.message === "string" && (
-              <span className="text-red-500">{errors.tel.message}</span>
+              <span className="text-red-300">{errors.tel.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="is_active"
-            className="block text-sm font-medium text-gray-700 "
+            className="block text-sm  text-white font-semibold"
           >
             Je souhaite être actif sur le site Externatic ?
             <article>
@@ -234,7 +234,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <section className="mb-6">
           <label
             htmlFor="is_role"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Je souhaite rester connecté sur le site ?
             <article>
@@ -263,7 +263,7 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         <section className="mb-6">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Mot de passe :
             <input
@@ -289,17 +289,17 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="password"
               id="password"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.password?.message === "string" && (
-              <span className="text-red-500">{errors.password.message}</span>
+              <span className="text-red-300">{errors.password.message}</span>
             )}
           </label>
         </section>
         <section className="mb-6">
           <label
             htmlFor="confirmPassword"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm  text-white font-semibold"
           >
             Confirmez votre mot de passe :
             <input
@@ -314,10 +314,10 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
               })}
               type="password"
               id="confirmPassword"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-color focus:ring-primary-color"
+              className="mt-2 p-2 block w-full rounded-md  text-black border-gray-300 h-7"
             />
             {typeof errors.confirmPassword?.message === "string" && (
-              <span className="text-red-500">
+              <span className="text-red-300">
                 {errors.confirmPassword.message}
               </span>
             )}
@@ -325,9 +325,9 @@ function UserFormRegister({ onSubmit }: UserFormRegisterType) {
         </section>
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="px-4 py-2 rounded mt-5 btn-submit hover:bg-orange-600"
         >
-          S'inscrire
+          Créer un compte
         </button>
       </form>
     </>
