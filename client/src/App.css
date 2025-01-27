@@ -28,3 +28,11 @@ body {
 .section-dark {
   background-color: var(--dark-color);
 }
+
+.border-primary-color {
+  border: 2px solid var(--primary-color);
+}
+
+.link-primary-color {
+  color: var(--primary-color);
+}

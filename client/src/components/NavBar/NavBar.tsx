@@ -13,13 +13,13 @@ const NavBar = () => {
   };
 
   const renderedLinks = navigationLinks.map((link) => (
-    <a
+    <Link
       key={link.href}
-      href={link.href}
+      to={link.href}
       className="inline-flex items-center px-1 pt-1 text-gray-900"
     >
       {link.label}
-    </a>
+    </Link>
   ));
 
   const renderedConnexionLinks = (
@@ -40,7 +40,7 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="bg-white shadow-lg fixed w-full z-50">
+    <nav className="bg-white shadow-lg w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <div className="flex-shrink-0">

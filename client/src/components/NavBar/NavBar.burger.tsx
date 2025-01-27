@@ -8,9 +8,9 @@ const NavBarBurger = ({
 }: NavbarBurgerProps) => {
   const renderedLinks = links.map((link) => (
     <li className="list-none" key={link.href}>
-      <a href={link.href} onClick={handleIsOpenedMenu}>
+      <Link to={link.href} onClick={handleIsOpenedMenu}>
         {link.label}
-      </a>
+      </Link>
     </li>
   ));
 
