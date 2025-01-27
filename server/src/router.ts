@@ -13,12 +13,13 @@ import offersActions from "./modules/offers/offersActions";
 router.get("/api/offers", offersActions.browseOffers);
 // Define item-related routes
 
-import hashPassword from "./middlewares/argon.middleware";
-import { checkEmail } from "./middlewares/checkEmail.middleware";
+import { comparePassword, hashPassword } from "./middlewares/argon.middleware";
+import { checkEmail, verifieEmail } from "./middlewares/checkEmail.middleware";
 import {
   candidateRegister,
   companyRegister,
 } from "./middlewares/register.middleware";
+import { login } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
@@ -35,6 +36,8 @@ router.post(
   companyRegister,
   userActions.add,
 );
+
+router.post("/api/login", verifieEmail, comparePassword, login);
 
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);

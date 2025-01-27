@@ -8,7 +8,7 @@ const hashingOptions = {
   parallelism: 1,
 };
 
-const hashPassword: RequestHandler = async (req, res, next) => {
+export const hashPassword: RequestHandler = async (req, res, next) => {
   try {
     const { password } = req.body;
     const hashed_password = await argon2.hash(password, hashingOptions);
@@ -20,4 +20,23 @@ const hashPassword: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default hashPassword;
+export const comparePassword: RequestHandler = async (req, res, next) => {
+  try {
+    const { hashed_password, dbpassword } = req.body;
+
+    const verifiedPassword = async () => {
+      return await argon2.verify(hashed_password, dbpassword);
+    };
+
+    if (!verifiedPassword) {
+      req.body.dbpassword = undefined;
+      res.sendStatus(403).json({
+        message: "Le couple email/mot de passe ne correspond pas !",
+      });
+      return;
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
