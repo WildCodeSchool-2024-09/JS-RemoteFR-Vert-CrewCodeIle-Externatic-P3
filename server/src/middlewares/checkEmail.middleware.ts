@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import userRepository from "../modules/item/user/UserRepository";
+import userRepository from "../modules/item/user/UsersRepository";
 
 export const checkEmail: RequestHandler = async (req, res, next) => {
   try {

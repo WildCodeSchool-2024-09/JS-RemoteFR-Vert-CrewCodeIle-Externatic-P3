@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
 
-import userRepository from "./UserRepository";
+import userRepository from "./UsersRepository";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
