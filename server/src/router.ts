@@ -19,6 +19,7 @@ import {
   candidateRegister,
   companyRegister,
 } from "./middlewares/register.middleware";
+import { checkCompanyRole } from "./middlewares/role.middleware";
 import { login } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
@@ -37,7 +38,13 @@ router.post(
   userActions.add,
 );
 
-router.post("/api/login", verifieEmail, comparePassword, login);
+router.post(
+  "/api/login/company",
+  verifieEmail,
+  comparePassword,
+  checkCompanyRole,
+  login,
+);
 
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);

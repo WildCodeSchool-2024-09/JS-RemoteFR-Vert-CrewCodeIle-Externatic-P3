@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import CompanyLoginPage from "./pages/CompanyLoginPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/signup/company",
         element: <UserCompanyForm />,
+      },
+      {
+        path: "/login/company",
+        element: <CompanyLoginPage />,
       },
     ],
   },
