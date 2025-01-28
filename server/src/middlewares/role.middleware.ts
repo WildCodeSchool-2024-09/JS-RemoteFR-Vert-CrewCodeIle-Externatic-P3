@@ -14,3 +14,17 @@ export const checkCompanyRole: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
+export const checkCandidateRole: RequestHandler = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const user = await userRepository.readByEmail(email);
+    if (user.role_id !== 3) {
+      res.sendStatus(422);
+      return;
+    }
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
