@@ -8,7 +8,7 @@ class OfferSeeder extends AbstractSeeder {
   async run() {
     for (let i = 0; i < 10; i++) {
       const fakeOffer = {
-        titre: this.faker.name.jobTitle(),
+        title: this.faker.name.jobTitle(),
         logo: "http://ruchetoulousaine.fr/laruche/wp-content/uploads/2017/12/offres-d-emploi.jpg",
         wage: this.faker.number.int({ min: 30000, max: 60000 }),
         description: this.faker.lorem.paragraph(),

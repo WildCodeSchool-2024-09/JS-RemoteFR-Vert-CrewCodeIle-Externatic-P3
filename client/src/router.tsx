@@ -3,6 +3,8 @@ import App from "./App";
 
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
+import UserCandidateForm from "./pages/UserCandidateFormPage";
+import UserCompanyForm from "./pages/UserCompanyFormPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/OffersPage",
         element: <OffersPage />,
+      },
+      {
+        path: "/signup/candidate",
+        element: <UserCandidateForm />,
+      },
+      {
+        path: "/signup/company",
+        element: <UserCompanyForm />,
       },
     ],
   },
