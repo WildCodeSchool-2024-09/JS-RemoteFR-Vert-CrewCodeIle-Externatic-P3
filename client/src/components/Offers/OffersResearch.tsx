@@ -1,36 +1,29 @@
-import { SmileIcon } from "lucide-react";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import type { OffersDataType, SearchDataType } from "../../lib/definition";
-// import OffersList from "./OffersList";
+import type { OffersDataType } from "../../lib/offers.definitions";
+import type { SearchDataType } from "../../lib/search.definition";
+import ProfileCard from "../Candidate/ProfileCard";
 
-export default function OffersResearch() {
-  const VITE_API_URL = import.meta.env.VITE_API_URL;
+type handleFilteredOffersType = {
+  handleFilteredOffers: (search: SearchDataType) => void;
+  filteredOffers: OffersDataType[];
+};
+
+export default function OffersResearch({
+  handleFilteredOffers,
+  filteredOffers,
+}: handleFilteredOffersType) {
   const [search, setSearch] = useState<string>("");
-  // const [candidates, setCandidates] = useState<CandidateDataType[]>([]);
-  const [filteredOffers, setFilteredOffers] = useState<OffersDataType[]>([]);
-
-  const handleFilteredOffers = async (searchData: SearchDataType) => {
-    try {
-      const response = await fetch(`${VITE_API_URL}/api/offers`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(searchData),
-      });
-      const data: OffersDataType[] = await response.json();
-      setFilteredOffers(data);
-    } catch (err) {
-      console.error("error");
-    }
-  };
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SearchDataType>();
-  const onSubmit: SubmitHandler<SearchDataType> = (data) => {
-    handleFilteredOffers(data);
+  const onSubmit: SubmitHandler<SearchDataType> = (
+    searchData: SearchDataType,
+  ) => {
+    handleFilteredOffers(searchData);
   };
 
   const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,23 +40,7 @@ export default function OffersResearch() {
             alt="Externatic logo"
           />
         </a>
-
-        <section className="mt-4 flex flex-col gap-4">
-          {/* Don't forget to replace smileIcon with candidate picture profile from DB */}
-          <section className="lg:flex lg:gap-16">
-            <SmileIcon />
-
-            <section className="lg:flex lg:flex-col gap-2">
-              <p className="mt-2">Nom Prénom </p>
-              <button
-                type="button"
-                className="mt-2 h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white lg:hover:bg-black"
-              >
-                Mon compte
-              </button>
-            </section>
-          </section>
-        </section>
+        <ProfileCard />
       </section>
 
       <section className="flex w-fit mx-auto mt-16 lg:mt-32">
@@ -145,16 +122,12 @@ export default function OffersResearch() {
         </form>
       </section>
 
-      <section>
-        {/* <OffersList filteredOffers={filteredOffers || []} /> */}
-      </section>
-
-      <section className="flex w-10/12 mt-[8em] mx-auto">
+      <section className="flex w-10/12 mt-[8em] mb-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
-          {filteredOffers.map((offer) => (
+          {filteredOffers?.map((offer) => (
             <li
               key={offer.id}
-              className="lg:flex lg:flex-col lg:gap-2 lg:w-1/6 border-solid border-2 border-[#CA2060] lg:p-1 hover:bg-slate-100"
+              className="lg:flex lg:flex-col lg:gap-2 lg:w-1/4 border-solid border-2 border-[#CA2060] lg:p-1 hover:bg-slate-100"
             >
               {" "}
               <a href="/" className="flex flex-col gap-2">

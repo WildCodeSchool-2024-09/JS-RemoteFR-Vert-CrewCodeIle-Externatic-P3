@@ -21,4 +21,12 @@ const readFilteredOffers: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, readFilteredOffers };
+const readFirstnameLastname: RequestHandler = async (req, res, next) => {
+  try {
+    const userId = Number.parseInt(req.params.id);
+    const userName = await offerRepository.readByName(userId);
+    res.send(userName);
+  } catch {}
+};
+
+export default { browse, readFilteredOffers, readFirstnameLastname };
