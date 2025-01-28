@@ -28,3 +28,8 @@ body {
 .section-dark {
   background-color: var(--dark-color);
 }
+
+.btn-submit {
+  background-color: black;
+  color: white;
+}

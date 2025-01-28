@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import mainImage from "../assets/images/Accueil.png";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const handleCandidateClick = () => navigate("/signup/candidate");
+  const handleCompanyClick = () => navigate("/signup/company");
   return (
     <section id="connexion">
       <div className="ml-5 mt-5 mb-0">
@@ -45,6 +49,7 @@ const SignUp = () => {
         <button
           type="button"
           className="flex flex-col items-center px-6 py-2 text-xl font-medium rounded-md btn-secondary sm:px-20 sm:py-4"
+          onClick={handleCandidateClick}
         >
           <span>Candidat</span>
           <span>Inscrivez-vous</span>
@@ -52,6 +57,7 @@ const SignUp = () => {
         <button
           type="button"
           className="flex flex-col items-center px-6 py-2 text-xl font-medium rounded-md btn-secondary sm:px-20 sm:py-4"
+          onClick={handleCompanyClick}
         >
           <span>Entreprise</span>
           <span>Inscrivez-vous</span>
