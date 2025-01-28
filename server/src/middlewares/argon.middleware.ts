@@ -22,9 +22,9 @@ export const hashPassword: RequestHandler = async (req, res, next) => {
 
 export const comparePassword: RequestHandler = async (req, res, next) => {
   try {
-    const { hashed_password, dbpassword } = req.body;
+    const { password, dbpassword } = req.body;
 
-    const verifiedPassword = await argon2.verify(hashed_password, dbpassword);
+    const verifiedPassword = await argon2.verify(dbpassword, password);
 
     if (!verifiedPassword) {
       req.body.dbpassword = undefined;
