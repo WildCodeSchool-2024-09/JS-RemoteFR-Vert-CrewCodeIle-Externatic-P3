@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { useDebounce } from "use-debounce";
 import PartnersCompanies from "../components/companies/PartnersCompanies";
 import type { Company } from "../lib/companies.definition";
 
 const PartnersCompaniesPage = () => {
   const companiesArray = useLoaderData() as Company[];
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm] = useDebounce(searchTerm, 1000);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
   const filteredCompanies = companiesArray.filter((company) => {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
     return (
       company.company_name.toLowerCase().includes(lowerCaseSearchTerm) ||
       company.description.toLowerCase().includes(lowerCaseSearchTerm) ||

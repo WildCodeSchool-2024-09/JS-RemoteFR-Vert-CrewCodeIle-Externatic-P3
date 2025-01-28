@@ -36,3 +36,8 @@ body {
 .link-primary-color {
   color: var(--primary-color);
 }
+
+.btn-submit {
+  background-color: black;
+  color: white;
+}
