@@ -28,7 +28,7 @@ function UserCompanyForm() {
           "Une erreur est survenue lors de votre inscription ! Veuillez réessayer",
         );
     } catch (err) {
-      console.info(err);
+      err;
     }
   };
 
