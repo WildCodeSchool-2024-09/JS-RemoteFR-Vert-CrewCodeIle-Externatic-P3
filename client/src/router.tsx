@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import CompanyOffersPage from "./pages/CompanyOffersPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
@@ -49,6 +50,24 @@ const router = createBrowserRouter([
           if (!response.ok) {
             throw new Response(
               "Erreur lors de la récupération des entreprises",
+              {
+                status: response.status,
+              },
+            );
+          }
+          return response.json();
+        },
+      },
+      {
+        path: "/offers/:companyId",
+        element: <CompanyOffersPage />,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/offersByCompany?companyId=${params.companyId}`,
+          );
+          if (!response.ok) {
+            throw new Response(
+              "Erreur lors de la récupération des offres pour cette entreprise",
               {
                 status: response.status,
               },

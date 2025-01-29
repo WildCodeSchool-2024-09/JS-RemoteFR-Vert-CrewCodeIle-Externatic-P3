@@ -22,7 +22,7 @@ const Offers = ({ offers }: OffersProps) => {
             alt="Logo offre d'emploi"
             className="relative h-32 object-cover object-center w-full"
           />
-          <figcaption className="mt-2 text-white">{offre.titre}</figcaption>
+          <figcaption className="mt-2 text-white">{offre.title}</figcaption>
         </figure>
       </NavLink>
     ));
