@@ -26,24 +26,13 @@ class OfferRepository {
       const placeholder = research.contract_type.map(() => "?").join(",");
 
       const [rows] = await databaseClient.query<Rows>(
-        `SELECT * FROM offer WHERE (title LIKE CONCAT('%', ?, '%')) AND (contract_type IS NULL OR contract_type IN (${placeholder})) AND (location IS NULL OR location LIKE CONCAT('%', ?, '%')) AND (is_teleworking IS NULL OR is_teleworking = ?)`,
+        `SELECT * FROM offer WHERE title=? AND contract_type IN (${placeholder}) AND (location=? OR location IS NULL) AND is_teleworking = ?`,
+
         [
           research.title,
           ...(research.contract_type || null),
           research.location || null,
-          research.is_teleworking || null,
-        ],
-      );
-      return rows as OffersDataType[];
-    }
-
-    if (!research.contract_type) {
-      const [rows] = await databaseClient.query<Rows>(
-        "SELECT * FROM offer WHERE (title LIKE CONCAT('%', ?, '%')) AND (location IS NULL OR location LIKE CONCAT('%', ?, '%')) AND (is_teleworking IS NULL OR is_teleworking = ?)",
-        [
-          research.title,
-          research.location || null,
-          research.is_teleworking || null,
+          research.is_teleworking,
         ],
       );
       return rows as OffersDataType[];

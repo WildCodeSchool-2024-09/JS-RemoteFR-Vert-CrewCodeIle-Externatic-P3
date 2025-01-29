@@ -16,6 +16,7 @@ const readFilteredOffers: RequestHandler = async (req, res, next) => {
 
     const filteredOffers = await offerRepository.readByFilter(research);
     res.send(filteredOffers);
+    // console.log(filteredOffers);
   } catch (err) {
     next(err);
   }

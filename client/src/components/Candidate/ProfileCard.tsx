@@ -1,4 +1,3 @@
-import { SmileIcon } from "lucide-react";
 // import { useState } from "react";
 // import type { CandidateDataType } from "../../lib/candidate.definition";
 
@@ -7,10 +6,7 @@ export default function profileCard() {
 
   return (
     <section className="mt-4 flex flex-col gap-4">
-      {/* Don't forget to replace smileIcon with candidate picture profile from DB */}
       <section className="lg:flex lg:gap-16">
-        <SmileIcon />
-
         <section className="lg:flex lg:flex-col gap-2">
           <p className="mt-2">Nom Prénom </p>
           <button
