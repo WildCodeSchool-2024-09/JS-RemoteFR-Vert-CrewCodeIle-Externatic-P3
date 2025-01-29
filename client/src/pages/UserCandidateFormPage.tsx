@@ -30,7 +30,7 @@ function UserCandidateForm() {
         );
       }
     } catch (err) {
-      console.info(err);
+      err;
     }
   };
 
