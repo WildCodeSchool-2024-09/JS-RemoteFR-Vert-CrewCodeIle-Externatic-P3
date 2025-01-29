@@ -28,7 +28,7 @@ function LoginCandidatePage() {
         );
       }
     } catch (err) {
-      console.info(err);
+      err;
     }
   };
 
