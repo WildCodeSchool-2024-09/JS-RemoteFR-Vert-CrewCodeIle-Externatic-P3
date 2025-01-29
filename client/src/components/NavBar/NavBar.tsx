@@ -13,13 +13,13 @@ const NavBar = () => {
   };
 
   const renderedLinks = navigationLinks.map((link) => (
-    <a
+    <Link
       key={link.href}
-      href={link.href}
+      to={link.href}
       className="inline-flex items-center px-1 pt-1 text-gray-900"
     >
       {link.label}
-    </a>
+    </Link>
   ));
 
   const renderedConnexionLinks = (

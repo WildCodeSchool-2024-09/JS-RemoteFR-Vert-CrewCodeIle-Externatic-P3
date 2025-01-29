@@ -28,7 +28,7 @@ function CompanyLoginPage() {
         );
       }
     } catch (err) {
-      console.info(err);
+      err;
     }
   };
 
