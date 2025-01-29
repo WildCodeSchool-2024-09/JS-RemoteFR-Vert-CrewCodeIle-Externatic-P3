@@ -49,4 +49,8 @@ router.post(
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);
 
+import companiesActions from "./modules/companies/companiesActions";
+
+router.get("/api/companies", companiesActions.browseCompanies);
+
 export default router;
