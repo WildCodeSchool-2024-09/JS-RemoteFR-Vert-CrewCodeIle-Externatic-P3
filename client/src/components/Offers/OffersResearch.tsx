@@ -56,7 +56,7 @@ export default function OffersResearch({
             <input
               id="title"
               {...register("title", {
-                required: "Aucune offre correspondante à votre recherche",
+                required: "Veuillez sélectionner un titre de poste",
                 pattern: /[a-zA-Z]/,
               })}
               type="search"
@@ -67,24 +67,35 @@ export default function OffersResearch({
           </div>
 
           <section className="flex flex-col">
+            {errors.contract_type && (
+              <span className="text-lg font-bold">
+                {errors.contract_type.message}
+              </span>
+            )}
             <label htmlFor="contract_type">Type de contrat:</label>
 
             <div className="flex gap-2">
               <input
-                {...register("contract_type")}
-                type="checkbox"
+                {...register("contract_type", {
+                  required: "Veuillez selectionner un type de contrat",
+                })}
+                type="radio"
                 value="CDI"
               />
               CDI
               <input
-                {...register("contract_type")}
-                type="checkbox"
+                {...register("contract_type", {
+                  required: "Veuillez selectionner un type de contrat",
+                })}
+                type="radio"
                 value="CDD"
               />
               CDD
               <input
-                {...register("contract_type")}
-                type="checkbox"
+                {...register("contract_type", {
+                  required: "Veuillez selectionner un type de contrat",
+                })}
+                type="radio"
                 value="Alternance"
               />
               Alternance
@@ -92,9 +103,16 @@ export default function OffersResearch({
           </section>
 
           <div className="flex flex-col">
+            {errors.location && (
+              <span className="text-lg font-bold">
+                {errors.location.message}
+              </span>
+            )}
             <label htmlFor="location">Localisaton:</label>
             <input
-              {...register("location")}
+              {...register("location", {
+                required: "Veuillez sélectionner une localisation",
+              })}
               id="location"
               type="text"
               placeholder="Paris, Lyon ..."
@@ -107,7 +125,6 @@ export default function OffersResearch({
               id="is_teleworking"
               {...register("is_teleworking")}
               type="checkbox"
-              value="is_teleworking"
               className="lg:self-start lg:mt-1.5"
             />
           </div>
@@ -123,20 +140,21 @@ export default function OffersResearch({
 
       <section className="flex w-10/12 mt-[8em] mb-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
-          {filteredOffers?.map((offer) => (
-            <li
-              key={offer.id}
-              className="lg:flex lg:flex-col lg:gap-2 lg:w-1/4 border-solid border-2 border-[#CA2060] lg:p-1 hover:bg-slate-100"
-            >
-              {" "}
-              <a href="/" className="flex flex-col gap-2">
-                <h1 className="text-lg font-bold">{offer.title}</h1>
-                <span>{offer.contract_type}</span>
-                <span>{offer.description}</span>
-                <span>Salaire: {offer.wage.toFixed(1)}€</span>
-              </a>
-            </li>
-          ))}
+          {filteredOffers.length > 0 &&
+            filteredOffers.map((offer) => (
+              <li
+                key={offer.id}
+                className="lg:flex lg:flex-col lg:gap-2 lg:w-1/4 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
+              >
+                {" "}
+                <a href="/" className="flex flex-col gap-2">
+                  <h1 className="text-lg font-bold">{offer.title}</h1>
+                  <span>{offer.contract_type}</span>
+                  <span>{offer.description}</span>
+                  <span>Salaire: {offer.wage.toFixed(1)}€</span>
+                </a>
+              </li>
+            ))}
         </ul>
       </section>
     </section>

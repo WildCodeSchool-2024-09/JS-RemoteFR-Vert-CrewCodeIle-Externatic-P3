@@ -10,16 +10,20 @@ export default function OffersResearchPage() {
   const [filteredOffers, setFilteredOffers] = useState<OffersDataType[]>([]);
 
   const handleFilteredOffers = async (searchData: SearchDataType) => {
+    const formatSearch = {
+      ...searchData,
+      is_teleworking: Boolean(searchData.is_teleworking),
+    };
     try {
       const response = await fetch(`${VITE_API_URL}/api/offers`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(searchData),
+        body: JSON.stringify(formatSearch),
       });
       const data: OffersDataType[] = await response.json();
       setFilteredOffers(data);
     } catch (err) {
-      console.error("error");
+      err;
     }
   };
 

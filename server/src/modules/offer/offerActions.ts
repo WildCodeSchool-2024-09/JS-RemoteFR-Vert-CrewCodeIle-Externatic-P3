@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 import offerRepository from "./offerRepository";
+import type { OffersDataType } from "./offerRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
@@ -12,22 +13,19 @@ const browse: RequestHandler = async (req, res, next) => {
 
 const readFilteredOffers: RequestHandler = async (req, res, next) => {
   try {
-    const research = req.body;
+    const research: Partial<OffersDataType> = req.body;
 
     const filteredOffers = await offerRepository.readByFilter(research);
-    res.send(filteredOffers);
-    // console.log(filteredOffers);
+    if (filteredOffers && filteredOffers.length > 0) {
+      res.status(200).send(filteredOffers);
+    } else {
+      res
+        .status(404)
+        .json({ message: "Aucune offre correspondante à votre recherche" });
+    }
   } catch (err) {
     next(err);
   }
 };
 
-const readFirstnameLastname: RequestHandler = async (req, res, next) => {
-  try {
-    const userId = Number.parseInt(req.params.id);
-    const userName = await offerRepository.readByName(userId);
-    res.send(userName);
-  } catch {}
-};
-
-export default { browse, readFilteredOffers, readFirstnameLastname };
+export default { browse, readFilteredOffers };
