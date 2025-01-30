@@ -1,7 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+
 import CompanyOffersPage from "./pages/CompanyOffersPage";
+import LoginCandidatePage from "./pages/CandidateLoginPage";
+import CompanyLoginPage from "./pages/CompanyLoginPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
@@ -75,6 +78,12 @@ const router = createBrowserRouter([
           }
           return response.json();
         },
+        path: "/login/company",
+        element: <CompanyLoginPage />,
+      },
+      {
+        path: "/login/candidate",
+        element: <LoginCandidatePage />,
       },
     ],
   },

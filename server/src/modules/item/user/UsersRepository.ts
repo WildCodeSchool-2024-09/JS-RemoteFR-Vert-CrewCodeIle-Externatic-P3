@@ -2,7 +2,7 @@ import databaseClient from "../../../../database/client";
 
 import type { Result, Rows } from "../../../../database/client";
 
-type UserType = {
+export type UserType = {
   id: number;
   firstname: string;
   lastname: string;
