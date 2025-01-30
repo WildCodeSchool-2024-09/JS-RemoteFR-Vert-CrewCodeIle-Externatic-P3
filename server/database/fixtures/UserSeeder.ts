@@ -11,7 +11,7 @@ class UserSeeder extends AbstractSeeder {
         firstname: this.faker.person.firstName(),
         lastname: this.faker.person.lastName(),
         email: this.faker.internet.email(),
-        password: this.faker.internet.password(),
+        hashed_password: this.faker.internet.password(),
         address: this.faker.address.streetAddress(),
         postal_code: this.faker.location.zipCode("#####"),
         city: this.faker.location.city(),
