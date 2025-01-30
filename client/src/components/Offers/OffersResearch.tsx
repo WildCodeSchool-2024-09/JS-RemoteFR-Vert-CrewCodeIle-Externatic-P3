@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import type { OffersDataType } from "../../lib/offers.definitions";
 import type { SearchDataType } from "../../lib/search.definition";
 import ProfileCard from "../Candidate/ProfileCard";
@@ -32,16 +33,14 @@ export default function OffersResearch({
     setSearch(e.target.value);
   };
 
+  const navigate = useNavigate();
+  const handleOfferDetails = () => {
+    navigate("/OfferDetails");
+  };
+
   return (
     <section>
-      <section className="flex place-content-between">
-        <a href="/">
-          <img
-            className="h-[6em] w-[8em]"
-            src="../src/assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png"
-            alt="Externatic logo"
-          />
-        </a>
+      <section className="flex justify-end">
         <ProfileCard />
       </section>
 
@@ -146,15 +145,20 @@ export default function OffersResearch({
             filteredOffers.map((offer) => (
               <li
                 key={offer.id}
-                className="p-1 lg:flex lg:flex-col lg:gap-2 lg:w-1/3 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
+                className="p-1 flex flex-col gap-2 lg:flex lg:flex-col lg:gap-2 lg:w-1/3 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
               >
                 {" "}
-                <a href="/" className="flex flex-col gap-2">
-                  <h1 className="text-lg font-bold">{offer.title}</h1>
-                  <span>{offer.contract_type}</span>
-                  <span>{offer.description}</span>
-                  <span>Salaire: {offer.wage.toFixed(1)}€</span>
-                </a>
+                <h1 className="text-lg font-bold">{offer.title}</h1>
+                <span>{offer.contract_type}</span>
+                <span>{offer.description}</span>
+                <span>Salaire: {offer.wage.toFixed(1)}€</span>
+                <button
+                  type="button"
+                  className="p-2 bg-primary text-white rounded-md w-1/3"
+                  onClick={handleOfferDetails}
+                >
+                  Voir l'offre
+                </button>
               </li>
             ))}
         </ul>

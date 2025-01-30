@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import HomePage from "./pages/HomePage";
+import { OfferDetailsPage } from "./pages/OfferDetailsPage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/OffersResearch",
         element: <OffersResearchPage />,
+      },
+      {
+        path: "/OfferDetails/:id",
+        element: <OfferDetailsPage />,
       },
     ],
   },
