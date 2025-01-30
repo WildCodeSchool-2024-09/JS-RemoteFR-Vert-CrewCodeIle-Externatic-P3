@@ -22,13 +22,13 @@ function UserCompanyForm() {
         toast.success(
           "Votre compte a bien été créé. Bienvenue sur Externatic !",
         );
-        navigate("/");
+        navigate("/login/company");
       } else
         toast.error(
           "Une erreur est survenue lors de votre inscription ! Veuillez réessayer",
         );
     } catch (err) {
-      console.info(err);
+      err;
     }
   };
 

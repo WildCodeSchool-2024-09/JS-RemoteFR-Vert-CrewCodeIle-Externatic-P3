@@ -17,3 +17,8 @@ export type CandidateFormData = {
   photo: string;
   is_disabled: boolean;
 };
+
+export type loginCompanyType = {
+  email: string;
+  password: string;
+};

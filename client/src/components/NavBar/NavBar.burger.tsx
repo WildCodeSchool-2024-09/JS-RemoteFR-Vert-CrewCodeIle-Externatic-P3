@@ -17,13 +17,13 @@ const NavBarBurger = ({
   const renderedConnexionLinks = (
     <div className="flex flex-row gap-4">
       <Link
-        to="/login"
+        to="/login/candidate"
         className="flex items-center justify-center my-2 px-4 py-2 rounded-md btn-accent hover:bg-gray-800 hover:text-white transition duration-300 text-center"
       >
         Connexion Candidat
       </Link>
       <Link
-        to="/login"
+        to="/login/company"
         className="flex items-center justify-center my-2 px-4 py-2 rounded-md btn-accent hover:bg-gray-800 hover:text-white transition duration-300 text-center"
       >
         Connexion Entreprise
