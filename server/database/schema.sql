@@ -9,7 +9,7 @@ CREATE TABLE user (
   firstname VARCHAR(100) NOT NULL,
   lastname VARCHAR(100) NOT NULL,
   email VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(100) NOT NULL,
+  hashed_password VARCHAR(255) NOT NULL,
   address VARCHAR(100) NOT NULL,
   postal_code VARCHAR(5) NOT NULL,
   city VARCHAR(100) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE candidate (
 
 CREATE TABLE offer(
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  titre VARCHAR(100) NOT NULL,
+  title VARCHAR(100) NOT NULL,
   logo VARCHAR(100),
   wage INT,
   description TEXT NOT NULL,
