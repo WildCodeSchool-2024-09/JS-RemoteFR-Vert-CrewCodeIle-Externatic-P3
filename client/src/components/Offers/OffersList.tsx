@@ -23,7 +23,7 @@ function OffersList() {
             key={o.id}
             className="border-2 border-primary ml-4 sm:ml-6 md:ml-8"
           >
-            <li className="font-bold text-xl mb-2 p-2">{o.titre}</li>
+            <li className="font-bold text-xl mb-2 p-2">{o.title}</li>
             <li className="text-xl mb-2 font-medium p-2">{o.location}</li>
             <li className="text-xl mb-2 font-medium p-2">
               {o.wage.toFixed(2)} €
