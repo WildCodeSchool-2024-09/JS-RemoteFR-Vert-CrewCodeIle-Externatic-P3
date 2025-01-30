@@ -11,6 +11,7 @@ import offersListActions from "./modules/offersList/offersListActions";
 import offersActions from "./modules/offers/offersActions";
 
 router.get("/api/offers", offersActions.browseOffers);
+router.get("/api/offersByCompany", offersActions.browseOffersByCompany);
 // Define item-related routes
 
 import { comparePassword, hashPassword } from "./middlewares/argon.middleware";
