@@ -21,7 +21,7 @@ function LoginCandidatePage() {
       );
       if (loginCandidate.ok) {
         toast.success("Vous êtes bien connecté !");
-        navigate("/");
+        navigate("/account/candidate");
       } else {
         toast.error(
           "Un problème est survenu lors de votre connexion ! Veuillez réessayer",

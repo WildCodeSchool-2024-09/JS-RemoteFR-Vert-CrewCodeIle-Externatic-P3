@@ -23,7 +23,7 @@ import {
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
-import { login } from "./modules/auth/authActions";
+import { login, verifyToken } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
@@ -59,8 +59,12 @@ router.post(
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);
 
+import candidateActions from "./modules/candidate/candidateActions";
 import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
+
+router.use(verifyToken);
+router.post("/api/candidate/account", candidateActions.add);
 
 export default router;
