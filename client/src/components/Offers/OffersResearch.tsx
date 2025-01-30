@@ -7,11 +7,13 @@ import ProfileCard from "../Candidate/ProfileCard";
 type handleFilteredOffersType = {
   handleFilteredOffers: (search: SearchDataType) => void;
   filteredOffers: OffersDataType[];
+  error: string | null;
 };
 
 export default function OffersResearch({
   handleFilteredOffers,
   filteredOffers,
+  error,
 }: handleFilteredOffersType) {
   const [search, setSearch] = useState<string>("");
 
@@ -137,14 +139,14 @@ export default function OffersResearch({
           </button>
         </form>
       </section>
-
+      {error && <span>error.message</span>}
       <section className="flex w-10/12 mt-[8em] mb-[8em] mx-auto">
         <ul className="flex flex-row flex-wrap gap-8 justify-center ">
           {filteredOffers.length > 0 &&
             filteredOffers.map((offer) => (
               <li
                 key={offer.id}
-                className="lg:flex lg:flex-col lg:gap-2 lg:w-1/4 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
+                className="p-1 lg:flex lg:flex-col lg:gap-2 lg:w-1/3 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
               >
                 {" "}
                 <a href="/" className="flex flex-col gap-2">

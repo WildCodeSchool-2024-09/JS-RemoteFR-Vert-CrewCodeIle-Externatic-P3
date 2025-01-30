@@ -8,6 +8,7 @@ export default function OffersResearchPage() {
   const VITE_API_URL = import.meta.env.VITE_API_URL;
 
   const [filteredOffers, setFilteredOffers] = useState<OffersDataType[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFilteredOffers = async (searchData: SearchDataType) => {
     const formatSearch = {
@@ -20,6 +21,10 @@ export default function OffersResearchPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formatSearch),
       });
+      if (response.status === 204) {
+        const error = await response.json();
+        setError(error.message);
+      }
       const data: OffersDataType[] = await response.json();
       setFilteredOffers(data);
     } catch (err) {
@@ -32,6 +37,7 @@ export default function OffersResearchPage() {
       <OffersResearch
         handleFilteredOffers={handleFilteredOffers}
         filteredOffers={filteredOffers}
+        error={error}
       />
       <OffersList />
     </>

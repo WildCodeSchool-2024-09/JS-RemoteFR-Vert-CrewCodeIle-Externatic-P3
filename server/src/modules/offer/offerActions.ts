@@ -16,12 +16,12 @@ const readFilteredOffers: RequestHandler = async (req, res, next) => {
     const research: Partial<OffersDataType> = req.body;
 
     const filteredOffers = await offerRepository.readByFilter(research);
-    if (filteredOffers && filteredOffers.length > 0) {
-      res.status(200).send(filteredOffers);
-    } else {
+    if (!filteredOffers || filteredOffers.length === 0) {
       res
-        .status(404)
+        .status(204)
         .json({ message: "Aucune offre correspondante à votre recherche" });
+    } else {
+      res.status(200).send(filteredOffers);
     }
   } catch (err) {
     next(err);
