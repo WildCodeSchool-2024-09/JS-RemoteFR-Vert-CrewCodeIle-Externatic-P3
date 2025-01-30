@@ -5,7 +5,6 @@ import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import HomePage from "./pages/HomePage";
-import { OfferDetailsPage } from "./pages/OfferDetailsPage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
       {
         path: "/OffersResearch",
         element: <OffersResearchPage />,
-      },
-      {
-        path: "/OfferDetails/:id",
-        element: <OfferDetailsPage />,
       },
       {
         path: "/signup/candidate",
