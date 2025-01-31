@@ -10,14 +10,14 @@ const OfferFilter = ({ offers, onFilterChange }: OfferFilterProps) => {
   const [isActiveOnly, setIsActiveOnly] = useState<boolean>(true);
 
   const handleToggleChange = () => {
-    const newActiveState = !isActiveOnly;
-    setIsActiveOnly(newActiveState);
+    setIsActiveOnly((prevState) => {
+      const filteredOffers = !prevState
+        ? offers.filter((offer) => offer.is_active)
+        : offers.filter((offer) => !offer.is_active);
 
-    const filteredOffers = newActiveState
-      ? offers.filter((offer) => offer.is_active)
-      : offers.filter((offer) => !offer.is_active);
-
-    onFilterChange(filteredOffers);
+      onFilterChange(filteredOffers);
+      return !prevState;
+    });
   };
 
   return (
