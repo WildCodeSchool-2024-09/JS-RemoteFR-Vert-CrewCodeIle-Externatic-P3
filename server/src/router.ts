@@ -58,7 +58,7 @@ router.post(
   login,
 );
 /* ************************************************************************* */
-router.get("/api/offersPage", offersListActions.browse);
+router.get("/api/offers", offersListActions.browse);
 
 import companiesActions from "./modules/companies/companiesActions";
 
