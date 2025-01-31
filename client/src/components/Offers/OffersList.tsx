@@ -5,7 +5,7 @@ function OffersList() {
   const [dataOffers, setDataOffers] = useState<Offer[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/offersPage`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/offers`)
       .then((response) => response.json())
       .then((data: Offer[]) => {
         setDataOffers(data);
