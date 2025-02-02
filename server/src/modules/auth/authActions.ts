@@ -1,10 +1,19 @@
 import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
 import { encodeJWT } from "../../helpers/jwt.helpers";
+import UsersRepository from "../item/user/UsersRepository";
 
 export const login: RequestHandler = async (req, res) => {
-  const user = req.body;
+  const user = await UsersRepository.readByEmail(req.body.email);
+
+  console.log(user);
+
+  const userTokenData = [user.id, user.firstname];
+  console.log(userTokenData);
+
   const token = await encodeJWT(user);
+
+  console.log(token);
 
   res
     .status(200)
@@ -13,7 +22,7 @@ export const login: RequestHandler = async (req, res) => {
       secure: false,
       maxAge: 86400,
     })
-    .json();
+    .json({ token, userTokenData: userTokenData });
 };
 
 export const verifyToken: RequestHandler = (req, res, next) => {

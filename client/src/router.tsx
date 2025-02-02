@@ -68,6 +68,7 @@ const router = createBrowserRouter([
         path: "/login/candidate",
         element: <LoginCandidatePage />,
       },
+
       {
         path: "/account/candidate",
         element: <CandidateAccountPage />,
