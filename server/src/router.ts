@@ -64,7 +64,6 @@ import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
-router.use(verifyToken);
 router.post("/api/candidate/account", candidateActions.add);
 
 export default router;
