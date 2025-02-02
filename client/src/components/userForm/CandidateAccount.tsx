@@ -52,6 +52,7 @@ function CandidateAccount({ onSubmit }: CandidateFormType) {
               type="radio"
               id="is_disabled_false"
               value="0"
+              defaultChecked
               {...register("is_disabled")}
             />{" "}
             Non
