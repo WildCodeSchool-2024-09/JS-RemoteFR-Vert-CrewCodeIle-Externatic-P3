@@ -3,7 +3,7 @@ import path from "node:path";
 
 const storage = multer.diskStorage({
   destination: function stock(req, file, cb) {
-    cb(null, "uploads");
+    cb(null, path.join(__dirname, "uploads"));
   },
   filename: function nameFile(req, file, cb) {
     const uniqueSuffix = Date.now() + Math.round(Math.random() * 1e9);
@@ -19,6 +19,7 @@ export const upload = multer({
     const extname = filetypes.test(
       path.extname(file.originalname).toLowerCase(),
     );
+    console.log(filetypes);
     const mimetype = filetypes.test(file.mimetype);
     if (extname && mimetype) {
       return cb(null, true);

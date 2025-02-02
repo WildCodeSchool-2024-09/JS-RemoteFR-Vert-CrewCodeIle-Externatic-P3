@@ -61,9 +61,15 @@ router.get("/api/offersPage", offersListActions.browse);
 
 import candidateActions from "./modules/candidate/candidateActions";
 import companiesActions from "./modules/companies/companiesActions";
+import { upload } from "./middlewares/multer.middleware";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
-router.post("/api/candidate/account", candidateActions.add);
+router.post(
+  "/api/candidate/account",
+  upload,
+  candidateActions.uploadFiles,
+  candidateActions.add,
+);
 
 export default router;

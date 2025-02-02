@@ -15,7 +15,7 @@ function CandidateAccountPage() {
         formData.append("cv", data.cv[0]);
       }
 
-      formData.append("user_id", "17");
+      formData.append("user_id", "11");
       formData.append("is_disabled", data.is_disabled);
 
       const response = await fetch(
@@ -25,6 +25,7 @@ function CandidateAccountPage() {
           body: formData,
         },
       );
+      console.log(formData);
 
       if (response.status === 201) {
         toast.success("Les informations sont bien mis à jour");
