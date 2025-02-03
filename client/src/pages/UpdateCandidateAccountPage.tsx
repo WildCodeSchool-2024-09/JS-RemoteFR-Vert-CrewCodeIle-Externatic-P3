@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import CandidateAccount from "../components/userForm/CandidateAccount";
+import UpdateCandidateAccount from "../components/CandidateAccount/UpdateCandidateAccount";
 import type { CandidateFormData } from "../lib/userForm.definitions";
 
 function CandidateAccountPage() {
@@ -37,9 +37,15 @@ function CandidateAccountPage() {
   };
 
   return (
-    <>
-      <CandidateAccount onSubmit={handleUploadCandidateInformation} />
-    </>
+    <section className=" mt-10 flex justify-center flex-col">
+      <article>
+        <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
+          Mon compte (Candidat)
+        </h1>
+
+        <UpdateCandidateAccount onSubmit={handleUploadCandidateInformation} />
+      </article>
+    </section>
   );
 }
 
