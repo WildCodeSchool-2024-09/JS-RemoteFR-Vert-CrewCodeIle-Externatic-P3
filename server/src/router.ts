@@ -21,6 +21,7 @@ import {
   companyRegister,
 } from "./middlewares/register.middleware";
 import {
+  checkAdminRole,
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
@@ -55,6 +56,14 @@ router.post(
   verifieEmail,
   comparePassword,
   checkCandidateRole,
+  login,
+);
+
+router.post(
+  "/api/login/admin",
+  verifieEmail,
+  comparePassword,
+  checkAdminRole,
   login,
 );
 /* ************************************************************************* */

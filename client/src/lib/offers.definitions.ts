@@ -8,4 +8,5 @@ export type Offer = {
   is_teleworking: boolean;
   contract_type: string;
   is_opened_to_disabled: boolean;
+  is_active: boolean;
 };
