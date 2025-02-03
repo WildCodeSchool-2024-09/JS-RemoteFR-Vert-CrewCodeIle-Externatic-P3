@@ -1,7 +1,7 @@
 import { FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Login from "../components/userForm/Login";
+import Login from "../components/user/Login";
 import type { loginCompanyType } from "../lib/userForm.definitions";
 
 function LoginCandidatePage() {

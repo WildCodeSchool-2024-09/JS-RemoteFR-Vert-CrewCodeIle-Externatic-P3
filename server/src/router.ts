@@ -65,6 +65,7 @@ import { upload } from "./middlewares/multer.middleware";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
+router.get("/api/user/:id", userActions.read);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
 export default router;

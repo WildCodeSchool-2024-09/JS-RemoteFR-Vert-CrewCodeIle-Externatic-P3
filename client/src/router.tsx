@@ -9,6 +9,7 @@ import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
+import CandidateAccountPage from "./pages/CandidateAccountPage";
 
 const router = createBrowserRouter([
   {
@@ -68,9 +69,12 @@ const router = createBrowserRouter([
         path: "/login/candidate",
         element: <LoginCandidatePage />,
       },
-
       {
-        path: "/account/candidate",
+        path: "account/candidate",
+        element: <CandidateAccountPage />,
+      },
+      {
+        path: "/account/candidate/update",
         element: <UpdateCandidateAccountPage />,
       },
     ],
