@@ -25,7 +25,6 @@ function CandidateAccountPage() {
           body: formData,
         },
       );
-      console.log(formData);
 
       if (response.status === 201) {
         toast.success("Les informations sont bien mis à jour");

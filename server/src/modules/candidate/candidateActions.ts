@@ -10,8 +10,7 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
     };
     const photoPath = path.join(__dirname, "uploads", photo[0].filename);
     const cvPath = path.join(__dirname, "uploads", cv[0].filename);
-    console.log(photoPath);
-    console.log(cvPath);
+
     const newCandidate = {
       cv: cvPath,
       photo: photoPath,
@@ -26,21 +25,4 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
   }
 };
 
-const add: RequestHandler = async (req, res, next) => {
-  try {
-    const newCandidate = {
-      cv: req.body.cv,
-      photo: req.body.photo,
-      user_id: req.body.user_id,
-      is_disabled: req.body.is_disabled,
-    };
-    console.log(newCandidate);
-    const insertId = await CandidateRepository.create(newCandidate);
-
-    res.status(201).json({ insertId });
-  } catch (err) {
-    next(err);
-  }
-};
-
-export default { add, uploadFiles };
+export default { uploadFiles };
