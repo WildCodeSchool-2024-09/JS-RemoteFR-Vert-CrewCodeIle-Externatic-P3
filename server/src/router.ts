@@ -1,4 +1,5 @@
 import express from "express";
+import path from "node:path";
 
 const router = express.Router();
 
@@ -65,7 +66,13 @@ import { upload } from "./middlewares/multer.middleware";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
+router.use(
+  "/uploads",
+  express.static(path.join(__dirname, "/middlewares/uploads")),
+);
+
 router.get("/api/user/:id", userActions.read);
+router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
 export default router;

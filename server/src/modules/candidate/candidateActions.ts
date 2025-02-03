@@ -8,8 +8,8 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
       photo: Express.Multer.File[];
       cv: Express.Multer.File[];
     };
-    const photoPath = path.join(__dirname, "uploads", photo[0].filename);
-    const cvPath = path.join(__dirname, "uploads", cv[0].filename);
+    const photoPath = photo[0].filename;
+    const cvPath = cv[0].filename;
 
     const newCandidate = {
       cv: cvPath,
@@ -25,4 +25,19 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { uploadFiles };
+const readProfil: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = Number(req.params.id);
+    const candidate = await CandidateRepository.read(user_id);
+
+    if (candidate == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(candidate);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { uploadFiles, readProfil };

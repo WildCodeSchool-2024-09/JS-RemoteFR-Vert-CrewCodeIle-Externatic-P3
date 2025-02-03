@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 export type CandidateType = {
   id: number;
@@ -17,6 +17,16 @@ class CandidateRepository {
       [candidate.cv, candidate.photo, candidate.user_id, candidate.is_disabled],
     );
     return result.insertId;
+  }
+
+  async read(user_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+      select * from candidate where user_id = ?
+      `,
+      [user_id],
+    );
+    return rows[0] as CandidateType;
   }
 }
 
