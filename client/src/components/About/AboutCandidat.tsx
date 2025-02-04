@@ -4,10 +4,9 @@ const AboutCandidat = () => {
   const whoWeAreContent = whoWeAre.map((feature) => (
     <article key={feature.title} className="text-center">
       <div className="flex justify-center">
-        <feature.icon className="h-12 w-12 text-white" />
+        <feature.icon className="h-10 w-12 text-white" />
       </div>
       <h3 className="mt-6 text-lg font-medium text-white">{feature.title}</h3>
-      <p className="mt-2 text-base text-white">{feature.description}</p>
     </article>
   ));
 
