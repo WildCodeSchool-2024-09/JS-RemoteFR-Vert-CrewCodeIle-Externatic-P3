@@ -1,16 +1,26 @@
+import { useState } from "react";
 import type { Offer } from "../../lib/offers.definitions";
+import OfferFilter from "./OfferFilter";
 
 type OffersByCompanyProps = {
   offers: Offer[];
 };
 
 const OffersByCompany = ({ offers }: OffersByCompanyProps) => {
+  const [filteredOffers, setFilteredOffers] = useState<Offer[]>(
+    offers.filter((offer) => offer.is_active),
+  );
+
+  const handleFilterChange = (newFilteredOffers: Offer[]) => {
+    setFilteredOffers(newFilteredOffers);
+  };
+
   const noOffersMessage =
-    offers.length === 0 ? (
+    filteredOffers.length === 0 ? (
       <p>Aucune offre d'emploi trouvée pour cette entreprise.</p>
     ) : null;
 
-  const renderedOffers = offers.map((offer) => (
+  const renderedOffers = filteredOffers.map((offer) => (
     <ul key={offer.id} className="border-2 border-primary m-4 sm:ml-6 md:ml-8">
       <li className="font-bold text-xl mb-2 p-2">{offer.title}</li>
       <li className="text-xl mb-2 font-medium p-2">{offer.location}</li>
@@ -30,8 +40,9 @@ const OffersByCompany = ({ offers }: OffersByCompanyProps) => {
 
   return (
     <div>
+      <OfferFilter offers={offers} onFilterChange={handleFilterChange} />
       {noOffersMessage}
-      {renderedOffers}
+      {filteredOffers.length > 0 && <div>{renderedOffers}</div>}
     </div>
   );
 };

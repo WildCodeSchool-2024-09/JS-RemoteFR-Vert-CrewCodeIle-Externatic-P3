@@ -50,8 +50,9 @@ CREATE TABLE offer(
   is_teleworking BOOLEAN,
   contract_type VARCHAR(100) NOT NULL,
   company_id INT NOT NULL,
-  FOREIGN KEY (company_id) REFERENCES company(id),
-  is_opened_to_disabled BOOLEAN NOT NULL
+  is_opened_to_disabled BOOLEAN NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE,
+  FOREIGN KEY (company_id) REFERENCES company(id)
 );
 
 CREATE TABLE favorite(
