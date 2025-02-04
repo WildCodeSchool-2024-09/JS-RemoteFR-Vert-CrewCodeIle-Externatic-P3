@@ -1,5 +1,4 @@
 import type { RequestHandler } from "express";
-import path from "node:path";
 import CandidateRepository from "./CandidateRepository";
 
 const uploadFiles: RequestHandler = async (req, res, next) => {

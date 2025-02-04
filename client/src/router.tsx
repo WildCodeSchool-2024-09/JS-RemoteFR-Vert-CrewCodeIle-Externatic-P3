@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import HomePage from "./pages/HomePage";
@@ -9,7 +10,6 @@ import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
-import CandidateAccountPage from "./pages/CandidateAccountPage";
 
 const router = createBrowserRouter([
   {

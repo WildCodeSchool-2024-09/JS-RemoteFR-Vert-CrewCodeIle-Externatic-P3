@@ -6,14 +6,9 @@ import UsersRepository from "../item/user/UsersRepository";
 export const login: RequestHandler = async (req, res) => {
   const user = await UsersRepository.readByEmail(req.body.email);
 
-  console.log(user);
-
   const userTokenData = [user.id, user.firstname];
-  console.log(userTokenData);
 
   const token = await encodeJWT(user);
-
-  console.log(token);
 
   res
     .status(200)

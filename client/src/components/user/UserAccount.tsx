@@ -25,10 +25,13 @@ function UserAccount() {
   }, []);
 
   return (
-    <>
-      <h2>Mon profil</h2>
-      <section>
+    <section className="py-2 rounded-md mt-10 bg-primary w-10/12 flex flex-col justify-center items-center">
+      <h2 className="block text-2xl  text-white font-semibold my-4 text-center">
+        Mon profil
+      </h2>
+      <article className="flex flex-col items-center">
         <img
+          className="w-60 items-center rounded-full"
           src={
             candidateAccount?.photo
               ? `${import.meta.env.VITE_API_URL}/uploads/${candidateAccount.photo}`
@@ -36,25 +39,29 @@ function UserAccount() {
           }
           alt="Représentation photographique du candidat"
         />{" "}
+      </article>
+      <article className="my-4 block text-base font-medium">
         <p> Prénom: {userAccount?.firstname}</p>
         <p> Nom : {userAccount?.lastname}</p>
-      </section>
-      <h2>Mes coordonnées</h2>
-      <section>
+        <h2 className="block text-xl  text-white font-semibold my-4 underline">
+          Mes coordonnées
+        </h2>
         <p> Email: {userAccount?.email}</p>
         <p> Tel : {userAccount?.tel}</p>
         <p> Adresse : {userAccount?.address}</p>
         <span> Ville : {userAccount?.city}</span>
         <span> Code postal : {userAccount?.postal_code}</span>
-      </section>
-      <h2>Mes documents</h2>
-      <section>
+      </article>
+      <article className="my-4 block text-base font-medium">
+        <h2 className="block text-xl  text-white font-semibold my-4 underline">
+          Mes documents
+        </h2>
         <span>
           Reconnaissance travailleur handicapé :{" "}
           {candidateAccount?.is_disabled ? "Oui" : "Non"}
         </span>
-      </section>
-    </>
+      </article>
+    </section>
   );
 }
 export default UserAccount;

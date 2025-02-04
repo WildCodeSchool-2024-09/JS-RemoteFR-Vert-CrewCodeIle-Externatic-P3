@@ -1,5 +1,5 @@
-import express from "express";
 import path from "node:path";
+import express from "express";
 
 const router = express.Router();
 
@@ -60,9 +60,9 @@ router.post(
 /* ************************************************************************* */
 router.get("/api/offersPage", offersListActions.browse);
 
+import { upload } from "./middlewares/multer.middleware";
 import candidateActions from "./modules/candidate/candidateActions";
 import companiesActions from "./modules/companies/companiesActions";
-import { upload } from "./middlewares/multer.middleware";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
