@@ -20,4 +20,14 @@ const browseOffersByCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseOffers, browseOffersByCompany };
+const browseOffer: RequestHandler = async (req, res, next) => {
+  try {
+    const offerId = Number.parseInt(req.query.offerId as string);
+    const offer = await offersRepository.readOfferByCandidat(offerId);
+    res.json(offer);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browseOffers, browseOffersByCompany, browseOffer };

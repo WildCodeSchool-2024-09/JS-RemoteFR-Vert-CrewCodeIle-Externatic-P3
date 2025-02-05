@@ -64,4 +64,6 @@ import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
+router.get("/api/offerByCandidate", offersActions.browseOffer);
+
 export default router;
