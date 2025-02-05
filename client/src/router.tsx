@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
-import OfferByCandidat from "./components/Offers/OfferByCandidat";
+import AdminLoginPage from "./pages/AdminLoginPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
@@ -87,23 +87,11 @@ const router = createBrowserRouter([
           return response.json();
         },
       },
-
-      {
-        path: "/offer/:offerId",
-        element: <OfferByCandidat />,
-        loader: async ({ params }) => {
-          const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
-          );
-          if (!response.ok) {
-            throw new Response("Erreur lors de la récupération de l'offre", {
-              status: response.status,
-            });
-          }
-          return response.json();
-        },
-      },
     ],
+  },
+  {
+    path: "/login/admin",
+    element: <AdminLoginPage />,
   },
 ]);
 
