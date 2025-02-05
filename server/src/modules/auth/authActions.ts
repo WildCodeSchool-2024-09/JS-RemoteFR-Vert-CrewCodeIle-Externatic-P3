@@ -16,7 +16,7 @@ export const login: RequestHandler = async (req, res) => {
       secure: false,
       maxAge: 86400,
     })
-    .json({ token, userId: userId });
+    .json({ userId: userId });
 };
 
 export const verifyToken: RequestHandler = (req, res, next) => {
