@@ -9,4 +9,16 @@ const browseCompanies: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-export default { browseCompanies };
+
+const anonymizeCompany: RequestHandler = async (req, res, next) => {
+  const companyId = Number.parseInt(req.params.id);
+  try {
+    await companiesRepository.anonymizeCompany(companyId);
+    res.status(204).send(); // Réponse sans contenu
+  } catch (err) {
+    console.error("Erreur lors de l'anonymisation :", err);
+    next(err);
+  }
+};
+
+export default { browseCompanies, anonymizeCompany };

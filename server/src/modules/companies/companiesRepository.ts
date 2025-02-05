@@ -17,6 +17,20 @@ class CompaniesRepository {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM company");
     return rows as Company[];
   }
+  async anonymizeCompany(companyId: number) {
+    await databaseClient.query(
+      `
+      UPDATE company 
+      SET 
+        company_name = '###', 
+        sector = '###', 
+        employee_number = NULL, 
+        website_link = '###', 
+        description = '###' 
+      WHERE id = ?`,
+      [companyId],
+    );
+  }
 }
 
 export default new CompaniesRepository();

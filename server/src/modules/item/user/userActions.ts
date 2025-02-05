@@ -25,4 +25,29 @@ const add: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add };
+const browseCandidates: RequestHandler = async (req, res, next) => {
+  try {
+    const role = await userRepository.getRoleByLabel("Candidat");
+    if (role) {
+      const candidates = await userRepository.getAllCandidates(role.id);
+      res.json(candidates);
+    } else {
+      res.status(404).json({ message: "Rôle 'candidate' non trouvé." });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const anonymizeCandidate: RequestHandler = async (req, res, next) => {
+  const candidateId = Number.parseInt(req.params.id);
+
+  try {
+    await userRepository.anonymizeCandidate(candidateId);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { add, browseCandidates, anonymizeCandidate };
