@@ -35,28 +35,37 @@ function AccountLink() {
   }, [userId]);
 
   return (
-    <>
-      {userId ? (
-        <>
-          <img
-            className="w-20 items-center rounded-full"
-            src={
-              candidateAccount?.photo
-                ? `${import.meta.env.VITE_API_URL}/uploads/${candidateAccount.photo}`
-                : userIcone
-            }
-            alt="photographie du candidat"
-          />
-          <p>
-            {userAccount?.firstname} {userAccount?.lastname}
-          </p>
-          <button type="button" onClick={handleAccountClick}>
-            {" "}
-            Lien vers mon compte
-          </button>
-        </>
-      ) : null}
-    </>
+    <div className="flex justify-end">
+      <section className=" w-64 flex justify-between mt-2 mr-16 rounded px-2 py-2 border-2 border-primary ">
+        {userId ? (
+          <>
+            <img
+              className="w-20 h-20 object-cover items-center rounded-full"
+              src={
+                candidateAccount?.photo
+                  ? `${import.meta.env.VITE_API_URL}/uploads/${candidateAccount.photo}`
+                  : userIcone
+              }
+              alt="photographie du candidat"
+            />
+            <article>
+              <p className=" my-6 text-primary">
+                {" "}
+                Bienvenue {userAccount?.firstname}
+              </p>
+              <button
+                type="button"
+                onClick={handleAccountClick}
+                className="px-2 py-2 rounded btn-submit hover:bg-orange-600"
+              >
+                {" "}
+                Mon compte
+              </button>
+            </article>
+          </>
+        ) : null}
+      </section>
+    </div>
   );
 }
 
