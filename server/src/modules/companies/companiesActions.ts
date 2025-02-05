@@ -30,11 +30,12 @@ const uploadCompany: RequestHandler = async (req, res, next) => {
     const newCompany = {
       company_name: req.body.company_name,
       sector: req.body.sector,
-      employee_number: req.body.employee_number,
+      employee_number: Number.parseInt(req.body.employee_number),
       description: req.body.description,
       user_id: req.body.user_id,
       website_link: req.body.website_link,
     };
+
     const insertId = await companiesRepository.create(newCompany);
 
     res.status(201).json();

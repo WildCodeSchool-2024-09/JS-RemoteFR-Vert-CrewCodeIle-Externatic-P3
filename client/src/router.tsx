@@ -4,15 +4,16 @@ import App from "./App";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
+import CompanyAccountPage from "./pages/CompanyAccountPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
+import UpdateCompanyAccountPage from "./pages/UpdateCompanyAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
-import CompanyAccountPage from "./pages/CompanyAccountPage";
 
 const router = createBrowserRouter([
   {
@@ -85,7 +86,8 @@ const router = createBrowserRouter([
         element: <CompanyAccountPage />,
       },
       {
-        path: "/account/candidate/update",
+        path: "/account/company/update",
+        element: <UpdateCompanyAccountPage />,
       },
       {
         path: "/offers/:companyId",

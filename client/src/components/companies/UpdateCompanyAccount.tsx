@@ -118,7 +118,7 @@ function UpdateCompanyAccount({ onSubmit }: CompanyFormType) {
               placeholder="120 000"
               {...register("employee_number", {
                 pattern: {
-                  value: /^[0-9]{1-6}$/,
+                  value: /^[0-9]{1,6}$/,
                   message:
                     "Vous ne pouvez pas avoir plus d'un million d'employés",
                 },
@@ -141,12 +141,15 @@ function UpdateCompanyAccount({ onSubmit }: CompanyFormType) {
           >
             Lien vers le site de l'entreprise (facultatif) :
             <input
-              placeholder="www.decathlon.com"
+              placeholder="https://www.decathlon.com"
               {...register("website_link", {
-                required: "Le champ est requis",
+                pattern: {
+                  value: /^https?:\/\/.+/,
+                  message: "L'URL doit commencer par 'http://' ou 'https://'",
+                },
                 minLength: {
-                  value: 2,
-                  message: "Le champ doit au moins contenir 2 caractères",
+                  value: 10,
+                  message: "Le champ doit au moins contenir 10 caractères",
                 },
                 maxLength: {
                   value: 30,

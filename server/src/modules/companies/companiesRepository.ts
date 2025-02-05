@@ -30,7 +30,7 @@ class CompaniesRepository {
 
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO candidate (company_name, description, employee_number, sector, website_link, user_id ) VALUES (?,?,?,?,?,?)",
+      "INSERT INTO company (company_name, description, employee_number, sector, website_link, user_id ) VALUES (?,?,?,?,?,?)",
       [
         company.company_name,
         company.description,

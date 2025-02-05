@@ -13,7 +13,7 @@ function UserAccount() {
     useState<CandidateFormData | null>(null);
 
   const { userId } = useAuth();
-  console.log(userId);
+
   useEffect(() => {
     if (userId) {
       fetch(`${import.meta.env.VITE_API_URL}/api/user/${userId}`)

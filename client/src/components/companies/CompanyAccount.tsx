@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import type { UserFormData } from "../../lib/userForm.definitions";
-import type { Company } from "../../lib/companies.definition";
 import { useCompany } from "../../context/CompanyContext";
+import type { Company } from "../../lib/companies.definition";
+import type { UserFormData } from "../../lib/userForm.definitions";
 
 function UserAccount() {
   const [userAccount, setUserAccount] = useState<UserFormData | null>(null);
@@ -9,7 +9,6 @@ function UserAccount() {
   const [companyAccount, setCompanyAccount] = useState<Company | null>(null);
 
   const { userId } = useCompany();
-  console.log(userId);
 
   useEffect(() => {
     if (userId) {
@@ -54,7 +53,14 @@ function UserAccount() {
         <p>Descritpion : {companyAccount?.description}</p>
         <span>Nombre d'employés : {companyAccount?.employee_number}</span>
         <p>Secteur d'activité : {companyAccount?.sector}</p>
-        <a href={companyAccount?.website_link}>Lien vers le site</a>
+        <a
+          href={companyAccount?.website_link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-white underline"
+        >
+          Lien vers le site
+        </a>
       </article>
     </section>
   );

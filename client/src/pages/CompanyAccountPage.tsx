@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FaUsers } from "react-icons/fa";
+import CompanyLogo from "../assets/images/CompanyLogo.jpg";
 import CompanyAccount from "../components/companies/CompanyAccount";
 
 function CompanyAccountPage() {
@@ -12,10 +12,9 @@ function CompanyAccountPage() {
       <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
         Mon compte (Entreprise)
       </h1>
-      <FaUsers
-        style={{ height: "120px", width: "120px" }}
-        className="text-white mx-auto"
-      />
+      <section className="flex justify-center items-center">
+        <img className="w-96" src={CompanyLogo} alt="logo d'une entreprise" />
+      </section>
       <section>
         <CompanyAccount />
       </section>

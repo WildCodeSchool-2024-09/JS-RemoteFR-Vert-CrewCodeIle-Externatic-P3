@@ -1,28 +1,32 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import UpdateCompanyAccount from "../components/companies/UpdateCompanyAccount";
-import type { Company } from "../lib/companies.definition";
 import { useCompany } from "../context/CompanyContext";
+import type { Company } from "../lib/companies.definition";
 
-function CompanyAccountPage() {
+function UpdateCompanyAccountPage() {
   const { userId } = useCompany();
   const navigate = useNavigate();
 
   const handleUploadCompanyInformation = async (data: Company) => {
+    const companyData = { ...data, user_id: userId };
+
     try {
       const updateCompany = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/companies/account/${userId}`,
+        `${import.meta.env.VITE_API_URL}/api/companies/account`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(companyData),
         },
       );
       if (updateCompany.ok) {
         toast.success("Les informations sont bien mise à jour !");
-        navigate("/account/companies");
+        setTimeout(() => {
+          navigate("/account/company");
+        }, 3000);
       } else {
         toast.error("Un problème est survenu ! Veuillez réessayer");
       }
@@ -44,4 +48,4 @@ function CompanyAccountPage() {
   );
 }
 
-export default CompanyAccountPage;
+export default UpdateCompanyAccountPage;
