@@ -6,6 +6,7 @@ import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
@@ -69,6 +70,7 @@ const router = createBrowserRouter([
         path: "/login/candidate",
         element: <LoginCandidatePage />,
       },
+
       {
         path: "/offers/:companyId",
         element: <CompanyOffersPage />,
@@ -86,6 +88,11 @@ const router = createBrowserRouter([
           }
           return response.json();
         },
+      },
+
+      {
+        path: "/*",
+        element: <NotFoundPage />,
       },
     ],
   },
