@@ -15,14 +15,14 @@ const Offers = ({ offers }: OffersProps) => {
 
   const renderOffers = () => {
     return offers.slice(0, imageCount).map((offre) => (
-      <NavLink key={offre.id} to={"/offersPage"}>
+      <NavLink key={offre.id} to={"/offers"}>
         <figure key={offre.id}>
           <img
             src={offre.logo}
             alt="Logo offre d'emploi"
             className="relative h-32 object-cover object-center w-full"
           />
-          <figcaption className="mt-2 text-white">{offre.titre}</figcaption>
+          <figcaption className="mt-2 text-white">{offre.title}</figcaption>
         </figure>
       </NavLink>
     ));

@@ -17,6 +17,7 @@ class OfferSeeder extends AbstractSeeder {
         contract_type: this.faker.helpers.arrayElement(["CDI", "CDD"]),
         company_id: this.faker.number.int({ min: 1, max: 10 }),
         is_opened_to_disabled: this.faker.datatype.boolean(),
+        is_active: this.faker.datatype.boolean(),
       };
 
       this.insert(fakeOffer);

@@ -13,25 +13,25 @@ const NavBar = () => {
   };
 
   const renderedLinks = navigationLinks.map((link) => (
-    <a
+    <Link
       key={link.href}
-      href={link.href}
+      to={link.href}
       className="inline-flex items-center px-1 pt-1 text-gray-900"
     >
       {link.label}
-    </a>
+    </Link>
   ));
 
   const renderedConnexionLinks = (
     <div className="flex flex-row gap-4">
       <Link
-        to="/login"
+        to="/login/candidate"
         className="flex items-center justify-center my-2 px-4 py-2 rounded-md btn-accent hover:bg-gray-800 hover:text-white transition duration-300 text-center"
       >
         Connexion Candidat
       </Link>
       <Link
-        to="/login"
+        to="/login/company"
         className="flex items-center justify-center my-2 px-4 py-2 rounded-md btn-accent hover:bg-gray-800 hover:text-white transition duration-300 text-center"
       >
         Connexion Entreprise
