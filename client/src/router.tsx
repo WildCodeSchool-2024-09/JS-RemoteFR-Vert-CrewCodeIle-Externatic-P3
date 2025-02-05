@@ -1,11 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
-import OfferByCandidat from "./components/Offers/OfferByCandidat";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
+import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
 
       {
         path: "/offer/:offerId",
-        element: <OfferByCandidat />,
+        element: <DetailsOfferCandidatPage />,
         loader: async ({ params }) => {
           const response = await fetch(
             `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
