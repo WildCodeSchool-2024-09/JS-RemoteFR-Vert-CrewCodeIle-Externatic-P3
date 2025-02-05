@@ -3,6 +3,7 @@ import "./App.css";
 import "./index.css";
 import { Bounce, ToastContainer } from "react-toastify";
 import Footer from "./components/Footer/Footer";
+import AccountLink from "./components/NavBar/AccountLink";
 import NavBar from "./components/NavBar/NavBar";
 import AuthProvider from "./context/AuthContext";
 
@@ -11,6 +12,7 @@ function App() {
     <>
       <AuthProvider>
         <NavBar />
+        <AccountLink />
         <main>
           <Outlet />
           <ToastContainer
