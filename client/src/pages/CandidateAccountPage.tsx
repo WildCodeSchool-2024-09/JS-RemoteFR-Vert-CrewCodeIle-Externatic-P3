@@ -3,6 +3,7 @@ import UserAccount from "../components/user/UserAccount";
 
 function CandidateAccountPage() {
   const navigate = useNavigate();
+
   const handleClick = () => navigate("/account/candidate/update");
   return (
     <>
