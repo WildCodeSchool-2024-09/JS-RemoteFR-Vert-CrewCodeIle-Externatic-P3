@@ -57,6 +57,15 @@ class UserRepository {
 
     return rows[0] as UserType;
   }
+
+  async getRoleByLabel(label: string) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM role WHERE label = ?",
+      [label],
+    );
+
+    return rows[0];
+  }
 }
 
 export default new UserRepository();

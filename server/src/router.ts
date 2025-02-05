@@ -12,6 +12,7 @@ import offersListActions from "./modules/offersList/offersListActions";
 import offersActions from "./modules/offers/offersActions";
 
 router.get("/api/offers", offersActions.browseOffers);
+router.get("/api/offersByCompany", offersActions.browseOffersByCompany);
 // Define item-related routes
 
 import { comparePassword, hashPassword } from "./middlewares/argon.middleware";
@@ -21,6 +22,7 @@ import {
   companyRegister,
 } from "./middlewares/register.middleware";
 import {
+  checkAdminRole,
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
@@ -57,8 +59,16 @@ router.post(
   checkCandidateRole,
   login,
 );
+
+router.post(
+  "/api/login/admin",
+  verifieEmail,
+  comparePassword,
+  checkAdminRole,
+  login,
+);
 /* ************************************************************************* */
-router.get("/api/offersPage", offersListActions.browse);
+router.get("/api/offers", offersListActions.browse);
 
 import { upload } from "./middlewares/multer.middleware";
 import candidateActions from "./modules/candidate/candidateActions";

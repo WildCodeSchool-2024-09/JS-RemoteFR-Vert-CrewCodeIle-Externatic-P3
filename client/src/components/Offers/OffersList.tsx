@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import type { Offer } from "../../lib/offers.definitions";
 
 function OffersList() {
   const [dataOffers, setDataOffers] = useState<Offer[]>([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/OffersPage`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/Offers`)
       .then((response) => response.json())
       .then((data: Offer[]) => {
         setDataOffers(data);
@@ -14,19 +15,27 @@ function OffersList() {
 
   return (
     <>
-      <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-2 sm:mb-4 md:mb-6 p-2 sm:p-4 md:p-6">
+      <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 md:mb-8 p-2 sm:p-4 md:p-6 text-center">
         Nos offres en cours
       </h1>
-      <section className="grid grid-rows-[minmax(100px,_auto)] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4  mb-2">
+
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {dataOffers?.map((o) => (
           <ul
             key={o.id}
-            className="border-2 border-primary ml-4 sm:ml-6 md:ml-8"
+            className="border-2 border-primary shadow-md bg-white p-4 sm:p-6 md:p-8 mx-2 sm:mx-4 md:mx-6"
           >
-            <li className="font-bold text-xl mb-2 p-2">{o.titre}</li>
-            <li className="text-xl mb-2 font-medium p-2">{o.location}</li>
-            <li className="text-xl mb-2 font-medium p-2">
-              {o.wage.toFixed(2)} €
+            <li className="font-bold text-xl mb-2">{o.title}</li>
+            <li className="text-lgt mb-2">{o.location}</li>
+            <li className="text-lg font-semibold">{o.wage.toFixed(2)} €</li>
+            <li className="mt-4">
+              <NavLink
+                key={o.id}
+                to={`offers/${o.id}`}
+                className="text-white bg-primary px-4 py-2 rounded "
+              >
+                Voir l'offre
+              </NavLink>
             </li>
           </ul>
         ))}
