@@ -3,7 +3,6 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import type { OffersDataType } from "../../lib/offers.definitions";
 import type { SearchDataType } from "../../lib/search.definition";
-import ProfileCard from "../Candidate/ProfileCard";
 
 type handleFilteredOffersType = {
   handleFilteredOffers: (search: SearchDataType) => void;
@@ -41,7 +40,12 @@ export default function OffersResearch({
   return (
     <section>
       <section className="flex justify-end">
-        <ProfileCard />
+        <button
+          type="button"
+          className="mt-4 h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white lg:hover:bg-black"
+        >
+          Mon compte
+        </button>
       </section>
 
       <section className="flex w-fit mx-auto mt-16 lg:mt-32">
