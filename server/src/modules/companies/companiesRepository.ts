@@ -17,6 +17,30 @@ class CompaniesRepository {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM company");
     return rows as Company[];
   }
+
+  async read(user_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+      select * from company where user_id = ?
+      `,
+      [user_id],
+    );
+    return rows[0] as Company;
+  }
+
+  async create(company: Omit<Company, "id">) {
+    const [result] = await databaseClient.query<Result>(
+      "INSERT INTO candidate (company_name, description, employee_number, sector, website_link ) VALUES (?,?,?,?,?)",
+      [
+        company.company_name,
+        company.description,
+        company.employee_number,
+        company.sector,
+        company.website_link,
+      ],
+    );
+    return result.insertId;
+  }
 }
 
 export default new CompaniesRepository();

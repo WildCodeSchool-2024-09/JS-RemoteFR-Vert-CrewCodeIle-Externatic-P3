@@ -21,7 +21,7 @@ function CompanyLoginPage() {
       );
       if (loginCompany.ok) {
         toast.success("Vous êtes bien connecté !");
-        navigate("/");
+        navigate("/account/company");
       } else {
         toast.error(
           "Un problème est survenu lors de votre connexion ! Veuillez réessayer",

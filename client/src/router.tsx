@@ -12,6 +12,7 @@ import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
+import CompanyAccountPage from "./pages/CompanyAccountPage";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,13 @@ const router = createBrowserRouter([
       {
         path: "/account/candidate/update",
         element: <UpdateCandidateAccountPage />,
+      },
+      {
+        path: "/account/company",
+        element: <CompanyAccountPage />,
+      },
+      {
+        path: "/account/candidate/update",
       },
       {
         path: "/offers/:companyId",

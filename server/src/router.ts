@@ -85,4 +85,7 @@ router.get("/api/user/:id", userActions.read);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
+router.get("/api/companies/account/:id", companiesActions.readCompanyProfil);
+router.post("api/companies/account/:id");
+
 export default router;
