@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import UpdateCompanyAccount from "../components/companies/UpdateCompanyAccount";
-import { useAuth } from "../context/AuthContext";
 import type { Company } from "../lib/companies.definition";
+import { useCompany } from "../context/CompanyContext";
 
 function CompanyAccountPage() {
-  const { userId } = useAuth();
+  const { userId } = useCompany();
   const navigate = useNavigate();
 
   const handleUploadCompanyInformation = async (data: Company) => {

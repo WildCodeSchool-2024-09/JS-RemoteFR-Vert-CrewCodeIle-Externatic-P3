@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 import type { UserFormData } from "../../lib/userForm.definitions";
 import type { Company } from "../../lib/companies.definition";
+import { useCompany } from "../../context/CompanyContext";
 
 function UserAccount() {
   const [userAccount, setUserAccount] = useState<UserFormData | null>(null);
 
   const [companyAccount, setCompanyAccount] = useState<Company | null>(null);
 
-  const { userId } = useAuth();
+  const { userId } = useCompany();
+  console.log(userId);
 
   useEffect(() => {
     if (userId) {

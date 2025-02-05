@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Rows } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 type Company = {
   id: number;
@@ -30,13 +30,14 @@ class CompaniesRepository {
 
   async create(company: Omit<Company, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO candidate (company_name, description, employee_number, sector, website_link ) VALUES (?,?,?,?,?)",
+      "INSERT INTO candidate (company_name, description, employee_number, sector, website_link, user_id ) VALUES (?,?,?,?,?,?)",
       [
         company.company_name,
         company.description,
         company.employee_number,
         company.sector,
         company.website_link,
+        company.user_id,
       ],
     );
     return result.insertId;

@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Login from "../components/user/Login";
 import type { loginCompanyType } from "../lib/userForm.definitions";
+import { useCompany } from "../context/CompanyContext";
 
 function CompanyLoginPage() {
   const navigate = useNavigate();
+  const { setUserId } = useCompany();
 
   const handleCompanyLogin = async (loginDataCompany: loginCompanyType) => {
     try {
@@ -20,6 +22,8 @@ function CompanyLoginPage() {
         },
       );
       if (loginCompany.ok) {
+        const data = await loginCompany.json();
+        setUserId(data.userId);
         toast.success("Vous êtes bien connecté !");
         navigate("/account/company");
       } else {
