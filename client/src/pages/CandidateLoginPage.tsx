@@ -25,7 +25,7 @@ function LoginCandidatePage() {
         const data = await loginCandidate.json();
         console.log(data);
         setUserId(data.userId);
-        console.log(data.user);
+        console.log(data.userId);
         toast.success("Vous êtes bien connecté !");
         navigate("/account/candidate");
       } else {

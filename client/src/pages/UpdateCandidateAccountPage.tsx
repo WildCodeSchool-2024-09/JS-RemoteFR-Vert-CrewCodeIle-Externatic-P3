@@ -2,9 +2,11 @@ import { toast } from "react-toastify";
 import UpdateCandidateAccount from "../components/CandidateAccount/UpdateCandidateAccount";
 import type { CandidateFormData } from "../lib/userForm.definitions";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function CandidateAccountPage() {
   const { userId } = useAuth();
+  const navigate = useNavigate();
 
   console.log(userId);
 
@@ -33,6 +35,9 @@ function CandidateAccountPage() {
 
       if (response.status === 201) {
         toast.success("Les informations sont bien mis à jour");
+        setTimeout(() => {
+          navigate("/account/candidate");
+        }, 3000);
       } else {
         toast.error("Une erreur s'est produite ! Veuillez réessayer");
       }
@@ -45,7 +50,7 @@ function CandidateAccountPage() {
     <section className=" mt-10 flex justify-center flex-col">
       <article>
         <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
-          Mon compte (Candidat)
+          Mes informations (Candidat)
         </h1>
 
         <UpdateCandidateAccount onSubmit={handleUploadCandidateInformation} />
