@@ -78,4 +78,11 @@ import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
 
+import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
+
+router.use(
+  "/api/admin/companyOfferList/:id",
+  adminCompanyOffersListActions.browse,
+);
+
 export default router;

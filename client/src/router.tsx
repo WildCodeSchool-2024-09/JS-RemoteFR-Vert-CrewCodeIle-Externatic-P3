@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminOffersList from "./pages/AdminOffersList";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
           }
           return response.json();
         },
+      },
+      {
+        path: "/admin/company:id/offers",
+        element: <AdminOffersList />,
       },
     ],
   },
