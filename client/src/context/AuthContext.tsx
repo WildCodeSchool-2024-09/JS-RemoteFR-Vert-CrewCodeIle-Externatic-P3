@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-import { toast } from "react-toastify";
 
 type AuthContextType = {
   userId: number | null;
@@ -22,7 +21,7 @@ function AuthProvider({ children }: { children: ReactNode }) {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    toast.success("Vous devez être connecté pour accèder à cette page.");
+    throw new Error("Vous devez être connecté pour accèder à cette page.");
   }
   return context;
 };

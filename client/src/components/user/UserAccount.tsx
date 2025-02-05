@@ -4,6 +4,7 @@ import type {
   CandidateFormData,
   UserFormData,
 } from "../../lib/userForm.definitions";
+import { useAuth } from "../../context/AuthContext";
 
 function UserAccount() {
   const [userAccount, setUserAccount] = useState<UserFormData | null>(null);
@@ -11,19 +12,25 @@ function UserAccount() {
   const [candidateAccount, setCandidateAccount] =
     useState<CandidateFormData | null>(null);
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/user/{UserId}`)
-      .then((response) => response.json())
-      .then((data) => setUserAccount(data))
-      .catch((error) => console.error(error));
-  }, []);
+  const { userId } = useAuth();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/candidate/account/11`)
-      .then((response) => response.json())
-      .then((data) => setCandidateAccount(data))
-      .catch((error) => console.error(error));
-  }, []);
+    if (userId) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/user/${userId}`)
+        .then((response) => response.json())
+        .then((data) => setUserAccount(data))
+        .catch((error) => console.error(error));
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(`${import.meta.env.VITE_API_URL}/api/candidate/account/${userId}`)
+        .then((response) => response.json())
+        .then((data) => setCandidateAccount(data))
+        .catch((error) => console.error(error));
+    }
+  }, [userId]);
 
   return (
     <section className="py-2 rounded-md mt-10 bg-primary w-full flex flex-col justify-center items-center ">
