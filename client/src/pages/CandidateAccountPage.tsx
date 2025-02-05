@@ -1,17 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import UserAccount from "../components/user/UserAccount";
+import CandidateUserAccount from "../components/CandidateAccount/CandidateUserAccount";
 
 function CandidateAccountPage() {
   const navigate = useNavigate();
 
   const handleClick = () => navigate("/account/candidate/update");
+
   return (
     <>
       <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
         Mon compte
       </h1>
       <section>
-        <UserAccount />
+        <CandidateUserAccount />
       </section>
 
       <section className="flex justify-center">

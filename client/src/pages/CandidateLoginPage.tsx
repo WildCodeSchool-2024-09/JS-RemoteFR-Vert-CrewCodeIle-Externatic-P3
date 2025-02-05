@@ -2,8 +2,8 @@ import { FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Login from "../components/user/Login";
-import type { loginCompanyType } from "../lib/userForm.definitions";
 import { useAuth } from "../context/AuthContext";
+import type { loginCompanyType } from "../lib/userForm.definitions";
 
 function LoginCandidatePage() {
   const navigate = useNavigate();
@@ -23,9 +23,7 @@ function LoginCandidatePage() {
       );
       if (loginCandidate.ok) {
         const data = await loginCandidate.json();
-        console.log(data);
         setUserId(data.userId);
-        console.log(data.userId);
         toast.success("Vous êtes bien connecté !");
         navigate("/account/candidate");
       } else {

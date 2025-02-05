@@ -1,14 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import UpdateCandidateAccount from "../components/CandidateAccount/UpdateCandidateAccount";
-import type { CandidateFormData } from "../lib/userForm.definitions";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import type { CandidateFormData } from "../lib/userForm.definitions";
 
 function CandidateAccountPage() {
   const { userId } = useAuth();
   const navigate = useNavigate();
-
-  console.log(userId);
 
   const handleUploadCandidateInformation = async (data: CandidateFormData) => {
     try {

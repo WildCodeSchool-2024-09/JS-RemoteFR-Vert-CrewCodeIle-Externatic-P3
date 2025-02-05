@@ -24,7 +24,7 @@ import {
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
-import { login, verifyToken } from "./modules/auth/authActions";
+import { login } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
