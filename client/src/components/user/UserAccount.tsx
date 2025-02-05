@@ -7,11 +7,12 @@ import type {
 
 function UserAccount() {
   const [userAccount, setUserAccount] = useState<UserFormData | null>(null);
+
   const [candidateAccount, setCandidateAccount] =
     useState<CandidateFormData | null>(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/user/11`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/user/{UserId}`)
       .then((response) => response.json())
       .then((data) => setUserAccount(data))
       .catch((error) => console.error(error));
@@ -25,7 +26,7 @@ function UserAccount() {
   }, []);
 
   return (
-    <section className="py-2 rounded-md mt-10 bg-primary w-10/12 flex flex-col justify-center items-center">
+    <section className="py-2 rounded-md mt-10 bg-primary w-full flex flex-col justify-center items-center ">
       <h2 className="block text-2xl  text-white font-semibold my-4 text-center">
         Mon profil
       </h2>
@@ -59,6 +60,18 @@ function UserAccount() {
         <span>
           Reconnaissance travailleur handicapé :{" "}
           {candidateAccount?.is_disabled ? "Oui" : "Non"}
+        </span>
+        <span className="mt-4">
+          {candidateAccount?.cv && (
+            <a
+              href={`${import.meta.env.VITE_API_URL}/uploads/${candidateAccount.cv}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-white underline"
+            >
+              📄 Visualiser mon CV
+            </a>
+          )}
         </span>
       </article>
     </section>
