@@ -5,7 +5,7 @@ export default function NotFoundPage() {
     <>
       <div className="my-20 text-6xl text-primary flex flex-col items-center justify-center text-center p-6">
         {" "}
-        cette page n'a pas pu être trouvée...
+        Cette page n'a pas pu être trouvée...
       </div>
 
       <span className="text-4xl text-primary flex flex-col items-center justify-center text-center p-6">
