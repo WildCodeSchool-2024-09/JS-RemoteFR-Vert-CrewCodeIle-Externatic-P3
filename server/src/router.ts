@@ -90,4 +90,6 @@ router.get("/api/user/:id", userActions.read);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
+router.get("/api/offerByCandidate", offersActions.browseOffer);
+
 export default router;

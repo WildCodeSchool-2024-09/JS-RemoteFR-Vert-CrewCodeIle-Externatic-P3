@@ -6,6 +6,7 @@ import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
+import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
@@ -98,6 +99,22 @@ const router = createBrowserRouter([
                 status: response.status,
               },
             );
+          }
+          return response.json();
+        },
+      },
+
+      {
+        path: "/offer/:offerId",
+        element: <DetailsOfferCandidatPage />,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
+          );
+          if (!response.ok) {
+            throw new Response("Erreur lors de la récupération de l'offre", {
+              status: response.status,
+            });
           }
           return response.json();
         },

@@ -26,6 +26,14 @@ class OffersRepository {
     );
     return rows as Offer[];
   }
+
+  async readOfferByCandidat(offerId: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM offer WHERE id = ?",
+      [offerId],
+    );
+    return rows as Offer[];
+  }
 }
 
 export default new OffersRepository();
