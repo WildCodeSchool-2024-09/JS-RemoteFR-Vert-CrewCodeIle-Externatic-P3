@@ -3,5 +3,5 @@ import adminCompanyOffersListActions from "../modules/admin/adminCompanyOffersLi
 
 const router = express.Router();
 
-router.get("/", adminCompanyOffersListActions.browse);
+router.get("/:company_id", adminCompanyOffersListActions.browse);
 export default router;

@@ -7,16 +7,17 @@ export default function AdminOffersList() {
   const [offersList, setOffersList] = useState<OffersDataType[]>([]);
   const navigate = useNavigate();
   const { id } = useParams();
+  const companyId = Number(id);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/admin/companyOfferList/${id}`)
+    fetch(
+      `${import.meta.env.VITE_API_URL}/api/admin/companyOfferList/${companyId}`,
+    )
       .then((res) => res.json())
       .then((data: OffersDataType[]) => {
         setOffersList(data);
       });
-  }, [id]);
-
-  console.info(offersList);
+  }, [companyId]);
 
   return (
     <>
