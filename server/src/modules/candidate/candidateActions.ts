@@ -27,7 +27,7 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
 const readProfil: RequestHandler = async (req, res, next) => {
   try {
     const user_id = Number(req.params.id);
-    const candidate = await CandidateRepository.read(user_id);
+    const candidate = await CandidateRepository.readUser(user_id);
 
     if (candidate == null) {
       res.sendStatus(404);

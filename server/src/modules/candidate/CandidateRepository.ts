@@ -19,7 +19,7 @@ class CandidateRepository {
     return result.insertId;
   }
 
-  async read(user_id: number) {
+  async readUser(user_id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
       select * from candidate where user_id = ?

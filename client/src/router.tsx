@@ -1,12 +1,15 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import AdminCandidatesListPage from "./pages/AdminCandidatesListPage";
+import AdminCompaniesListPage from "./pages/AdminCompaniesListPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminOffersList from "./pages/AdminOffersList";
 import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
+import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
@@ -103,6 +106,22 @@ const router = createBrowserRouter([
           return response.json();
         },
       },
+
+      {
+        path: "/offer/:offerId",
+        element: <DetailsOfferCandidatPage />,
+        loader: async ({ params }) => {
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
+          );
+          if (!response.ok) {
+            throw new Response("Erreur lors de la récupération de l'offre", {
+              status: response.status,
+            });
+          }
+          return response.json();
+        },
+      },
       {
         path: "/admin/company/:id/offers",
         element: <AdminOffersList />,
@@ -112,6 +131,36 @@ const router = createBrowserRouter([
   {
     path: "/login/admin",
     element: <AdminLoginPage />,
+  },
+  {
+    path: "/admin/companies-list",
+    element: <AdminCompaniesListPage />,
+    loader: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/admin/companies`,
+      );
+      if (!response.ok) {
+        throw new Response("Erreur lors de la récupération des entreprises", {
+          status: response.status,
+        });
+      }
+      return response.json();
+    },
+  },
+  {
+    path: "/admin/candidates",
+    element: <AdminCandidatesListPage />,
+    loader: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/admin/candidates`,
+      );
+      if (!response.ok) {
+        throw new Response("Erreur lors de la récupération des candidats", {
+          status: response.status,
+        });
+      }
+      return response.json();
+    },
   },
 ]);
 
