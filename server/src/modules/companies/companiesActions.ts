@@ -12,14 +12,17 @@ const browseCompanies: RequestHandler = async (req, res, next) => {
 
 const readCompanyProfil: RequestHandler = async (req, res, next) => {
   try {
-    const user_id = Number(req.params.id);
+    const user_id = req.body.user_id;
     const company = await companiesRepository.read(user_id);
 
-    if (company == null) {
+    if (!company) {
       res.sendStatus(404);
-    } else {
-      res.json(company);
+      return;
     }
+
+    req.body.company_id = company.id;
+
+    next();
   } catch (err) {
     next(err);
   }

@@ -102,6 +102,12 @@ router.post(
   companiesActions.uploadCompany,
 );
 
+router.post(
+  "/api/companies/offer",
+  companiesActions.readCompanyProfil,
+  offersActions.addOffer,
+);
+
 router.get("/api/offerByCandidate", offersActions.browseOffer);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
