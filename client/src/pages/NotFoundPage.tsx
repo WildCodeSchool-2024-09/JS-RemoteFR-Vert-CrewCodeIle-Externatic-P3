@@ -17,7 +17,7 @@ export default function NotFoundPage() {
           to="/"
           className="text-2xl font-bold flex items-center justify-center my-20 px-20 py-10 rounded-md btn-primary  hover:text-white transition duration-300 text-center"
         >
-          acceuil
+          Retour sur notre site Externatic
         </Link>
       </div>
     </>
