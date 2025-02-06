@@ -105,8 +105,11 @@ router.post(
   userActions.add,
 );
 
+router.get("/admin/companies", userActions.browseCompanies);
+router.put("/admin/companies/:id", userActions.anonymizeCompany);
 router.get("/admin/candidates", userActions.browseCandidates);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
+
 router.post(
   "/admin/candidates",
   hashPassword,
