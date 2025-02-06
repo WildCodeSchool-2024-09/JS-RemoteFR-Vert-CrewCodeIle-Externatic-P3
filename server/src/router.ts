@@ -117,11 +117,7 @@ router.get("/api/offerByCandidate", offersActions.browseOffer);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
-import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
-
-router.use(
-  "/api/admin/companyOfferList/:id",
-  adminCompanyOffersListActions.browse,
-);
+import adminCompanyOffers from "./routes/admin.companyOffers.routes";
+router.use("/api/admin/companyOfferList", adminCompanyOffers);
 
 export default router;
