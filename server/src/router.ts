@@ -26,11 +26,7 @@ import {
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
-import {
-  login,
-  verifyToken,
-  verifyTokenAdmin,
-} from "./modules/auth/authActions";
+import { login, verifyToken } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
@@ -111,7 +107,7 @@ router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
 /* ************************************************************************* */
-router.use("/admin", verifyTokenAdmin);
+router.use("/admin", verifyToken, checkAdminRole);
 
 router.get("/admin/companies", userActions.browseCompanies);
 router.put("/admin/companies/:id", userActions.anonymizeCompany);

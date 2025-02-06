@@ -45,33 +45,3 @@ export const verifyToken: RequestHandler = async (req, res, next) => {
     err;
   }
 };
-
-export const verifyTokenAdmin: RequestHandler = async (req, res, next) => {
-  try {
-    const token = req.cookies?.auth_token;
-
-    if (!token) {
-      res.json({ authorized: false });
-      return;
-    }
-
-    const decoded = jwt.verify(
-      token,
-      process.env.APP_SECRET as string,
-    ) as JwtPayload;
-
-    const verifiedUser = await UsersRepository.readByEmail(decoded.email);
-    if (!verifiedUser) {
-      res.json({ authorized: false });
-      return;
-    }
-    if (verifiedUser.role_id !== 3) {
-      res.json({ authorized: false });
-      return;
-    }
-
-    next();
-  } catch (err) {
-    err;
-  }
-};
