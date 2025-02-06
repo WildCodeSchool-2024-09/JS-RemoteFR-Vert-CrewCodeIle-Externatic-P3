@@ -87,21 +87,13 @@ router.use(
 
 import candidateActions from "./modules/candidate/candidateActions";
 
-router.get("/api/user/:id", userActions.read);
+router.get("/api/user/:id", userActions.readUserData);
 router.get("/api/candidate/account/:id", candidatesActions.readProfil);
 router.post("/api/candidate/account", upload, candidatesActions.uploadFiles);
+router.get("/api/companies/account/:id", companiesActions.readCompanyProfil);
+router.post("/api/companies/account", companiesActions.uploadCompany);
 
 /* ************************************************************************* */
-
-router.get("/admin/candidates", userActions.browseCandidates);
-router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
-router.post(
-  "/admin/candidates",
-  hashPassword,
-  checkEmail,
-  candidateRegister,
-  userActions.add,
-);
 
 router.get("/admin/companies", userActions.browseCompanies);
 router.put("/admin/companies/:id", userActions.anonymizeCompany);
@@ -113,6 +105,18 @@ router.post(
   userActions.add,
 );
 
+router.get("/admin/companies", userActions.browseCompanies);
+router.put("/admin/companies/:id", userActions.anonymizeCompany);
+router.get("/admin/candidates", userActions.browseCandidates);
+router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
+
+router.post(
+  "/admin/candidates",
+  hashPassword,
+  checkEmail,
+  candidateRegister,
+  userActions.add,
+);
 router.get("/api/offerByCandidate", offersActions.browseOffer);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
