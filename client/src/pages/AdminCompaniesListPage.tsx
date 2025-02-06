@@ -17,24 +17,10 @@ const AdminCompaniesListPage = () => {
     });
 
     if (response.ok) {
+      const anonymizedCompany = await response.json();
       setCompanies(
         companies.map((company) =>
-          company.id === companyId
-            ? {
-                ...company,
-                firstname: "###",
-                lastname: "###",
-                email: "###",
-                address: "###",
-                postal_code: 0,
-                city: "###",
-                tel: 0,
-                password: company.password,
-                confirmPassword: company.confirmPassword,
-                is_active: company.is_active,
-                is_role: company.is_role,
-              }
-            : company,
+          company.id === companyId ? anonymizedCompany : company,
         ),
       );
     } else {

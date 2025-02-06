@@ -18,24 +18,10 @@ const AdminCandidatesListPage = () => {
     });
 
     if (response.ok) {
+      const anonymizedCandidate = await response.json();
       setCandidates(
         candidates.map((candidate) =>
-          candidate.id === candidateId
-            ? {
-                ...candidate,
-                firstname: "###",
-                lastname: "###",
-                email: "###",
-                address: "###",
-                postal_code: 0,
-                city: "###",
-                tel: 0,
-                password: candidate.password,
-                confirmPassword: candidate.confirmPassword,
-                is_active: candidate.is_active,
-                is_role: candidate.is_role,
-              }
-            : candidate,
+          candidate.id === candidateId ? anonymizedCandidate : candidate,
         ),
       );
     } else {

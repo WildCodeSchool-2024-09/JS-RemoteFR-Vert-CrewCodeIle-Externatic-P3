@@ -86,6 +86,11 @@ class UserRepository {
       WHERE id = ?`,
       [candidateId],
     );
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM user WHERE id = ?",
+      [candidateId],
+    );
+    return rows[0];
   }
 
   async anonymizeCompany(companyId: number) {
@@ -103,6 +108,11 @@ class UserRepository {
       WHERE id = ?`,
       [companyId],
     );
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM user WHERE id = ?",
+      [companyId],
+    );
+    return rows[0];
   }
 }
 
