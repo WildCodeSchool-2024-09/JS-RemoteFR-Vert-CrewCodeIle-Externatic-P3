@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png";
 import UserFormRegister from "../components/user/UserFormRegister";
 import type { UserFormData } from "../lib/userForm.definitions";
@@ -57,7 +58,14 @@ const AdminCandidatesListPage = () => {
   const renderCandidatesRows = () => {
     return candidates.map((candidate) => (
       <tr key={candidate.id}>
-        <td className="border border-gray-300 px-4 py-2">{candidate.id}</td>
+        <td className="border border-gray-300 px-4 py-2">
+          <Link
+            to={`/admin/candidates/${candidate.id}`}
+            className="text-blue-500 hover:underline"
+          >
+            {candidate.id}
+          </Link>
+        </td>
         <td className="border border-gray-300 px-4 py-2">
           {candidate.firstname}
         </td>

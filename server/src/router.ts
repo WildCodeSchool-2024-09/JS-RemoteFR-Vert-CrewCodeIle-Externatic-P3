@@ -94,6 +94,7 @@ router.post("/api/candidate/account", upload, candidatesActions.uploadFiles);
 /* ************************************************************************* */
 
 router.get("/admin/candidates", userActions.browseCandidates);
+router.get("/admin/candidates/:id", userActions.read);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 router.post(
   "/admin/candidates",
