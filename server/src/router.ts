@@ -1,3 +1,4 @@
+import path from "node:path";
 import express from "express";
 
 const router = express.Router();
@@ -69,9 +70,20 @@ router.post(
 /* ************************************************************************* */
 router.get("/api/offers", offersListActions.browse);
 
+import { upload } from "./middlewares/multer.middleware";
+import candidateActions from "./modules/candidate/candidateActions";
 import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
+
+router.use(
+  "/uploads",
+  express.static(path.join(__dirname, "/middlewares/uploads")),
+);
+
+router.get("/api/user/:id", userActions.read);
+router.get("/api/candidate/account/:id", candidateActions.readProfil);
+router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
 router.get("/api/offerByCandidate", offersActions.browseOffer);
 

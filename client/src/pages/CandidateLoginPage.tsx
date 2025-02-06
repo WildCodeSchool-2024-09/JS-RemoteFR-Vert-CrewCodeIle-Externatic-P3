@@ -1,11 +1,13 @@
 import { FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Login from "../components/userForm/Login";
+import Login from "../components/user/Login";
+import { useAuth } from "../context/AuthContext";
 import type { loginCompanyType } from "../lib/userForm.definitions";
 
 function LoginCandidatePage() {
   const navigate = useNavigate();
+  const { setUserId } = useAuth();
 
   const handleCandidateLogin = async (loginDataCandidate: loginCompanyType) => {
     try {
@@ -20,8 +22,10 @@ function LoginCandidatePage() {
         },
       );
       if (loginCandidate.ok) {
+        const data = await loginCandidate.json();
+        setUserId(data.userId);
         toast.success("Vous êtes bien connecté !");
-        navigate("/");
+        navigate("/account/candidate");
       } else {
         toast.error(
           "Un problème est survenu lors de votre connexion ! Veuillez réessayer",

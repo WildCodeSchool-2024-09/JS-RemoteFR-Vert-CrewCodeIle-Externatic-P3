@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
 import AdminLoginPage from "./pages/AdminLoginPage";
+import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
@@ -9,6 +10,7 @@ import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
+import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
 
@@ -69,6 +71,14 @@ const router = createBrowserRouter([
       {
         path: "/login/candidate",
         element: <LoginCandidatePage />,
+      },
+      {
+        path: "/account/candidate",
+        element: <CandidateAccountPage />,
+      },
+      {
+        path: "/account/candidate/update",
+        element: <UpdateCandidateAccountPage />,
       },
       {
         path: "/offers/:companyId",
