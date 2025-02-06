@@ -1,12 +1,12 @@
 import databaseClient from "../../../database/client";
 
-import type { Rows } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 type Company = {
   id: number;
   company_name: string;
   sector: string;
-  employee_number: number;
+  employee_number?: number;
   user_id: number;
   website_link: string;
   description: string;

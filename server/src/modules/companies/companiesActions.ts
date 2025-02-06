@@ -9,4 +9,5 @@ const browseCompanies: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+
 export default { browseCompanies };
