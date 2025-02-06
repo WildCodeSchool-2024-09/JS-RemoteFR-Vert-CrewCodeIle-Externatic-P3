@@ -131,11 +131,7 @@ router.put("/admin/companies/:id", userActions.anonymizeCompany);
 router.get("/admin/candidates", userActions.browseCandidates);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 
-import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
-
-router.use(
-  "/api/admin/companyOfferList/:id",
-  adminCompanyOffersListActions.browse,
-);
+import adminCompanyOffers from "./routes/admin.companyOffers.routes";
+router.use("/api/admin/companyOfferList", adminCompanyOffers);
 
 export default router;
