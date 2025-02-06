@@ -15,7 +15,10 @@ body {
   background-color: var(--secondary-color);
   color: white;
 }
-
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
 .btn-accent {
   background-color: var(--accent-color);
   color: black;

@@ -68,10 +68,14 @@ router.post(
   login,
 );
 /* ************************************************************************* */
+
+import offerActions from "./routes/offer.routes";
+
+router.use("/api/offers", offerActions);
 router.get("/api/offers", offersListActions.browse);
 
 import { upload } from "./middlewares/multer.middleware";
-import candidateActions from "./modules/candidate/candidateActions";
+import candidatesActions from "./modules/candidate/candidateActions";
 import companiesActions from "./modules/companies/companiesActions";
 
 router.get("/api/companies", companiesActions.browseCompanies);
@@ -81,11 +85,27 @@ router.use(
   express.static(path.join(__dirname, "/middlewares/uploads")),
 );
 
-router.get("/api/user/:id", userActions.readUserData);
-router.get("/api/candidate/account/:id", candidateActions.readProfil);
-router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+import candidateActions from "./modules/candidate/candidateActions";
 
+router.get("/api/user/:id", userActions.readUserData);
+router.get("/api/candidate/account/:id", candidatesActions.readProfil);
+router.post("/api/candidate/account", upload, candidatesActions.uploadFiles);
 router.get("/api/companies/account/:id", companiesActions.readCompanyProfil);
 router.post("/api/companies/account", companiesActions.uploadCompany);
+
+/* ************************************************************************* */
+
+router.get("/admin/candidates", userActions.browseCandidates);
+router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
+router.post(
+  "/admin/candidates",
+  hashPassword,
+  checkEmail,
+  candidateRegister,
+  userActions.add,
+);
+router.get("/api/offerByCandidate", offersActions.browseOffer);
+router.get("/api/candidate/account/:id", candidateActions.readProfil);
+router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
 export default router;
