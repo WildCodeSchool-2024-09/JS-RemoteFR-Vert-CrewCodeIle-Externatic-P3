@@ -104,6 +104,7 @@ router.post(
 
 router.post(
   "/api/companies/offer",
+  verifyToken,
   companiesActions.readCompanyProfil,
   offersActions.addOffer,
 );

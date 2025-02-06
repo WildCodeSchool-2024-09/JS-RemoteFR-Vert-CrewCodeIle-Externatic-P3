@@ -20,6 +20,7 @@ function OfferCreationPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newCompanyOffer),
+          credentials: "include",
         },
       );
       if (!userId) {
@@ -38,9 +39,9 @@ function OfferCreationPage() {
     }
   };
   return (
-    <>
+    <section className="flex flex-col items-center justify-center">
       <OfferCreation onSubmit={handleOfferSubmit} />
-    </>
+    </section>
   );
 }
 

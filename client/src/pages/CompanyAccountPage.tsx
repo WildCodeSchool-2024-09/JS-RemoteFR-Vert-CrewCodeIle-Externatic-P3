@@ -28,7 +28,11 @@ function CompanyAccountPage() {
           {" "}
           Ajouter des informations
         </button>
-        <button type="button" onClick={handleOffersCreation}>
+        <button
+          type="button"
+          onClick={handleOffersCreation}
+          className="px-5 py-4 mx-5 my-5 rounded btn-primary hover:bg-orange-600 "
+        >
           Créer une nouvelle offre
         </button>
       </section>
