@@ -22,8 +22,8 @@ const browseOffersByCompany: RequestHandler = async (req, res, next) => {
 
 const browseOffer: RequestHandler = async (req, res, next) => {
   try {
-    const offerId = Number.parseInt(req.query.offerId as string);
-    const offer = await offersRepository.readOfferByCandidat(offerId);
+    const id = Number.parseInt(req.params.id);
+    const offer = await offersRepository.read(id);
     res.json(offer);
   } catch (err) {
     next(err);

@@ -20,6 +20,7 @@ class OffersRepository {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM offer");
     return rows as Offer[];
   }
+
   async readOffersByCompany(companyId: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT * FROM offer WHERE company_id = ?",
@@ -28,12 +29,15 @@ class OffersRepository {
     return rows as Offer[];
   }
 
-  async readOfferByCandidat(offerId: number) {
+  async read(id: number) {
+    // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM offer WHERE id = ?",
-      [offerId],
+      "select * from offer where id = ?",
+      [id],
     );
-    return rows as Offer[];
+
+    // Return the first row of the result, which represents the user
+    return rows[0] as Offer;
   }
 
   async create(offer: Omit<Offer, "id">) {

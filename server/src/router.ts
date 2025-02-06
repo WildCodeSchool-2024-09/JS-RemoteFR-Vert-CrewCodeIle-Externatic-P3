@@ -73,6 +73,7 @@ import offerActions from "./routes/offer.routes";
 
 router.use("/api/offers", offerActions);
 router.get("/api/offers", offersListActions.browse);
+router.get("/api/offers/:id", offersActions.browseOffer);
 
 import { upload } from "./middlewares/multer.middleware";
 import candidatesActions from "./modules/candidate/candidateActions";

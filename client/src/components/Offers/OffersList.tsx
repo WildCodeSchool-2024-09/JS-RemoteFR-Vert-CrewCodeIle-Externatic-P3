@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import type { Offer } from "../../lib/offers.definitions";
+import { useNavigate } from "react-router-dom";
 
 function OffersList() {
   const [dataOffers, setDataOffers] = useState<Offer[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/offers`)
@@ -29,13 +30,13 @@ function OffersList() {
             <li className="text-lgt mb-2">{o.location}</li>
             <li className="text-lg font-semibold">{o.wage.toFixed(2)} €</li>
             <li className="mt-4">
-              <NavLink
-                key={o.id}
-                to={`offers/${o.id}`}
+              <button
+                type="button"
                 className="text-white bg-primary px-4 py-2 rounded "
+                onClick={() => navigate(`/offer/${o.id}`)}
               >
                 Voir l'offre
-              </NavLink>
+              </button>
             </li>
           </ul>
         ))}

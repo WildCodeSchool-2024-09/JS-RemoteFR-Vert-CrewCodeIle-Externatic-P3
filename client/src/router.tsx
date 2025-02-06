@@ -123,19 +123,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/offer/:offerId",
+        path: "/offer/:id",
         element: <DetailsOfferCandidatPage />,
-        loader: async ({ params }) => {
-          const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
-          );
-          if (!response.ok) {
-            throw new Response("Erreur lors de la récupération de l'offre", {
-              status: response.status,
-            });
-          }
-          return response.json();
-        },
       },
       {
         path: "/admin/company/:id/offers",
