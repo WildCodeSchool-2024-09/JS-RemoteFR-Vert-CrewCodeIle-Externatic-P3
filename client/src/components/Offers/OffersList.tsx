@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Offer } from "../../lib/offers.definitions";
 import { useNavigate } from "react-router-dom";
+import type { Offer } from "../../lib/offers.definitions";
 
 function OffersList() {
   const [dataOffers, setDataOffers] = useState<Offer[]>([]);
