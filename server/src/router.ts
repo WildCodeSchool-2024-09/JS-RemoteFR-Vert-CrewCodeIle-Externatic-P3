@@ -26,7 +26,11 @@ import {
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
-import { login, verifyToken } from "./modules/auth/authActions";
+import {
+  login,
+  verifyToken,
+  verifyTokenAdmin,
+} from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
@@ -102,7 +106,12 @@ router.post(
   companiesActions.uploadCompany,
 );
 
+router.get("/api/offerByCandidate", offersActions.browseOffer);
+router.get("/api/candidate/account/:id", candidateActions.readProfil);
+router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+
 /* ************************************************************************* */
+router.use("/admin", verifyTokenAdmin);
 
 router.get("/admin/companies", userActions.browseCompanies);
 router.put("/admin/companies/:id", userActions.anonymizeCompany);
@@ -114,11 +123,6 @@ router.post(
   userActions.add,
 );
 
-router.get("/admin/companies", userActions.browseCompanies);
-router.put("/admin/companies/:id", userActions.anonymizeCompany);
-router.get("/admin/candidates", userActions.browseCandidates);
-router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
-
 router.post(
   "/admin/candidates",
   hashPassword,
@@ -126,9 +130,10 @@ router.post(
   candidateRegister,
   userActions.add,
 );
-router.get("/api/offerByCandidate", offersActions.browseOffer);
-router.get("/api/candidate/account/:id", candidateActions.readProfil);
-router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+router.get("/admin/companies", userActions.browseCompanies);
+router.put("/admin/companies/:id", userActions.anonymizeCompany);
+router.get("/admin/candidates", userActions.browseCandidates);
+router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 
 import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
 
