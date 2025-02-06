@@ -8,6 +8,15 @@ const AdminCandidateDetailsPage = () => {
   const navigate = useNavigate();
   const fields = candidateFields(candidate);
 
+  const renderFields = () => {
+    return fields.map((field) => (
+      <tr key={field.label}>
+        <td className="border border-gray-300 px-4 py-2">{field.label}</td>
+        <td className="border border-gray-300 px-4 py-2">{field.value}</td>
+      </tr>
+    ));
+  };
+
   return (
     <div className="container mx-auto p-4">
       <img src={logo} alt="Externatic Logo" className="m-6 w-36 h-auto" />
@@ -19,18 +28,7 @@ const AdminCandidateDetailsPage = () => {
             <th className="border border-gray-300 px-4 py-2">Valeur</th>
           </tr>
         </thead>
-        <tbody>
-          {fields.map((field) => (
-            <tr key={field.label}>
-              <td className="border border-gray-300 px-4 py-2">
-                {field.label}
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                {field.value}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+        <tbody>{renderFields()}</tbody>
       </table>
       <button
         type="button"
