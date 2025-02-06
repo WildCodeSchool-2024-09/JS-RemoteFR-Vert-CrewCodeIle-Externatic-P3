@@ -3,6 +3,7 @@ import App from "./App";
 
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminOffersList from "./pages/AdminOffersList";
+import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
@@ -10,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
+import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
 
@@ -74,6 +76,14 @@ const router = createBrowserRouter([
       {
         path: "/login/candidate",
         element: <LoginCandidatePage />,
+      },
+      {
+        path: "/account/candidate",
+        element: <CandidateAccountPage />,
+      },
+      {
+        path: "/account/candidate/update",
+        element: <UpdateCandidateAccountPage />,
       },
       {
         path: "/offers/:companyId",

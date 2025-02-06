@@ -14,8 +14,9 @@ export type UserFormData = {
 
 export type CandidateFormData = {
   cv: string;
+  pdf: string;
   photo: string;
-  is_disabled: boolean;
+  is_disabled: string;
 };
 
 export type loginCompanyType = {
