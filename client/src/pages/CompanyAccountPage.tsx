@@ -6,7 +6,7 @@ function CompanyAccountPage() {
   const navigate = useNavigate();
 
   const handleClick = () => navigate("/account/company/update");
-
+  const handleOffersCreation = () => navigate("/OfferCreation");
   return (
     <>
       <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
@@ -27,6 +27,9 @@ function CompanyAccountPage() {
         >
           {" "}
           Ajouter des informations
+        </button>
+        <button type="button" onClick={handleOffersCreation}>
+          Créer une nouvelle offre
         </button>
       </section>
     </>
