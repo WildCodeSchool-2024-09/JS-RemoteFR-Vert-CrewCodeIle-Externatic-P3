@@ -1,17 +1,17 @@
 import type { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
+import type { JwtPayload } from "jsonwebtoken";
 import { encodeJWT } from "../../helpers/jwt.helpers";
 import UsersRepository from "../item/user/UsersRepository";
 
 export const login: RequestHandler = async (req, res) => {
   const user = await UsersRepository.readByEmail(req.body.email);
-
   const userId = user.id;
   const token = await encodeJWT(user);
 
   res
     .status(200)
-    .cookie("auth-token", token, {
+    .cookie("auth_token", token, {
       httpOnly: false,
       secure: false,
       maxAge: 86400,
@@ -19,25 +19,29 @@ export const login: RequestHandler = async (req, res) => {
     .json({ userId: userId });
 };
 
-export const verifyToken: RequestHandler = (req, res, next) => {
+export const verifyToken: RequestHandler = async (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization");
+    const token = req.cookies?.auth_token;
 
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
+    if (!token) {
+      res.json({ authorized: false });
+      return;
     }
 
-    const [type, token] = authorizationHeader.split(" ");
+    const decoded = jwt.verify(
+      token,
+      process.env.APP_SECRET as string,
+    ) as JwtPayload;
 
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
+    const verifiedUser = await UsersRepository.readByEmail(decoded.email);
+
+    if (!verifiedUser) {
+      res.json({ authorized: false, message: "Utilisateur inconnu" });
+      return;
     }
-
-    req.auth = jwt.verify(token, process.env.APP_SECRET as string) as MyPayload;
 
     next();
   } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
+    err;
   }
 };

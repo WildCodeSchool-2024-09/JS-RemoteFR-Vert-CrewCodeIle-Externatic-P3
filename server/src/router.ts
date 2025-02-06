@@ -26,7 +26,7 @@ import {
   checkCandidateRole,
   checkCompanyRole,
 } from "./middlewares/role.middleware";
-import { login } from "./modules/auth/authActions";
+import { login, verifyToken } from "./modules/auth/authActions";
 import userActions from "./modules/item/user/userActions";
 
 router.post(
@@ -89,9 +89,18 @@ import candidateActions from "./modules/candidate/candidateActions";
 
 router.get("/api/user/:id", userActions.readUserData);
 router.get("/api/candidate/account/:id", candidatesActions.readProfil);
-router.post("/api/candidate/account", upload, candidatesActions.uploadFiles);
+router.post(
+  "/api/candidate/account",
+  verifyToken,
+  upload,
+  candidatesActions.uploadFiles,
+);
 router.get("/api/companies/account/:id", companiesActions.readCompanyProfil);
-router.post("/api/companies/account", companiesActions.uploadCompany);
+router.post(
+  "/api/companies/account",
+  verifyToken,
+  companiesActions.uploadCompany,
+);
 
 /* ************************************************************************* */
 
