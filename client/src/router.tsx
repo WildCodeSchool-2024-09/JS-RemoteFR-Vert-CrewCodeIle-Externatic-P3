@@ -8,6 +8,7 @@ import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import HomePage from "./pages/HomePage";
 import OffersPage from "./pages/OffersPage";
+import OffersResearchPage from "./pages/OffersResearchPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/Offers",
         element: <OffersPage />,
+      },
+      {
+        path: "/OffersResearch",
+        element: <OffersResearchPage />,
       },
       {
         path: "/signup/candidate",

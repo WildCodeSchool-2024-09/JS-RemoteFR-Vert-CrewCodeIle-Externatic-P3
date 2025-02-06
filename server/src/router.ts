@@ -68,6 +68,11 @@ router.post(
   login,
 );
 /* ************************************************************************* */
+import candidateActions from "./routes/candidate.routes";
+import offerActions from "./routes/offer.routes";
+
+router.use("/api/candidates", candidateActions);
+router.use("/api/offers", offerActions);
 router.get("/api/offers", offersListActions.browse);
 
 import { upload } from "./middlewares/multer.middleware";

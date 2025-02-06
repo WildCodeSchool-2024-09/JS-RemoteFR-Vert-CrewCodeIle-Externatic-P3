@@ -12,7 +12,6 @@ type Offers = {
 class OffersListRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>("SELECT * FROM offer;");
-
     return rows as Offers[];
   }
 }
