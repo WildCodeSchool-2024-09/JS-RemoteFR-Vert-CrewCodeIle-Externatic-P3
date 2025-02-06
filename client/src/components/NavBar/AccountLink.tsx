@@ -36,9 +36,9 @@ function AccountLink() {
 
   return (
     <div className="flex justify-end">
-      <section className=" w-64 flex justify-between mt-2 mr-16 rounded px-2 py-2 border-2 border-primary ">
+      <section>
         {userId ? (
-          <>
+          <section className=" w-64 flex justify-between mt-2 mr-16 rounded px-2 py-2 border-2 border-primary">
             <img
               className="w-20 h-20 object-cover items-center rounded-full"
               src={
@@ -62,7 +62,7 @@ function AccountLink() {
                 Mon compte
               </button>
             </article>
-          </>
+          </section>
         ) : null}
       </section>
     </div>

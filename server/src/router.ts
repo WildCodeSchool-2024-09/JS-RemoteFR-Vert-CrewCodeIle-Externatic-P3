@@ -81,7 +81,7 @@ router.use(
   express.static(path.join(__dirname, "/middlewares/uploads")),
 );
 
-router.get("/api/user/:id", userActions.read);
+router.get("/api/user/:id", userActions.readUserData);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 
