@@ -63,6 +63,14 @@ class UserRepository {
     return rows as UserType[];
   }
 
+  async getAllCompanies(role_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM user WHERE role_id = ?",
+      [role_id],
+    );
+    return rows as UserType[];
+  }
+
   async anonymizeCandidate(candidateId: number) {
     await databaseClient.query(
       `
@@ -70,13 +78,30 @@ class UserRepository {
       SET 
         firstname = '###', 
         lastname = '###', 
-        email = '###', 
+        email = CONCAT('###', id), 
         address = '###', 
         postal_code = '###', 
         city = '###', 
         tel = '###' 
       WHERE id = ?`,
       [candidateId],
+    );
+  }
+
+  async anonymizeCompany(companyId: number) {
+    await databaseClient.query(
+      `
+      UPDATE user 
+      SET 
+        firstname = '###', 
+        lastname = '###', 
+        email = CONCAT('###', id), 
+        address = '###', 
+        postal_code = '###', 
+        city = '###', 
+        tel = '###' 
+      WHERE id = ?`,
+      [companyId],
     );
   }
 }

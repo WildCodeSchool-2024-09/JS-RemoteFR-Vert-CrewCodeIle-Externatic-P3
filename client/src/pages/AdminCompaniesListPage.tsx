@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import logo from "../assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png";
-import type { Company } from "../lib/companies.definition";
+import UserFormRegister from "../components/userForm/UserFormRegister";
+import type { UserFormData } from "../lib/userForm.definitions";
 
 const AdminCompaniesListPage = () => {
-  const initialCompanies = useLoaderData() as Company[];
-  const [companies, setCompanies] = useState<Company[]>(initialCompanies);
+  const initialCompanies = useLoaderData() as UserFormData[];
+  const [companies, setCompanies] = useState<UserFormData[]>(initialCompanies);
+  const [showForm, setShowForm] = useState(false);
 
   const handleAnonymizeCompany = async (companyId: number) => {
     const apiUrl = `${import.meta.env.VITE_API_URL}/admin/companies/${companyId}`;
@@ -20,16 +22,47 @@ const AdminCompaniesListPage = () => {
           company.id === companyId
             ? {
                 ...company,
-                company_name: "###",
-                sector: "###",
-                description: "###",
-                website_link: "###",
+                firstname: "###",
+                lastname: "###",
+                email: "###",
+                address: "###",
+                postal_code: 0,
+                city: "###",
+                tel: 0,
+                password: company.password,
+                confirmPassword: company.confirmPassword,
+                is_active: company.is_active,
+                is_role: company.is_role,
               }
             : company,
         ),
       );
     } else {
-      console.error("Erreur lors de l'anonymisation de l'entreprise");
+      const errorDetail = await response.text();
+      console.error(
+        "Erreur lors de l'anonymisation du candidat :",
+        errorDetail,
+      );
+    }
+  };
+
+  const handleAddCompany = async (data: UserFormData) => {
+    const apiUrl = `${import.meta.env.VITE_API_URL}/admin/companies`;
+
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const addedCompany = await response.json();
+      setCompanies([...companies, { ...data, id: addedCompany.insertId }]);
+      setShowForm(false);
+    } else {
+      console.error("Erreur lors de l'ajout de l'entreprise", response);
     }
   };
 
@@ -38,9 +71,9 @@ const AdminCompaniesListPage = () => {
       <tr key={company.id}>
         <td className="border border-gray-300 px-4 py-2">{company.id}</td>
         <td className="border border-gray-300 px-4 py-2">
-          {company.company_name}
+          {company.firstname}
         </td>
-        <td className="border border-gray-300 px-4 py-2">{company.sector}</td>
+        <td className="border border-gray-300 px-4 py-2">{company.lastname}</td>
         <td className="border border-gray-300 px-4 py-2">
           <button
             type="button"
@@ -58,7 +91,8 @@ const AdminCompaniesListPage = () => {
     <div className="container mx-auto p-4">
       <img src={logo} alt="Externatic Logo" className="m-6 w-36 h-auto" />
       <h1 className="text-2xl font-bold mb-4">Liste des Entreprises</h1>
-      <table className="min-w-full border-collapse border border-gray-200">
+
+      <table className="min-w-full border-collapse border border-gray-200 my-4">
         <thead>
           <tr>
             <th className="border border-gray-300 px-4 py-2">ID</th>
@@ -71,6 +105,15 @@ const AdminCompaniesListPage = () => {
         </thead>
         <tbody>{renderCompaniesRows()}</tbody>
       </table>
+      <button
+        type="button"
+        onClick={() => setShowForm(!showForm)}
+        className="bg-green-500 text-white py-2 px-4 rounded"
+      >
+        {showForm ? "Annuler" : "Ajouter une Entreprise"}
+      </button>
+
+      {showForm && <UserFormRegister onSubmit={handleAddCompany} />}
     </div>
   );
 };

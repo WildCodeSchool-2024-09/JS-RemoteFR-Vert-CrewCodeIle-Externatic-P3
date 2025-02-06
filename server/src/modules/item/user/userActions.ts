@@ -39,6 +39,20 @@ const browseCandidates: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseCompanies: RequestHandler = async (req, res, next) => {
+  try {
+    const role = await userRepository.getRoleByLabel("Company");
+    if (role) {
+      const companies = await userRepository.getAllCompanies(role.id);
+      res.json(companies);
+    } else {
+      res.status(404).json({ message: "Rôle 'company' non trouvé." });
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const anonymizeCandidate: RequestHandler = async (req, res, next) => {
   const candidateId = Number.parseInt(req.params.id);
 
@@ -50,4 +64,21 @@ const anonymizeCandidate: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { add, browseCandidates, anonymizeCandidate };
+const anonymizeCompany: RequestHandler = async (req, res, next) => {
+  const companyId = Number.parseInt(req.params.id);
+
+  try {
+    await userRepository.anonymizeCompany(companyId);
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default {
+  add,
+  browseCandidates,
+  browseCompanies,
+  anonymizeCandidate,
+  anonymizeCompany,
+};

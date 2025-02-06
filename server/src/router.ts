@@ -77,8 +77,22 @@ router.get("/api/companies", companiesActions.browseCompanies);
 
 router.get("/admin/candidates", userActions.browseCandidates);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
+router.post(
+  "/admin/candidates",
+  hashPassword,
+  checkEmail,
+  candidateRegister,
+  userActions.add,
+);
 
-router.get("/admin/companies", companiesActions.browseCompanies);
-router.put("/admin/companies/:id", companiesActions.anonymizeCompany);
+router.get("/admin/companies", userActions.browseCompanies);
+router.put("/admin/companies/:id", userActions.anonymizeCompany);
+router.post(
+  "/admin/companies",
+  hashPassword,
+  checkEmail,
+  candidateRegister,
+  userActions.add,
+);
 
 export default router;
