@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import logo from "../assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png";
-import UserFormRegister from "../components/userForm/UserFormRegister";
+import UserFormRegister from "../components/user/UserFormRegister";
 import type { UserFormData } from "../lib/userForm.definitions";
 
 const AdminCandidatesListPage = () => {
