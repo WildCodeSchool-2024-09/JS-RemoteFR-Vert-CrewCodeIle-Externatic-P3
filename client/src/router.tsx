@@ -94,7 +94,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/admin/company:id/offers",
+        path: "/admin/company/:id/offers",
         element: <AdminOffersList />,
       },
     ],

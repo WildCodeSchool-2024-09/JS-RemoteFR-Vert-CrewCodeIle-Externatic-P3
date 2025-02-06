@@ -6,7 +6,6 @@ const browse: RequestHandler = async (req, res, next) => {
   const companyId: number = Number.parseInt(req.params.company_id);
   const companyOffersList =
     await adminCompanyOffersListRepository.readAll(companyId);
-
   if (companyOffersList) {
     res.json(companyOffersList);
   } else {
