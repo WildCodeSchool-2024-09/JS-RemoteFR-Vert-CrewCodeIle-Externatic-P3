@@ -75,10 +75,26 @@ const anonymizeCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    const user = await userRepository.read(id);
+
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 export default {
   add,
   browseCandidates,
   browseCompanies,
   anonymizeCandidate,
   anonymizeCompany,
+  read,
 };
