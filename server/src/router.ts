@@ -68,10 +68,9 @@ router.post(
   login,
 );
 /* ************************************************************************* */
-import candidateActions from "./routes/candidate.routes";
+
 import offerActions from "./routes/offer.routes";
 
-router.use("/api/candidates", candidateActions);
 router.use("/api/offers", offerActions);
 router.get("/api/offers", offersListActions.browse);
 
@@ -85,6 +84,8 @@ router.use(
   "/uploads",
   express.static(path.join(__dirname, "/middlewares/uploads")),
 );
+
+import candidateActions from "./modules/candidate/candidateActions";
 
 router.get("/api/user/:id", userActions.read);
 router.get("/api/candidate/account/:id", candidatesActions.readProfil);
@@ -113,5 +114,14 @@ router.post(
 );
 
 router.get("/api/offerByCandidate", offersActions.browseOffer);
+router.get("/api/candidate/account/:id", candidateActions.readProfil);
+router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+
+import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
+
+router.use(
+  "/api/admin/companyOfferList/:id",
+  adminCompanyOffersListActions.browse,
+);
 
 export default router;

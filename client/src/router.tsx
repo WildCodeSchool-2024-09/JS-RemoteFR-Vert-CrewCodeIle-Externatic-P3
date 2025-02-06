@@ -4,6 +4,7 @@ import App from "./App";
 import AdminCandidatesListPage from "./pages/AdminCandidatesListPage";
 import AdminCompaniesListPage from "./pages/AdminCompaniesListPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
+import AdminOffersList from "./pages/AdminOffersList";
 import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
@@ -120,6 +121,10 @@ const router = createBrowserRouter([
           }
           return response.json();
         },
+      },
+      {
+        path: "/admin/company/:id/offers",
+        element: <AdminOffersList />,
       },
     ],
   },
