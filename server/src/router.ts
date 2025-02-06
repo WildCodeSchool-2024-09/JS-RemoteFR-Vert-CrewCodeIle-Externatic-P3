@@ -95,6 +95,16 @@ router.post("/api/companies/account", companiesActions.uploadCompany);
 
 /* ************************************************************************* */
 
+router.get("/admin/companies", userActions.browseCompanies);
+router.put("/admin/companies/:id", userActions.anonymizeCompany);
+router.post(
+  "/admin/companies",
+  hashPassword,
+  checkEmail,
+  candidateRegister,
+  userActions.add,
+);
+
 router.get("/admin/candidates", userActions.browseCandidates);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 router.post(
@@ -107,5 +117,12 @@ router.post(
 router.get("/api/offerByCandidate", offersActions.browseOffer);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
 router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+
+import adminCompanyOffersListActions from "./modules/admin/adminCompanyOffersListActions";
+
+router.use(
+  "/api/admin/companyOfferList/:id",
+  adminCompanyOffersListActions.browse,
+);
 
 export default router;
