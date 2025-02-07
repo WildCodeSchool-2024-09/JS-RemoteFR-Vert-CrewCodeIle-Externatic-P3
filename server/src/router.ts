@@ -123,12 +123,13 @@ router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
 router.use("/admin", verifyToken, checkAdminRole);
 
 router.get("/admin/companies", userActions.browseCompanies);
+router.get("/admin/latest-profiles", userActions.getLatestProfiles);
 router.put("/admin/companies/:id", userActions.anonymizeCompany);
 router.post(
   "/admin/companies",
   hashPassword,
   checkEmail,
-  candidateRegister,
+  companyRegister,
   userActions.add,
 );
 
