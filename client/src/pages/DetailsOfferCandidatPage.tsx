@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
-import type { Offer } from "../../lib/offers.definitions";
+import type { Offer } from "../lib/offers.definitions";
 
-const OfferByCandidat = () => {
+const DetailsOfferCandidatPage = () => {
   const offer = useLoaderData() as Offer[];
 
   const handleclik = () => {
@@ -51,4 +51,4 @@ const OfferByCandidat = () => {
     </>
   );
 };
-export default OfferByCandidat;
+export default DetailsOfferCandidatPage;

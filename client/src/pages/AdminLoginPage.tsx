@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "../assets/images/EXTERNATIC-LOGO-ORIGINAL-RVB.png";
-import Login from "../components/userForm/Login";
+import Login from "../components/user/Login";
 import type { loginCompanyType } from "../lib/userForm.definitions";
 
 const AdminLoginPage = () => {
