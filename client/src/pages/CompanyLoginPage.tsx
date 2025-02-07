@@ -2,10 +2,12 @@ import { FaUsers } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Login from "../components/user/Login";
+import { useCompany } from "../context/CompanyContext";
 import type { loginCompanyType } from "../lib/userForm.definitions";
 
 function CompanyLoginPage() {
   const navigate = useNavigate();
+  const { setUserId } = useCompany();
 
   const handleCompanyLogin = async (loginDataCompany: loginCompanyType) => {
     try {
@@ -20,8 +22,10 @@ function CompanyLoginPage() {
         },
       );
       if (loginCompany.ok) {
+        const data = await loginCompany.json();
+        setUserId(data.userId);
         toast.success("Vous êtes bien connecté !");
-        navigate("/");
+        navigate("/account/company");
       } else {
         toast.error(
           "Un problème est survenu lors de votre connexion ! Veuillez réessayer",

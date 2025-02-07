@@ -9,6 +9,7 @@ import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminOffersList from "./pages/AdminOffersList";
 import CandidateAccountPage from "./pages/CandidateAccountPage";
 import LoginCandidatePage from "./pages/CandidateLoginPage";
+import CompanyAccountPage from "./pages/CompanyAccountPage";
 import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
@@ -17,6 +18,7 @@ import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
 import UpdateCandidateAccountPage from "./pages/UpdateCandidateAccountPage";
+import UpdateCompanyAccountPage from "./pages/UpdateCompanyAccountPage";
 import UserCandidateForm from "./pages/UserCandidateFormPage";
 import UserCompanyForm from "./pages/UserCompanyFormPage";
 
@@ -89,6 +91,14 @@ const router = createBrowserRouter([
       {
         path: "/account/candidate/update",
         element: <UpdateCandidateAccountPage />,
+      },
+      {
+        path: "/account/company",
+        element: <CompanyAccountPage />,
+      },
+      {
+        path: "/account/company/update",
+        element: <UpdateCompanyAccountPage />,
       },
       {
         path: "/offers/:companyId",

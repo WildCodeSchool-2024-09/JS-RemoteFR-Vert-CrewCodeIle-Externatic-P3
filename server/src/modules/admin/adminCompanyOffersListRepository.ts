@@ -15,9 +15,10 @@ type OffersDataType = {
 };
 
 class adminCompanyOffersList {
-  async readAll(company_id: number) {
+  async readAll(companyId: number) {
     const [rows] = await dabaseClient.query<Rows>(
-      "SELECT * FROM offer WHERE company_id=1",
+      "SELECT * FROM offer WHERE company_id=?",
+      [companyId],
     );
     return rows as OffersDataType[];
   }
