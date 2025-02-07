@@ -15,12 +15,13 @@ export type UserType = {
   is_active: boolean;
   is_role: boolean;
   role_id: number;
+  updated_at?: string;
 };
 
 class UserRepository {
   async create(user: Omit<UserType, "id">) {
     const [result] = await databaseClient.query<Result>(
-      "INSERT INTO user (firstname, lastname, email, hashed_password, address, postal_code, city, tel, is_active, is_role, role_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO user (firstname, lastname, email, hashed_password, address, postal_code, city, tel, is_active, is_role, role_id, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         user.firstname,
         user.lastname,
@@ -33,6 +34,7 @@ class UserRepository {
         user.is_active,
         user.is_role,
         user.role_id,
+        user.updated_at,
       ],
     );
     return result.insertId;
@@ -40,7 +42,7 @@ class UserRepository {
 
   async readByEmail(email: string) {
     const [rows] = await databaseClient.query<Rows>(
-      "select * from user where email = ?",
+      "SELECT * FROM user WHERE email = ?",
       [email],
     );
 
@@ -50,7 +52,7 @@ class UserRepository {
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
-      select * from user where id = ?
+      SELECT * FROM user WHERE id = ?
       `,
       [id],
     );
@@ -99,7 +101,7 @@ class UserRepository {
       [candidateId],
     );
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM user WHERE id = ?",
+      "SELECT id, firstname, lastname, email, address, postal_code, city, tel FROM user WHERE id = ?",
       [candidateId],
     );
     return rows[0];
@@ -121,10 +123,23 @@ class UserRepository {
       [companyId],
     );
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM user WHERE id = ?",
+      "SELECT id, firstname, lastname, email, address, postal_code, city, tel FROM user WHERE id = ?",
       [companyId],
     );
     return rows[0];
+  }
+
+  async getProfilesUpdatedInLast7Days() {
+    const [rows] = await databaseClient.query<Rows>(
+      `
+			SELECT id, firstname, lastname, updated_at FROM user 
+			WHERE updated_at >= NOW() - INTERVAL 7 DAY  
+			`,
+    );
+    return rows.map((row) => ({
+      ...row,
+      updatedAt: row.updated_at,
+    }));
   }
 }
 

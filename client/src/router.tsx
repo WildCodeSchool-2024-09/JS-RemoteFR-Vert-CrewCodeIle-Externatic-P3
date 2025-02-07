@@ -1,8 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import AdminCandidateDetailsPage from "./pages/AdminCandidateDetailsPage";
 import AdminCandidatesListPage from "./pages/AdminCandidatesListPage";
 import AdminCompaniesListPage from "./pages/AdminCompaniesListPage";
+import AdminHomePage from "./pages/AdminHomePage";
+import AdminLatestProfilesPage from "./pages/AdminLatestProfilesPage";
 import AdminLoginPage from "./pages/AdminLoginPage";
 import AdminOffersList from "./pages/AdminOffersList";
 import CandidateAccountPage from "./pages/CandidateAccountPage";
@@ -142,6 +145,10 @@ const router = createBrowserRouter([
     element: <AdminLoginPage />,
   },
   {
+    path: "/admin/home",
+    element: <AdminHomePage />,
+  },
+  {
     path: "/admin/companies-list",
     element: <AdminCompaniesListPage />,
     loader: async () => {
@@ -167,6 +174,39 @@ const router = createBrowserRouter([
         throw new Response("Erreur lors de la récupération des candidats", {
           status: response.status,
         });
+      }
+      return response.json();
+    },
+  },
+  {
+    path: "/admin/latest-profiles",
+    element: <AdminLatestProfilesPage />,
+    loader: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/admin/latest-profiles`,
+      );
+      if (!response.ok) {
+        throw new Response("Erreur lors de la récupération des candidats", {
+          status: response.status,
+        });
+      }
+      return response.json();
+    },
+  },
+  {
+    path: "/admin/candidates/:id",
+    element: <AdminCandidateDetailsPage />,
+    loader: async ({ params }) => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/admin/candidates/${params.id}`,
+      );
+      if (!response.ok) {
+        throw new Response(
+          "Erreur lors de la récupération des détails du candidat",
+          {
+            status: response.status,
+          },
+        );
       }
       return response.json();
     },

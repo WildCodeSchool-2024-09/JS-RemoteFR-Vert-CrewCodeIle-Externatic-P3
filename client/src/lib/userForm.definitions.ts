@@ -11,6 +11,7 @@ export type UserFormData = {
   confirmPassword: string;
   is_active: boolean;
   is_role: boolean;
+  updatedAt?: string;
 };
 
 export type CandidateFormData = {
