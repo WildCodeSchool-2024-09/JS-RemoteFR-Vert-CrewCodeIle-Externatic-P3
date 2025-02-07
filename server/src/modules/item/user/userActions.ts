@@ -24,7 +24,6 @@ const add: RequestHandler = async (req, res, next) => {
 
     res.status(201).json({ insertId });
   } catch (err) {
-    console.error("Erreur lors de l'ajout du candidat :", err);
     next(err);
   }
 };
@@ -94,7 +93,6 @@ const readUserData: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
 const getLatestProfiles: RequestHandler = async (req, res, next) => {
   try {
     const profiles = await userRepository.getProfilesUpdatedInLast7Days();
@@ -110,6 +108,6 @@ export default {
   browseCompanies,
   anonymizeCandidate,
   anonymizeCompany,
-  getLatestProfiles,
   readUserData,
+  getLatestProfiles,
 };

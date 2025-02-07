@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 
+import AdminCandidateDetailsPage from "./pages/AdminCandidateDetailsPage";
 import AdminCandidatesListPage from "./pages/AdminCandidatesListPage";
 import AdminCompaniesListPage from "./pages/AdminCompaniesListPage";
 import AdminHomePage from "./pages/AdminHomePage";
@@ -188,6 +189,24 @@ const router = createBrowserRouter([
         throw new Response("Erreur lors de la récupération des candidats", {
           status: response.status,
         });
+      }
+      return response.json();
+    },
+  },
+  {
+    path: "/admin/candidates/:id",
+    element: <AdminCandidateDetailsPage />,
+    loader: async ({ params }) => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/admin/candidates/${params.id}`,
+      );
+      if (!response.ok) {
+        throw new Response(
+          "Erreur lors de la récupération des détails du candidat",
+          {
+            status: response.status,
+          },
+        );
       }
       return response.json();
     },
