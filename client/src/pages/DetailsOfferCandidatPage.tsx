@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext";
 import type { Offer } from "../lib/offers.definitions";
 
 const DetailsOfferCandidatPage = () => {
   const { id } = useParams();
+  const { userId } = useAuth();
+  const navigate = useNavigate();
   const [offer, setOffer] = useState<Offer | null>(null);
 
   useEffect(() => {
@@ -16,8 +19,26 @@ const DetailsOfferCandidatPage = () => {
       .catch((err) => err);
   }, [id]);
 
-  const handleClick = () => {
-    toast.success("Bravo ! vous venez de postuler à cette offre");
+  const handleClick = async () => {
+    try {
+      const toApply = await fetch(`${import.meta.env.VITE_API_URL}/api/apply`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ offer_id: id, user_id: userId }),
+        credentials: "include",
+      });
+
+      if (toApply.ok) {
+        toast.success("Bravo! Vous venez de postuler à cette offre");
+        navigate("/");
+      } else {
+        toast.error("Un problème est survenu ! Veuillez réessayer");
+      }
+    } catch (err) {
+      err;
+    }
   };
 
   return (

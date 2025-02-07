@@ -74,6 +74,11 @@ import offerActions from "./routes/offer.routes";
 router.use("/api/offers", offerActions);
 router.get("/api/offers", offersListActions.browse);
 router.get("/api/offers/:id", offersActions.browseOffer);
+router.post(
+  "/api/apply",
+  candidateActions.readProfilforApply,
+  applyActions.addApply,
+);
 
 import { upload } from "./middlewares/multer.middleware";
 import candidatesActions from "./modules/candidate/candidateActions";
@@ -139,6 +144,7 @@ router.put("/admin/companies/:id", userActions.anonymizeCompany);
 router.get("/admin/candidates", userActions.browseCandidates);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 
+import applyActions from "./modules/candidature/applyActions";
 import adminCompanyOffers from "./routes/admin.companyOffers.routes";
 router.use("/api/admin/companyOfferList", adminCompanyOffers);
 
