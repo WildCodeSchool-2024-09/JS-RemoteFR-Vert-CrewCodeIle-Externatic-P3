@@ -23,7 +23,7 @@ const AdminLoginPage = () => {
 
       if (response.ok) {
         toast.success("Vous êtes bien connecté !");
-        navigate("/");
+        navigate("/admin/home");
       } else {
         toast.error(
           "Un problème est survenu lors de votre connexion ! Veuillez réessayer",
