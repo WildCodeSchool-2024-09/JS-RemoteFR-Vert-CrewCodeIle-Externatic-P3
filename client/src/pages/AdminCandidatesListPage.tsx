@@ -15,6 +15,7 @@ const AdminCandidatesListPage = () => {
 
     const response = await fetch(apiUrl, {
       method: "PUT",
+      credentials: "include",
     });
 
     if (response.ok) {

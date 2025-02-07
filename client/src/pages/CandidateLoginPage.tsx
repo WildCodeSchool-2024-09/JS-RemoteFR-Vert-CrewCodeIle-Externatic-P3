@@ -19,6 +19,7 @@ function LoginCandidatePage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(loginDataCandidate),
+          credentials: "include",
         },
       );
       if (loginCandidate.ok) {

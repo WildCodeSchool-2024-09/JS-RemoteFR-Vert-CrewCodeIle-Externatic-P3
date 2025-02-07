@@ -13,6 +13,7 @@ import CompanyOffersPage from "./pages/CompanyOffersPage";
 import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import OfferCreationPage from "./pages/OfferCreationPage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
 import PartnersCompaniesPage from "./pages/PartnersCompaniesPage";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/OffersResearch",
         element: <OffersResearchPage />,
+      },
+      {
+        path: "/OfferCreation",
+        element: <OfferCreationPage />,
       },
       {
         path: "/signup/candidate",
@@ -119,19 +124,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/offer/:offerId",
+        path: "/offer/:id",
         element: <DetailsOfferCandidatPage />,
-        loader: async ({ params }) => {
-          const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/api/offerByCandidate?offerId=${params.offerId}`,
-          );
-          if (!response.ok) {
-            throw new Response("Erreur lors de la récupération de l'offre", {
-              status: response.status,
-            });
-          }
-          return response.json();
-        },
       },
       {
         path: "/admin/company/:id/offers",
