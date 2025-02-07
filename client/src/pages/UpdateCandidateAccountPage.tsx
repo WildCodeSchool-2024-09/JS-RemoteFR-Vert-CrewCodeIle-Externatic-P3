@@ -28,6 +28,7 @@ function CandidateAccountPage() {
         {
           method: "POST",
           body: formData,
+          credentials: "include",
         },
       );
 

@@ -4,6 +4,8 @@ import userRepository from "./UsersRepository";
 
 const add: RequestHandler = async (req, res, next) => {
   try {
+    const now = new Date();
+    const formattedNow = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, "0")}-${now.getDate().toString().padStart(2, "0")} ${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}`;
     const newUser = {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
@@ -16,6 +18,7 @@ const add: RequestHandler = async (req, res, next) => {
       is_active: req.body.is_active,
       is_role: req.body.is_role,
       role_id: req.body.role_id,
+      updated_at: formattedNow,
     };
     const insertId = await userRepository.create(newUser);
 
@@ -57,8 +60,9 @@ const anonymizeCandidate: RequestHandler = async (req, res, next) => {
   const candidateId = Number.parseInt(req.params.id);
 
   try {
-    await userRepository.anonymizeCandidate(candidateId);
-    res.status(204).send();
+    const anonymizedCandidate =
+      await userRepository.anonymizeCandidate(candidateId);
+    res.status(200).json(anonymizedCandidate);
   } catch (err) {
     next(err);
   }
@@ -68,8 +72,8 @@ const anonymizeCompany: RequestHandler = async (req, res, next) => {
   const companyId = Number.parseInt(req.params.id);
 
   try {
-    await userRepository.anonymizeCompany(companyId);
-    res.status(204).send();
+    const anonymizedCompany = await userRepository.anonymizeCompany(companyId);
+    res.status(200).json(anonymizedCompany);
   } catch (err) {
     next(err);
   }
@@ -89,6 +93,14 @@ const readUserData: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const getLatestProfiles: RequestHandler = async (req, res, next) => {
+  try {
+    const profiles = await userRepository.getProfilesUpdatedInLast7Days();
+    res.json(profiles);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export default {
   add,
@@ -97,4 +109,5 @@ export default {
   anonymizeCandidate,
   anonymizeCompany,
   readUserData,
+  getLatestProfiles,
 };

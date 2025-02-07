@@ -40,12 +40,6 @@ const AdminHomePage = () => {
           Liste des candidats
         </Link>
         <Link
-          to="/admin/data-by-candidate"
-          className="bg-blue-500 text-white py-10 px-4 rounded-lg text-center text-2xl"
-        >
-          Données par candidat
-        </Link>
-        <Link
           to="/admin/latest-profiles"
           className="bg-blue-500 text-white py-10 px-4 rounded-lg text-center text-2xl"
         >
