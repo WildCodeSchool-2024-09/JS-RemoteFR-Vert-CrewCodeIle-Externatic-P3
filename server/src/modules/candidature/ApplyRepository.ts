@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result, Rows } from "../../../database/client";
+import type { Result } from "../../../database/client";
 
 type Apply = {
   id: number;

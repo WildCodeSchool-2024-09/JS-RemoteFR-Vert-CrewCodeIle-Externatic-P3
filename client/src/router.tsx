@@ -12,6 +12,7 @@ import CompanyLoginPage from "./pages/CompanyLoginPage";
 import CompanyOffersPage from "./pages/CompanyOffersPage";
 import DetailsOfferCandidatPage from "./pages/DetailsOfferCandidatPage";
 import HomePage from "./pages/HomePage";
+import NotFoundPage from "./pages/NotFoundPage";
 import OfferCreationPage from "./pages/OfferCreationPage";
 import OffersPage from "./pages/OffersPage";
 import OffersResearchPage from "./pages/OffersResearchPage";
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       {
         path: "/admin/company/:id/offers",
         element: <AdminOffersList />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },
