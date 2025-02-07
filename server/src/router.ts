@@ -96,7 +96,7 @@ router.post("/api/companies/account", companiesActions.uploadCompany);
 /* ************************************************************************* */
 
 router.get("/admin/candidates", userActions.browseCandidates);
-
+router.get("/admin/candidates/:id", userActions.readUserData);
 router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 router.post(
   "/admin/companies",
