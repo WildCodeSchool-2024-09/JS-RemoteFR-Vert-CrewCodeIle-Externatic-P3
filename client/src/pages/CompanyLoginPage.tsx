@@ -19,6 +19,7 @@ function CompanyLoginPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(loginDataCompany),
+          credentials: "include",
         },
       );
       if (loginCompany.ok) {
