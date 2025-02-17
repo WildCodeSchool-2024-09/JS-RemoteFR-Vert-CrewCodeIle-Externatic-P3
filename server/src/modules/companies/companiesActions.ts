@@ -10,6 +10,21 @@ const browseCompanies: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readCompany: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = Number(req.params.id);
+    const company = await companiesRepository.read(user_id);
+
+    if (company == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(company);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const readCompanyProfil: RequestHandler = async (req, res, next) => {
   try {
     const user_id = req.body.user_id;
@@ -47,4 +62,9 @@ const uploadCompany: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseCompanies, readCompanyProfil, uploadCompany };
+export default {
+  browseCompanies,
+  readCompany,
+  readCompanyProfil,
+  uploadCompany,
+};
