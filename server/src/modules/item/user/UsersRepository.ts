@@ -42,7 +42,7 @@ class UserRepository {
 
   async readByEmail(email: string) {
     const [rows] = await databaseClient.query<Rows>(
-      "select * from user where email = ?",
+      "SELECT * FROM user WHERE email = ?",
       [email],
     );
 
@@ -52,7 +52,7 @@ class UserRepository {
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       `
-      select * from user where id = ?
+      SELECT * FROM user WHERE id = ?
       `,
       [id],
     );

@@ -125,6 +125,9 @@ router.use("/admin", verifyToken, checkAdminRole);
 router.get("/admin/companies", userActions.browseCompanies);
 router.get("/admin/latest-profiles", userActions.getLatestProfiles);
 router.put("/admin/companies/:id", userActions.anonymizeCompany);
+router.get("/admin/candidates", userActions.browseCandidates);
+router.get("/admin/candidates/:id", userActions.readUserData);
+router.put("/admin/candidates/:id", userActions.anonymizeCandidate);
 router.post(
   "/admin/companies",
   hashPassword,
