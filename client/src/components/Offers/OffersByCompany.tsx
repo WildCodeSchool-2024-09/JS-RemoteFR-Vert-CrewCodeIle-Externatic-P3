@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CompanyImage from "../../assets/images/CompanyImage.jpg";
 import type { Offer } from "../../lib/offers.definitions";
 import OfferFilter from "./OfferFilter";
 
@@ -21,21 +22,31 @@ const OffersByCompany = ({ offers }: OffersByCompanyProps) => {
     ) : null;
 
   const renderedOffers = filteredOffers.map((offer) => (
-    <ul key={offer.id} className="border-2 border-primary m-4 sm:ml-6 md:ml-8">
-      <li className="font-bold text-xl mb-2 p-2">{offer.title}</li>
-      <li className="text-xl mb-2 font-medium p-2">{offer.location}</li>
-      <li className="text-xl mb-2 font-medium p-2">
-        {offer.wage.toFixed(2)} €
-      </li>
-      <li className="text-xl mb-2 font-medium p-2">
-        {offer.is_teleworking ? "Télétravail disponible" : "Pas de télétravail"}
-      </li>
-      <li className="text-xl mb-2 font-medium p-2">
-        {offer.is_opened_to_disabled
-          ? "Ouvert aux personnes handicapées"
-          : "Non ouvert aux personnes handicapées"}
-      </li>
-    </ul>
+    <div
+      key={offer.id}
+      className="border-2 border-primary m-4 sm:ml-6 md:ml-8 rounded overflow-hidden flex"
+    >
+      <ul className="p-4 flex-1 bg-white">
+        <li className="font-bold text-xl mb-2">{offer.title}</li>
+        <li className="text-xl mb-2 font-medium">{offer.location}</li>
+        <li className="text-xl mb-2 font-medium">{offer.wage.toFixed(2)} €</li>
+        <li className="text-xl mb-2 font-medium">
+          {offer.is_teleworking
+            ? "Télétravail disponible"
+            : "Pas de télétravail"}
+        </li>
+        <li className="text-xl mb-2 font-medium">
+          {offer.is_opened_to_disabled
+            ? "Ouvert aux personnes handicapées"
+            : "Non ouvert aux personnes handicapées"}
+        </li>
+      </ul>
+      <img
+        src={CompanyImage}
+        alt="Offre"
+        className="w-96 h-auto object-cover"
+      />
+    </div>
   ));
 
   return (
