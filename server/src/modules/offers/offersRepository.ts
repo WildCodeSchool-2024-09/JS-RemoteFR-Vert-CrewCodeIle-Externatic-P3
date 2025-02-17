@@ -9,9 +9,9 @@ type Offer = {
   wage: number;
   description: string;
   location: string;
-  is_teleworking: boolean;
+  is_teleworking: number;
   contract_type: string;
-  is_opened_to_disabled: boolean;
+  is_opened_to_disabled: number;
   company_id: number;
 };
 
@@ -30,13 +30,11 @@ class OffersRepository {
   }
 
   async read(id: number) {
-    // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "select * from offer where id = ?",
+      "select o.*, c.company_name from offer AS o JOIN company AS c ON o.company_id = c.id where o.id = ?",
       [id],
     );
 
-    // Return the first row of the result, which represents the user
     return rows[0] as Offer;
   }
 
