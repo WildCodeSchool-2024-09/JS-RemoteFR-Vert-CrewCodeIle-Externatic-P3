@@ -59,21 +59,12 @@ export default function OffersResearch({
   }, [search, filteredOffers]);
 
   const navigate = useNavigate();
-  const handleOfferDetails = () => {
-    navigate("/OfferDetails");
+  const handleOfferDetails = (offerId: number) => {
+    navigate(`/offer/${offerId}`);
   };
 
   return (
     <section>
-      <section className="flex justify-end">
-        <button
-          type="button"
-          className="mt-4 h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white lg:hover:bg-black"
-        >
-          Mon compte
-        </button>
-      </section>
-
       <section className="flex w-fit mx-auto mt-16 lg:mt-32">
         <form
           className="flex flex-col gap-8 lg:flex-row lg:gap-12"
@@ -185,7 +176,7 @@ export default function OffersResearch({
                 <button
                   type="button"
                   className="p-2 bg-primary text-white rounded-md w-1/3"
-                  onClick={handleOfferDetails}
+                  onClick={() => handleOfferDetails(offer.id)}
                 >
                   Voir l'offre
                 </button>
