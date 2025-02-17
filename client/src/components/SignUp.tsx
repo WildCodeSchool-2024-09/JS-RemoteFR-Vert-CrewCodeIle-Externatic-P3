@@ -22,7 +22,7 @@ const SignUp = () => {
         <div className="flex flex-col lg:flex-row lg:max-w-15xl mx-auto py-2 px-4 sm:py-2 sm:px-6 lg:px-1">
           <div className="mt-10 lg:mt-0 lg:w-7/12">
             <img
-              className="w-full h-[600px] lg:max-w-[95%]"
+              className="w-full h-auto lg:max-w-[95%] lg:h-[600px]"
               src={mainImage}
               alt="Externatic background"
             />
