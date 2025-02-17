@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result } from "../../../database/client";
+import type { Result, Rows } from "../../../database/client";
 
 type Apply = {
   id: number;
@@ -17,6 +17,16 @@ class ApplyRepository {
       ["En attente", false, apply.candidate_id, apply.offer_id],
     );
     return result.insertId;
+  }
+
+  async read(candidate_id: number) {
+    const [Rows] = await databaseClient.query<Rows>(
+      `
+      select * from candidature where candidate_id = ?
+      `,
+      [candidate_id],
+    );
+    return Rows[0] as Apply;
   }
 }
 

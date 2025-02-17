@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import userIcone from "../../assets/images/UserIcone.png";
 import { useAuth } from "../../context/AuthContext";
+import type { CandidatureType } from "../../lib/candidate.definition";
 import type {
   CandidateFormData,
   UserFormData,
@@ -11,6 +12,10 @@ function UserAccount() {
 
   const [candidateAccount, setCandidateAccount] =
     useState<CandidateFormData | null>(null);
+
+  const [candidatures, setCandidatures] = useState<CandidatureType | null>(
+    null,
+  );
 
   const { userId } = useAuth();
 
@@ -29,6 +34,17 @@ function UserAccount() {
         .then((response) => response.json())
         .then((data) => setCandidateAccount(data))
         .catch((error) => console.error(error));
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/api/candidate/candidature/${userId}`,
+      )
+        .then((response) => response.json())
+        .then((data) => setCandidatures(data))
+        .then((error) => console.error(error));
     }
   }, [userId]);
 
@@ -80,6 +96,45 @@ function UserAccount() {
             </a>
           )}
         </span>
+        <h2 className="block text-2xl  text-white font-semibold my-11 text-center">
+          Mes candidatures
+        </h2>
+        {candidatures ? (
+          <>
+            <table className="my-4 border border-white font-medium">
+              <thead>
+                <tr className="bg-secondary text-white">
+                  <th className="border-2 border-black px-2 py-2">Titre</th>
+                  <th className="border-2 border-black px-2 py-2">Statut</th>
+                  <th className="border-2 border-black px-2 py-2">
+                    Localisation
+                  </th>
+                  <th className="border-2 border-black px-2 py-2">
+                    Type de contrat
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="bg-white">
+                  <td className="border-2 border-black px-2 py-2">
+                    {candidatures.title}
+                  </td>
+                  <td className="border-2 border-black px-2 py-2">
+                    {candidatures.statut}
+                  </td>
+                  <td className="border-2 border-black px-2 py-2">
+                    {candidatures.location}
+                  </td>
+                  <td className="border-2 border-black px-2 py-2">
+                    {candidatures.contract_type}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <p>Vous n'avez pas encore postulé à des offres d'emploi.</p>
+        )}
       </article>
     </section>
   );

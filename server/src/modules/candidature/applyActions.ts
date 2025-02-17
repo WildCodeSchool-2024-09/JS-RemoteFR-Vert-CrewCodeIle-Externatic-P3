@@ -1,4 +1,4 @@
-import type { RequestHandler } from "express";
+import { type RequestHandler, response } from "express";
 import ApplyRepository from "./ApplyRepository";
 
 const addApply: RequestHandler = async (req, res, next) => {

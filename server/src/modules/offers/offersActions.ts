@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import ApplyRepository from "../candidature/ApplyRepository";
 import offersRepository from "./offersRepository";
 
 const browseOffers: RequestHandler = async (req, res, next) => {
@@ -29,6 +30,24 @@ const browseOffer: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
+const browseApply: RequestHandler = async (req, res, next) => {
+  try {
+    const apply = await ApplyRepository.read(req.body.candidate_id);
+
+    const offer = await offersRepository.read(apply.offer_id);
+
+    const response = {
+      ...apply,
+      title: offer.title,
+      location: offer.location,
+      contract_type: offer.contract_type,
+    };
+
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+};
 
 const addOffer: RequestHandler = async (req, res, next) => {
   try {
@@ -51,4 +70,10 @@ const addOffer: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseOffers, browseOffersByCompany, browseOffer, addOffer };
+export default {
+  browseOffers,
+  browseOffersByCompany,
+  browseOffer,
+  addOffer,
+  browseApply,
+};
