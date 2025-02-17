@@ -154,6 +154,9 @@ const router = createBrowserRouter([
     loader: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/admin/companies`,
+        {
+          credentials: "include",
+        },
       );
       if (!response.ok) {
         throw new Response("Erreur lors de la récupération des entreprises", {
@@ -169,6 +172,9 @@ const router = createBrowserRouter([
     loader: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/admin/candidates`,
+        {
+          credentials: "include",
+        },
       );
       if (!response.ok) {
         throw new Response("Erreur lors de la récupération des candidats", {
@@ -184,6 +190,9 @@ const router = createBrowserRouter([
     loader: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/admin/latest-profiles`,
+        {
+          credentials: "include",
+        },
       );
       if (!response.ok) {
         throw new Response("Erreur lors de la récupération des candidats", {
@@ -199,6 +208,9 @@ const router = createBrowserRouter([
     loader: async ({ params }) => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/admin/candidates/${params.id}`,
+        {
+          credentials: "include",
+        },
       );
       if (!response.ok) {
         throw new Response(

@@ -101,7 +101,7 @@ router.post(
   upload,
   candidatesActions.uploadFiles,
 );
-router.get("/api/companies/account/:id", companiesActions.readCompanyProfil);
+router.get("/api/companies/account/:id", companiesActions.readCompany);
 router.post(
   "/api/companies/account",
   verifyToken,
@@ -117,10 +117,15 @@ router.post(
 
 router.get("/api/offerByCandidate", offersActions.browseOffer);
 router.get("/api/candidate/account/:id", candidateActions.readProfil);
-router.post("/api/candidate/account", upload, candidateActions.uploadFiles);
+router.post(
+  "/api/candidate/account",
+  verifyToken,
+  upload,
+  candidateActions.uploadFiles,
+);
 
 /* ************************************************************************* */
-router.use("/admin", verifyToken, checkAdminRole);
+router.use("/admin", verifyToken);
 
 router.get("/admin/companies", userActions.browseCompanies);
 router.get("/admin/latest-profiles", userActions.getLatestProfiles);

@@ -159,7 +159,8 @@ function OfferCreation({ onSubmit }: OfferFormType) {
           htmlFor="is_opened_to_disabled"
           className="block text-sm  text-white font-semibold"
         >
-          Le travail est-t'il accessible aux personnes souffrant d'un handicap ?
+          Le travail est-t'il accessible aux personnes en situation de handicap
+          ?
           <article>
             <input
               {...register("is_opened_to_disabled")}
