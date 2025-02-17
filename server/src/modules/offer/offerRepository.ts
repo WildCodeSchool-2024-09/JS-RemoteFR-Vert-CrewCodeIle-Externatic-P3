@@ -23,10 +23,10 @@ class OfferRepository {
 
   async readByFilter(research: Partial<OffersDataType>) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM offer WHERE title=? AND contract_type=? AND location=? AND is_teleworking = ?",
+      "SELECT * FROM offer WHERE title LIKE ? AND contract_type=? AND location=? AND is_teleworking = ?",
 
       [
-        research.title,
+        `%${research.title}%`,
         research.contract_type,
         research.location,
         research.is_teleworking,
