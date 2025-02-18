@@ -6,6 +6,8 @@ function CandidateAccountPage() {
 
   const handleClick = () => navigate("/account/candidate/update");
 
+  const handleOffers = () => navigate("/OffersResearch");
+
   return (
     <>
       <h1 className=" text-4xl font-bold text-black mt-5 mb-5 justify-center text-center">
@@ -23,6 +25,9 @@ function CandidateAccountPage() {
         >
           {" "}
           Mettre à jour mon profil
+        </button>
+        <button onClick={handleOffers} type="button">
+          Voir les offres disponibles
         </button>
       </section>
     </>

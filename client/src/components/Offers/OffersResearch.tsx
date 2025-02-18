@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import type { OffersDataType } from "../../lib/offers.definitions";
@@ -16,12 +16,15 @@ export default function OffersResearch({
   error,
 }: handleFilteredOffersType) {
   const [search, setSearch] = useState<string>("");
+  const [filteredResults, setFilteredResults] =
+    useState<OffersDataType[]>(filteredOffers);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SearchDataType>();
+
   const onSubmit: SubmitHandler<SearchDataType> = (
     searchData: SearchDataType,
   ) => {
@@ -32,28 +35,42 @@ export default function OffersResearch({
     setSearch(e.target.value);
   };
 
+  useEffect(() => {
+    const filterOffers = () => {
+      const normalizedSearch = search
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
+        .toLowerCase()
+        .trim();
+
+      const results = filteredOffers.filter((offer) =>
+        offer.title
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .toLowerCase()
+          .includes(normalizedSearch),
+      );
+
+      setFilteredResults(results);
+    };
+
+    const timeout = setTimeout(filterOffers, 300);
+    return () => clearTimeout(timeout);
+  }, [search, filteredOffers]);
+
   const navigate = useNavigate();
-  const handleOfferDetails = () => {
-    navigate("/OfferDetails");
+  const handleOfferDetails = (offerId: number) => {
+    navigate(`/offer/${offerId}`);
   };
 
   return (
     <section>
-      <section className="flex justify-end">
-        <button
-          type="button"
-          className="mt-4 h-10 mr-4 rounded-md p-2 border-solid border-2 border-[#CA2060] hover:border-black lg:bg-[#CA2060] lg:w-[16em] lg:text-white lg:hover:bg-black"
-        >
-          Mon compte
-        </button>
-      </section>
-
       <section className="flex w-fit mx-auto mt-16 lg:mt-32">
         <form
           className="flex flex-col gap-8 lg:flex-row lg:gap-12"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="flex flex-col ">
+          <div className="flex flex-col">
             {errors.title && (
               <span className="text-lg font-bold">{errors.title.message}</span>
             )}
@@ -78,7 +95,6 @@ export default function OffersResearch({
               </span>
             )}
             <label htmlFor="contract_type">Type de contrat:</label>
-
             <div className="flex gap-2">
               <input
                 {...register("contract_type", {
@@ -113,7 +129,7 @@ export default function OffersResearch({
                 {errors.location.message}
               </span>
             )}
-            <label htmlFor="location">Localisaton:</label>
+            <label htmlFor="location">Localisation:</label>
             <input
               {...register("location", {
                 required: "Veuillez sélectionner une localisation",
@@ -142,16 +158,17 @@ export default function OffersResearch({
           </button>
         </form>
       </section>
-      {error && <span>error.message</span>}
+
+      {error && <span>{error}</span>}
+
       <section className="flex w-10/12 mt-[8em] mb-[8em] mx-auto">
-        <ul className="flex flex-row flex-wrap gap-8 justify-center ">
-          {filteredOffers.length > 0 &&
-            filteredOffers.map((offer) => (
+        <ul className="flex flex-row flex-wrap gap-8 justify-center">
+          {filteredResults.length > 0 &&
+            filteredResults.map((offer) => (
               <li
                 key={offer.id}
-                className="p-1 flex flex-col gap-2 lg:flex lg:flex-col lg:gap-2 lg:w-1/3 border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
+                className="p-8 lg:p-8 flex flex-col gap-4 lg:w-[30em] border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
               >
-                {" "}
                 <h1 className="text-lg font-bold">{offer.title}</h1>
                 <span>{offer.contract_type}</span>
                 <span>{offer.description}</span>
@@ -159,7 +176,7 @@ export default function OffersResearch({
                 <button
                   type="button"
                   className="p-2 bg-primary text-white rounded-md w-1/3"
-                  onClick={handleOfferDetails}
+                  onClick={() => handleOfferDetails(offer.id)}
                 >
                   Voir l'offre
                 </button>

@@ -16,6 +16,7 @@ const uploadFiles: RequestHandler = async (req, res, next) => {
       user_id: req.body.user_id,
       is_disabled: req.body.is_disabled,
     };
+
     const insertId = await CandidateRepository.create(newCandidate);
 
     res.status(201).json();

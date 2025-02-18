@@ -1,5 +1,5 @@
 export const navigationLinks = [
-  { href: "/#qui-sommes-nous", label: "Qui sommes-nous ?" },
-  { href: "/#nos-offres", label: "Nos Offres" },
+  { href: "/", label: "Qui sommes-nous ?" },
+  { href: "/Offers", label: "Nos Offres" },
   { href: "/partners-companies", label: "Entreprises partenaires" },
 ];

@@ -14,7 +14,7 @@ export const login: RequestHandler = async (req, res) => {
     .cookie("auth_token", token, {
       httpOnly: false,
       secure: false,
-      maxAge: 86400,
+      maxAge: 8640000,
     })
     .json({ userId: userId });
 };

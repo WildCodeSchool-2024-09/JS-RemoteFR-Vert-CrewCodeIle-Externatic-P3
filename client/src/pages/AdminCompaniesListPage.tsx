@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import logo from "../assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png";
 import UserFormRegister from "../components/user/UserFormRegister";
 import type { UserFormData } from "../lib/userForm.definitions";
@@ -8,6 +8,7 @@ const AdminCompaniesListPage = () => {
   const initialCompanies = useLoaderData() as UserFormData[];
   const [companies, setCompanies] = useState<UserFormData[]>(initialCompanies);
   const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
 
   const handleAnonymizeCompany = async (companyId: number) => {
     const apiUrl = `${import.meta.env.VITE_API_URL}/admin/companies/${companyId}`;
@@ -42,6 +43,7 @@ const AdminCompaniesListPage = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      credentials: "include",
     });
 
     if (response.ok) {
@@ -92,14 +94,24 @@ const AdminCompaniesListPage = () => {
         </thead>
         <tbody>{renderCompaniesRows()}</tbody>
       </table>
-      <button
-        type="button"
-        onClick={() => setShowForm(!showForm)}
-        className="bg-green-500 text-white py-2 px-4 rounded"
-      >
-        {showForm ? "Annuler" : "Ajouter une Entreprise"}
-      </button>
-
+      <div>
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="bg-gray-500 text-white py-2 px-4 rounded my-4"
+        >
+          Retour
+        </button>
+      </div>
+      <div>
+        <button
+          type="button"
+          onClick={() => setShowForm(!showForm)}
+          className="bg-green-500 text-white py-2 px-4 rounded"
+        >
+          {showForm ? "Annuler" : "Ajouter une Entreprise"}
+        </button>
+      </div>
       {showForm && <UserFormRegister onSubmit={handleAddCompany} />}
     </div>
   );
