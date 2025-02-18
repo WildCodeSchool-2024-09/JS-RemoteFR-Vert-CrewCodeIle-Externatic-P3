@@ -6,6 +6,14 @@ import type {
   UserFormData,
 } from "../../lib/userForm.definitions";
 
+import { useEffect, useState } from "react";
+import userIcone from "../../assets/images/UserIcone.png";
+import { useAuth } from "../../context/AuthContext";
+import type {
+  CandidateFormData,
+  UserFormData,
+} from "../../lib/userForm.definitions";
+
 function UserAccount() {
   const [userAccount, setUserAccount] = useState<UserFormData | null>(null);
 
