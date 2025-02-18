@@ -13,7 +13,7 @@ function UserAccount() {
   const [candidateAccount, setCandidateAccount] =
     useState<CandidateFormData | null>(null);
 
-  const [candidatures, setCandidatures] = useState<CandidatureType | null>(
+  const [candidatures, setCandidatures] = useState<CandidatureType[] | null>(
     null,
   );
 
@@ -115,20 +115,22 @@ function UserAccount() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white">
-                  <td className="border-2 border-black px-2 py-2">
-                    {candidatures.title}
-                  </td>
-                  <td className="border-2 border-black px-2 py-2">
-                    {candidatures.statut}
-                  </td>
-                  <td className="border-2 border-black px-2 py-2">
-                    {candidatures.location}
-                  </td>
-                  <td className="border-2 border-black px-2 py-2">
-                    {candidatures.contract_type}
-                  </td>
-                </tr>
+                {candidatures.map((c) => (
+                  <tr key={c.id} className="bg-white">
+                    <td className="border-2 border-black px-2 py-2">
+                      {c.title}
+                    </td>
+                    <td className="border-2 border-black px-2 py-2">
+                      {c.statut}
+                    </td>
+                    <td className="border-2 border-black px-2 py-2">
+                      {c.location}
+                    </td>
+                    <td className="border-2 border-black px-2 py-2">
+                      {c.contract_type}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </>

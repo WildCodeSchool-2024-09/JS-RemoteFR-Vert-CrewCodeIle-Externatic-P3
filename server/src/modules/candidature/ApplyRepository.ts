@@ -19,14 +19,17 @@ class ApplyRepository {
     return result.insertId;
   }
 
-  async read(candidate_id: number) {
+  async applyOfferDetails(candidate_id: number) {
     const [Rows] = await databaseClient.query<Rows>(
       `
-      select * from candidature where candidate_id = ?
+      SELECT candidature.*, offer.*
+      FROM candidature
+      JOIN offer ON offer.id = candidature.offer_id
+      WHERE candidature.candidate_id = ?
       `,
       [candidate_id],
     );
-    return Rows[0] as Apply;
+    return Rows as Apply[];
   }
 }
 

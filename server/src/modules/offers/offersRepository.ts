@@ -34,7 +34,7 @@ class OffersRepository {
       "select * from offer where id = ?",
       [id],
     );
-    return rows[0] as Offer;
+    return rows as Offer[];
   }
 
   async create(offer: Omit<Offer, "id">) {

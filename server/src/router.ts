@@ -127,7 +127,7 @@ router.post(
 router.get(
   "/api/candidate/candidature/:id",
   candidateActions.readApply,
-  offersActions.browseApply,
+  applyActions.browseApply,
 );
 
 /* ************************************************************************* */
