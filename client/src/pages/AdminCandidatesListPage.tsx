@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/EXTERNATIC-LOGO-VERTICAL-RVB.png";
 import UserFormRegister from "../components/user/UserFormRegister";
@@ -10,6 +10,7 @@ const AdminCandidatesListPage = () => {
   const [candidates, setCandidates] =
     useState<UserFormData[]>(initialCandidates);
   const [showForm, setShowForm] = useState(false);
+  const navigate = useNavigate();
 
   const handleAnonymizeCandidate = async (candidateId: number) => {
     const apiUrl = `${import.meta.env.VITE_API_URL}/admin/candidates/${candidateId}`;
@@ -101,11 +102,20 @@ const AdminCandidatesListPage = () => {
         </thead>
         <tbody>{renderCandidatesRows()}</tbody>
       </table>
+      <div>
+        <button
+          type="button"
+          onClick={() => navigate(-1)}
+          className="bg-gray-500 text-white py-2 px-4 rounded my-4"
+        >
+          Retour
+        </button>
+      </div>
 
       <button
         type="button"
         onClick={() => setShowForm(!showForm)}
-        className="bg-green-500 text-white py-2 px-4 rounded-lg mt-4"
+        className="bg-green-500 text-white py-2 px-4 rounded-lg"
       >
         {showForm ? "Annuler" : "Ajouter un Candidat"}
       </button>

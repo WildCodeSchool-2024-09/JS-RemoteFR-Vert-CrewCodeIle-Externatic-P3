@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import type { Offer } from "../../lib/offers.definitions";
 
 function OffersList() {
   const [dataOffers, setDataOffers] = useState<Offer[]>([]);
   const navigate = useNavigate();
+  const { userId } = useAuth();
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/offers`)
@@ -33,7 +35,13 @@ function OffersList() {
               <button
                 type="button"
                 className="text-white bg-primary px-4 py-2 rounded "
-                onClick={() => navigate(`/offer/${o.id}`)}
+                onClick={() => {
+                  if (userId) {
+                    navigate(`/offer/${o.id}`);
+                  } else {
+                    navigate("/login/candidate");
+                  }
+                }}
               >
                 Voir l'offre
               </button>

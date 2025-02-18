@@ -46,12 +46,34 @@ const DetailsOfferCandidatPage = () => {
       <section className="grid place-items-center gap-6 p-4">
         <div
           className="border-2 border-primary shadow-md bg-slate-100 
-            w-full max-w-2xl p-6 mx-auto"
+            w-full max-w-2xl p-10 mx-auto"
         >
-          <h1 className="font-bold text-3xl pb-8">{offer?.title}</h1>
-          <p className="text-xl mb-2">{offer?.location}</p>
-          <h2 className="font-bold text-xl">Description du poste :</h2>
-          <p className="text-xl">{offer?.description}</p>
+          <h1 className="font-bold text-3xl">{offer?.title}</h1>
+          <p className="mb-4">{offer?.company_name}</p>
+          <div className="lg:flex">
+            <h2 className="text-xl font-bold mr-2">Localisation: </h2>
+            <p className="text-xl mb-4">{offer?.location}</p>
+          </div>
+          <div>
+            <h2 className="font-bold text-xl mr-2">Description du poste: </h2>
+            <p className="text-xl mb-4">{offer?.description}</p>
+          </div>
+          <div className="lg:flex">
+            <h2 className="text-xl font-bold mr-2">
+              Possibilité de télétravail:{" "}
+            </h2>
+            <p className="text-xl mb-4">
+              {offer?.is_teleworking === 0 ? "Non" : "Oui"}
+            </p>
+          </div>
+          <div className="lg:flex">
+            <h2 className="text-xl font-bold mr-2">
+              Poste ouvert aux travailleurs en situation de handicap:{" "}
+            </h2>
+            <p className="text-xl">
+              {offer?.is_opened_to_disabled === 0 ? "Non" : "Oui"}
+            </p>
+          </div>
         </div>
       </section>
 
