@@ -53,4 +53,20 @@ const readProfilforApply: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { uploadFiles, readProfil, readProfilforApply };
+const readApply: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = Number(req.params.id);
+    const candidate = await CandidateRepository.readUser(user_id);
+
+    if (!candidate) {
+      res.sendStatus(404);
+      return;
+    }
+    req.body.candidate_id = candidate.id;
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+};
+export default { uploadFiles, readProfil, readProfilforApply, readApply };

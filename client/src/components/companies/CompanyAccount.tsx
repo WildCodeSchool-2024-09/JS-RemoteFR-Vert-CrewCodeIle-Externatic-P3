@@ -56,16 +56,16 @@ function UserAccount() {
         </h2>
 
         <article className="flex flex-col bg-gray-50 p-2 text-sm sm:text-base">
-          <p className="whitespace-nowrap">
+          <p className="flex flex-wrap text-wrap">
             Nom de l'entreprise : {companyAccount?.company_name}
           </p>
-          <p className="whitespace-nowrap">
+          <p className="flex flex-wrap text-wrap">
             Descritpion : {companyAccount?.description}
           </p>
-          <p className="whitespace-nowrap">
+          <p className="flex flex-wrap text-wrap">
             Nombre d'employés : {companyAccount?.employee_number}
           </p>
-          <p className="whitespace-nowrap">
+          <p className="flex flex-wrap text-wrap">
             Secteur d'activité : {companyAccount?.sector}
           </p>
           <a

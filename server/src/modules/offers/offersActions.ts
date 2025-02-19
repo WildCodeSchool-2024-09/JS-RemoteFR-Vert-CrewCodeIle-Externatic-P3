@@ -51,4 +51,9 @@ const addOffer: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseOffers, browseOffersByCompany, browseOffer, addOffer };
+export default {
+  browseOffers,
+  browseOffersByCompany,
+  browseOffer,
+  addOffer,
+};

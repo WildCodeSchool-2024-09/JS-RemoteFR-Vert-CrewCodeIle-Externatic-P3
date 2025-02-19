@@ -124,6 +124,12 @@ router.post(
   candidateActions.uploadFiles,
 );
 
+router.get(
+  "/api/candidate/candidature/:id",
+  candidateActions.readApply,
+  applyActions.browseApply,
+);
+
 /* ************************************************************************* */
 router.use("/admin", verifyToken);
 

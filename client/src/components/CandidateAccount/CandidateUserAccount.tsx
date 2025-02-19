@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import userIcone from "../../assets/images/UserIcone.png";
 import { useAuth } from "../../context/AuthContext";
+import type { CandidatureType } from "../../lib/candidate.definition";
 import type {
   CandidateFormData,
   UserFormData,
@@ -11,6 +12,10 @@ function UserAccount() {
 
   const [candidateAccount, setCandidateAccount] =
     useState<CandidateFormData | null>(null);
+
+  const [candidatures, setCandidatures] = useState<CandidatureType[] | null>(
+    null,
+  );
 
   const { userId } = useAuth();
 
@@ -28,6 +33,17 @@ function UserAccount() {
       fetch(`${import.meta.env.VITE_API_URL}/api/candidate/account/${userId}`)
         .then((response) => response.json())
         .then((data) => setCandidateAccount(data))
+        .catch((error) => console.error(error));
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/api/candidate/candidature/${userId}`,
+      )
+        .then((response) => response.json())
+        .then((data) => setCandidatures(data))
         .catch((error) => console.error(error));
     }
   }, [userId]);
@@ -52,8 +68,10 @@ function UserAccount() {
         </article>
 
         <article className="flex flex-wrap justify-center border-b border-gray-400 py-2 bg-gray-50">
-          <p className="whitespace-nowrap">{userAccount?.firstname}</p>
-          <p className="whitespace-nowrap ml-2">{userAccount?.lastname}</p>
+          <p className="whitespace-nowrap text-xl">{userAccount?.firstname}</p>
+          <p className="whitespace-nowrap text-xl ml-2">
+            {userAccount?.lastname}
+          </p>
         </article>
 
         <h2 className="mb-1 text-xl text-primary font-semibold">
@@ -86,6 +104,48 @@ function UserAccount() {
             >
               📄 Visualiser mon CV
             </a>
+          )}
+
+          <h2 className="block text-2xl  text-primary font-semibold my-11 text-center">
+            Mes candidatures
+          </h2>
+          {candidatures ? (
+            <>
+              <table className="my-4 border border-white font-medium">
+                <thead>
+                  <tr className="bg-secondary text-white">
+                    <th className="border-2 border-black px-2 py-2">Titre</th>
+                    <th className="border-2 border-black px-2 py-2">Statut</th>
+                    <th className="border-2 border-black px-2 py-2">
+                      Localisation
+                    </th>
+                    <th className="border-2 border-black px-2 py-2">
+                      Type de contrat
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {candidatures.map((c) => (
+                    <tr key={c.id} className="bg-white">
+                      <td className="border-2 border-black px-2 py-2">
+                        {c.title}
+                      </td>
+                      <td className="border-2 border-black px-2 py-2">
+                        {c.statut}
+                      </td>
+                      <td className="border-2 border-black px-2 py-2">
+                        {c.location}
+                      </td>
+                      <td className="border-2 border-black px-2 py-2">
+                        {c.contract_type}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          ) : (
+            <p>Vous n'avez pas encore postulé à des offres d'emploi.</p>
           )}
         </article>
       </section>

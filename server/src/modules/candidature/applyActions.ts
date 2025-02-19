@@ -1,4 +1,4 @@
-import type { RequestHandler } from "express";
+import { type RequestHandler, response } from "express";
 import ApplyRepository from "./ApplyRepository";
 
 const addApply: RequestHandler = async (req, res, next) => {
@@ -16,4 +16,15 @@ const addApply: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { addApply };
+const browseApply: RequestHandler = async (req, res, next) => {
+  try {
+    const apply = await ApplyRepository.applyOfferDetails(
+      req.body.candidate_id,
+    );
+    res.json(apply);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { addApply, browseApply };
