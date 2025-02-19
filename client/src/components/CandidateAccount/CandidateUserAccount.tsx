@@ -44,7 +44,7 @@ function UserAccount() {
       )
         .then((response) => response.json())
         .then((data) => setCandidatures(data))
-        .then((error) => console.error(error));
+        .catch((error) => console.error(error));
     }
   }, [userId]);
 
