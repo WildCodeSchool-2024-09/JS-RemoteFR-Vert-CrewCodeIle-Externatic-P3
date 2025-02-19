@@ -167,7 +167,7 @@ export default function OffersResearch({
             filteredResults.map((offer) => (
               <li
                 key={offer.id}
-                className="p-8 lg:p-8 flex flex-col gap-4 lg:w-[30em] border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
+                className="p-8 flex flex-col gap-4 lg:w-[30em] border-solid border-2 border-primary lg:p-1 hover:bg-slate-100"
               >
                 <h1 className="text-lg font-bold">{offer.title}</h1>
                 <span>{offer.contract_type}</span>

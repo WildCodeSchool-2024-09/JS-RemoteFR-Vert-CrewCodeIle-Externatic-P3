@@ -72,7 +72,7 @@ function UserAccount() {
             href={companyAccount?.website_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white underline"
+            className="text-blue-500 underline"
           >
             Lien vers le site
           </a>

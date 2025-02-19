@@ -108,7 +108,7 @@ function UpdateCompanyAccount({ onSubmit }: CompanyFormType) {
             )}
           </label>
         </section>
-        <section className="mb-6">
+        <section className="mb-6 mt-6">
           <label
             htmlFor="employee_number"
             className="block text-sm  text-white font-semibold"
