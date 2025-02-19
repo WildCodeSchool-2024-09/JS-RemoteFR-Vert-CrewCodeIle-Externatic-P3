@@ -26,7 +26,10 @@ function CandidateAccountPage() {
           {" "}
           Mettre à jour mon profil
         </button>
-        <button onClick={handleOffers} type="button">
+        <button 
+       className="px-5 py-4 mx-5 my-5 rounded btn-primary hover:bg-orange-600 "
+        
+        onClick={handleOffers}  type="button">
           Voir les offres disponibles
         </button>
       </section>
