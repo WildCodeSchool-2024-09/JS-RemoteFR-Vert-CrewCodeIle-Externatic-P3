@@ -56,23 +56,23 @@ function UserAccount() {
         </h2>
 
         <article className="flex flex-col bg-gray-50 p-2 text-sm sm:text-base">
-          <p className="flex flex-wrap text-wrap">
+          <p className="flex flex-wrap text-wrap mb-4">
             Nom de l'entreprise : {companyAccount?.company_name}
           </p>
-          <p className="flex flex-wrap text-wrap">
+          <p className="flex flex-wrap text-wrap mb-4">
             Descritpion : {companyAccount?.description}
           </p>
-          <p className="flex flex-wrap text-wrap">
+          <p className="flex flex-wrap text-wrap mb-4">
             Nombre d'employés : {companyAccount?.employee_number}
           </p>
-          <p className="flex flex-wrap text-wrap">
+          <p className="flex flex-wrap text-wrap mb-4">
             Secteur d'activité : {companyAccount?.sector}
           </p>
           <a
             href={companyAccount?.website_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white underline"
+            className="text-blue-500 underline"
           >
             Lien vers le site
           </a>

@@ -43,7 +43,7 @@ function OfferCreation({ onSubmit }: OfferFormType) {
 
       <section className="mb-6">
         <label className="block text-sm text-white font-semibold">
-          Salaire (en €):
+          Salaire (en € / an):
           <input
             {...register("wage", {
               required: "Le champ est requis",
