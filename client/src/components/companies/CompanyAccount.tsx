@@ -29,40 +29,56 @@ function UserAccount() {
   }, [userId]);
 
   return (
-    <section className="py-2 rounded-md mt-10 bg-primary w-full flex flex-col justify-center items-center ">
-      <h2 className="block text-2xl  text-white font-semibold my-4 text-center">
-        Mon profil
-      </h2>
-      <article className="my-4 block text-base font-medium">
-        <p> Prénom: {userAccount?.firstname}</p>
-        <p> Nom : {userAccount?.lastname}</p>
-        <h2 className="block text-xl  text-white font-semibold my-4 underline">
+    <div className="flex justify-center items-center m-2">
+      <section className="p-5 w-full max-w-sm md:max-w-md lg:max-w-lg bg-white border border-primary rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <h2 className="block text-2xl text-primary font-semibold my-4 text-center pb-4">
+          Mon profil
+        </h2>
+        <article className=" text-xl flex flex-wrap justify-center border-b border-gray-400 py-2 bg-gray-50">
+          <p className="whitespace-nowrap">{userAccount?.firstname}</p>
+          <p className="whitespace-nowrap ml-2">{userAccount?.lastname}</p>
+        </article>
+
+        <h2 className="mb-1 text-xl text-primary font-semibold">
           Mes coordonnées
         </h2>
-        <p> Email: {userAccount?.email}</p>
-        <p> Tel : {userAccount?.tel}</p>
-        <p> Adresse : {userAccount?.address}</p>
-        <span> Ville : {userAccount?.city}</span>
-        <span> Code postal : {userAccount?.postal_code}</span>
-      </article>
-      <article className="my-4 block text-base font-medium">
-        <h2 className="block text-xl  text-white font-semibold my-4 underline">
+
+        <article className="flex flex-col border-b border-gray-400 bg-gray-50 p-2 text-sm sm:text-base">
+          <p> Email: {userAccount?.email}</p>
+          <p> Tel : {userAccount?.tel}</p>
+          <p> Adresse : {userAccount?.address}</p>
+          <span> Code postal : {userAccount?.postal_code}</span>
+          <span> Ville : {userAccount?.city}</span>
+        </article>
+
+        <h2 className="block text-xl text-primary font-semibold my-2">
           Mon entreprise
         </h2>
-        <p>Nom de l'entreprise : {companyAccount?.company_name}</p>
-        <p>Descritpion : {companyAccount?.description}</p>
-        <span>Nombre d'employés : {companyAccount?.employee_number}</span>
-        <p>Secteur d'activité : {companyAccount?.sector}</p>
-        <a
-          href={companyAccount?.website_link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white underline"
-        >
-          Lien vers le site
-        </a>
-      </article>
-    </section>
+
+        <article className="flex flex-col bg-gray-50 p-2 text-sm sm:text-base">
+          <p className="whitespace-nowrap">
+            Nom de l'entreprise : {companyAccount?.company_name}
+          </p>
+          <p className="whitespace-nowrap">
+            Descritpion : {companyAccount?.description}
+          </p>
+          <p className="whitespace-nowrap">
+            Nombre d'employés : {companyAccount?.employee_number}
+          </p>
+          <p className="whitespace-nowrap">
+            Secteur d'activité : {companyAccount?.sector}
+          </p>
+          <a
+            href={companyAccount?.website_link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white underline"
+          >
+            Lien vers le site
+          </a>
+        </article>
+      </section>
+    </div>
   );
 }
 export default UserAccount;

@@ -97,7 +97,7 @@ router.get("/api/user/:id", userActions.readUserData);
 router.get("/api/candidate/account/:id", candidatesActions.readProfil);
 router.post(
   "/api/candidate/account",
-  verifyToken,
+
   upload,
   candidatesActions.uploadFiles,
 );
