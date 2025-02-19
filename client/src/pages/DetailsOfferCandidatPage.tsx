@@ -54,7 +54,7 @@ const DetailsOfferCandidatPage = () => {
             <h2 className="text-xl font-bold mr-2">Localisation: </h2>
             <p className="text-xl mb-4">{offer?.location}</p>
           </div>
-          <div>
+          <div className="grid-auto-flow">
             <h2 className="font-bold text-xl mr-2">Description du poste: </h2>
             <p className="text-xl mb-4">{offer?.description}</p>
           </div>

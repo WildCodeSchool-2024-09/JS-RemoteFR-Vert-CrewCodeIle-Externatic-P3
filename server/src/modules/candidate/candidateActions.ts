@@ -38,6 +38,7 @@ const readProfil: RequestHandler = async (req, res, next) => {
 const readProfilforApply: RequestHandler = async (req, res, next) => {
   try {
     const user_id = req.body.user_id;
+
     const candidate = await CandidateRepository.readUser(user_id);
 
     if (!candidate) {
